@@ -1,0 +1,20 @@
+
+import Foundation
+struct ProfileModel: Codable {
+    let id, firtsName, lastName, userName: String
+    let email, phoneNumber: String
+    let details: Details
+    let tags: [Tag]
+}
+
+
+struct Details: Codable {
+    let about: String
+    let imagePath: String
+}
+
+
+struct Tag: Codable,Hashable {
+    let id, name: String
+    let important: Bool
+}
