@@ -4,13 +4,13 @@ import Contacts
 struct LoginScreen: View {
     @State private var username = ""
     @State private var password = ""
-    @State private var loginStatus = TokenManager.shared.getAccessToken() ?? ""
+    @EnvironmentObject var user: ApplicationUser
     @State private var isRegistrationActive = false
     
     var body: some View {
-        
-            if loginStatus != "accessToken" {
+        if user.loginStatus != "" && user.loginStatus != nil{
                 ProfileScreen().frame(maxWidth: .infinity)
+            
             } else {NavigationView {
                 VStack {
                     
@@ -55,7 +55,7 @@ struct LoginScreen: View {
         NetworkBase().login(email: email, password: password) { result in
             switch result {
             case .success(let jwtAccessModel):
-                self.loginStatus = jwtAccessModel.token
+                user.loginStatus = jwtAccessModel.token
                 print("Вход выполнен успешно: \(jwtAccessModel)")
             case .failure(let error):
                 // Обработка ошибки
@@ -66,6 +66,8 @@ struct LoginScreen: View {
 }
 
 struct AccountView_Previews: PreviewProvider {
+    @State static private var loginStatus = "accessToken" // Задайте начальное значение loginStatus
+
     static var previews: some View {
         LoginScreen()
     }

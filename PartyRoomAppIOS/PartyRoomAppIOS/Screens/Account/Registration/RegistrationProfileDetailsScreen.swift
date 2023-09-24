@@ -5,6 +5,7 @@ struct RegistrationProfileDetailsScreen: View {
     @State private var tagName: String = ""
     @State private var tags: [String] = [] // Массив для хранения тегов
     @State private var isRegister = false
+    @State  private var loginStatus = "accessToken" // Задайте начальное значение loginStatus
     
     var body: some View {
         if !isRegister{
@@ -38,10 +39,10 @@ struct RegistrationProfileDetailsScreen: View {
                 .padding(.all)
             }
         }else{
-           
-                LoginScreen()
-                        
-                        .navigationBarHidden(true)
+            
+            LoginScreen()
+            
+                .navigationBarHidden(true)
         }
         
     }

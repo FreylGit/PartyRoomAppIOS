@@ -38,7 +38,7 @@ struct RoomCreateView: View {
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let token = user.jwtAccess?.token {
+        if let token = TokenManager.shared.getAccessToken() {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
         let dateFormatter = DateFormatter()

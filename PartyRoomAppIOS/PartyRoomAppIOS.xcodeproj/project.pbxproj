@@ -171,12 +171,12 @@
 		AAF8A6512AB4F03B0080A250 /* PartyRoomAppIOS */ = {
 			isa = PBXGroup;
 			children = (
+				AAF8A6522AB4F03B0080A250 /* PartyRoomAppIOSApp.swift */,
 				AA05698B2AB704930049EA2A /* Manager */,
 				AAF8A67F2AB651E30080A250 /* Utils */,
 				AAF8A6742AB5E14A0080A250 /* Screens */,
 				AAF8A6692AB5A63B0080A250 /* Models */,
 				AAF8A6662AB4F6570080A250 /* Constants */,
-				AAF8A6522AB4F03B0080A250 /* PartyRoomAppIOSApp.swift */,
 				AAF8A6562AB4F03C0080A250 /* Assets.xcassets */,
 				AAF8A6582AB4F03C0080A250 /* Preview Content */,
 			);

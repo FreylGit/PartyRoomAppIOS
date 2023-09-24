@@ -2,18 +2,19 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject  var user = ApplicationUser()
+    
     var body: some View {
            TabView{
                LoginScreen()
                    .tabItem{
                        Label("Account",systemImage: "person.circle.fill")
                    }
-                   .environmentObject(user) // Внедрение user в AccountView
+                   .environmentObject(user)
                RoomsView()
                    .tabItem{
                        Label("Content",systemImage: "house.fill")
                    }
-                   .environmentObject(user) // Внедрение user в ContentView
+                   .environmentObject(user)
                ProfileScreen()
                    .tabItem{
                        Label("Content",systemImage: "house.fill")

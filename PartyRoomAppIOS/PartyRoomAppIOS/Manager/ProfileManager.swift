@@ -6,10 +6,11 @@ class TokenManager {
     private init() {}
     private let keychain = KeychainSwift()
     
-    private let accessTokenKey = "accessToken"
-    private let refreshTokenKey = "refreshToken"
+    private let accessTokenKey = ""
+    private let refreshTokenKey = ""
     
     func saveTokens(accessToken: String, refreshToken: String) {
+        clearTokens()
         keychain.set(accessToken, forKey: accessTokenKey)
         keychain.set(refreshToken, forKey: refreshTokenKey)
     }
@@ -33,8 +34,6 @@ class TokenManager {
     func clearTokens() {
         keychain.delete(accessTokenKey)
         keychain.delete(refreshTokenKey)
-        keychain.set("accessToken", forKey: accessTokenKey)
-        keychain.set("refreshToken", forKey: refreshTokenKey)
     }
 }
 

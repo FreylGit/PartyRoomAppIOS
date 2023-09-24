@@ -7,6 +7,7 @@ struct RoomsView: View {
     @State private var name: String? = nil
     
     var body: some View {
+        
         NavigationView {
             VStack {
                 AsyncImage(url: URL(string: "https://play-lh.googleusercontent.com/GOOLgMYEhq8eZkOZ-MDEtRyze_wWuJ_mKayh7eV-VX_z2oVdYJaFPBiZ3qCuDN8k4w")) { image in
@@ -20,39 +21,47 @@ struct RoomsView: View {
                 Text(name ?? "пустой акк")
                 Button(action: {
                     TokenManager.shared.clearTokens()
+                    user.loginStatus = ""
                 }){
                     Text("DELETE TOKEN")
                 }
-                NavigationLink(destination: RoomCreateView().environmentObject(user)){
+                if user.loginStatus != ""{
                     
-                    Text("Создать комнату")
-                        .padding(.all, 8.0)
-                        .background(Color.green)
-                        .cornerRadius(5)
-                        .foregroundColor(.white)
                     
-                        .padding()
-                }
-                ScrollView {
-                    VStack(spacing: 10) {
-                        ForEach(rooms, id: \.id) { room in
-                            NavigationLink(destination: RoomDetailsPageView(roomId: room.id).environmentObject(user)) {
-                                ItemRoomView(room: room)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.horizontal)
-                                    .background(Color.white)
-                                    .cornerRadius(10) 
-                                
-                                    .padding(.vertical, 5)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
+                    NavigationLink(destination: RoomCreateView().environmentObject(user)){
+                        
+                        Text("Создать комнату")
+                            .padding(.all, 8.0)
+                            .background(Color.green)
+                            .cornerRadius(5)
+                            .foregroundColor(.white)
+                        
+                            .padding()
                     }
-                    
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            ForEach(rooms, id: \.id) { room in
+                                NavigationLink(destination: RoomDetailsPageView(roomId: room.id).environmentObject(user)) {
+                                    ItemRoomView(room: room)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.horizontal)
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                    
+                                        .padding(.vertical, 5)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                        }
+                        
+                    }
+                    .onAppear(perform: loadData)
+                    .onAppear(perform: loadProfile)
                 }
-                .onAppear(perform: loadData)
+                Spacer()
+                
             }
-            .onAppear(perform: loadProfile)
+            
             
         }
     }

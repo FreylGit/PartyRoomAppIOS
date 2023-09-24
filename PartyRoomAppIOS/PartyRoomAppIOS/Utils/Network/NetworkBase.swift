@@ -7,10 +7,13 @@ enum NetworkError: Error {
     case responseSerializationFailed(reason: String)
     case decodingFailed
     case unknownError
+    case refreshTokenMissing
 }
 
 class NetworkBase {
     public var atoken = "nil"
+    private var isRefreshing = false
+    private var refreshSemaphore = DispatchSemaphore(value: 1)
     public func requestAndParse<T: Decodable>(
         url: String,
         method: HTTPMethod,
@@ -19,10 +22,7 @@ class NetworkBase {
         type: T.Type,
         completion: @escaping (Result<T, NetworkError>) -> Void
     ) {
-        if let storedRefreshToken = TokenManager.shared.getRefreshToken() {
-            print(storedRefreshToken)
-        }
-        if let storedAccessToken = TokenManager.shared.getAccessToken(){
+        if let storedAccessToken = TokenManager.shared.getAccessToken() {
             atoken = "Bearer " + storedAccessToken
         }
         let headersr: HTTPHeaders = ["Authorization": atoken]
@@ -31,6 +31,22 @@ class NetworkBase {
             .responseData { response in
                 switch response.result {
                 case .failure(let error):
+                    // Обработка ошибок
+                    if let statusCode = response.response?.statusCode {
+                        if statusCode == 401 {
+                            print("Поймал 401")
+                            self.refresh { result in
+                                switch result {
+                                case .success:
+                                    // Обновление токена успешно, повторите исходный запрос
+                                    self.requestAndParse(url: url, method: method, parameters: parameters, headers: headers, type: type, completion: completion)
+                                case .failure(let networkError):
+                                    completion(.failure(networkError))
+                                }
+                            }
+                            return
+                        }
+                    }
                     let networkError: NetworkError
                     switch error {
                     case let afError as AFError:
@@ -49,6 +65,55 @@ class NetworkBase {
                 }
             }
     }
+    
+    private func refresh(completion: @escaping (Result<JwtAccessModel , NetworkError>) -> Void) {
+        
+        if isRefreshing {
+            return
+        }
+        isRefreshing = true
+        let refreshURL = "http://localhost:5069/api/Account/RefreshToken"
+        
+        let refreshToken = TokenManager.shared.getRefreshToken()
+        
+        guard let refreshToken = refreshToken else {
+            // Если нет рефреш-токена, вызываем ошибку
+            completion(.failure(.refreshTokenMissing))
+            return
+        }
+        
+        if let decodedRefreshToken = refreshToken.removingPercentEncoding {
+            let headers: HTTPHeaders = ["Authorization": "Bearer " + decodedRefreshToken]
+            
+            AF.request(refreshURL, method: .post, headers: headers)
+                .validate()
+                .responseData { response in
+                    switch response.result {
+                    case .failure(let error):
+                        let networkError: NetworkError
+                        switch error {
+                        case let afError as AFError:
+                            networkError = .responseValidationFailed(reason: afError.localizedDescription)
+                        default:
+                            networkError = .unknownError
+                        }
+                        completion(.failure(networkError))
+                    case .success(let value):
+                        print("Good")
+                        do {
+                            let jwtAccessModel = try JSONDecoder().decode(JwtAccessModel.self, from: value)
+                            TokenManager.shared.saveAccess(accessToken: jwtAccessModel.token)
+                            print("ЗАПИСАЛСЯ НОВЫЙ ТОКЕН")
+                            self.isRefreshing = false
+                            completion(.success(jwtAccessModel))
+                        } catch {
+                            completion(.failure(.decodingFailed))
+                        }
+                    }
+                }
+        }
+    }
+    
     
     func login(email: String, password: String, completion: @escaping (Result<JwtAccessModel, NetworkError>) -> Void) {
         let loginURL = "http://localhost:5069/api/Account/Login"
@@ -69,6 +134,7 @@ class NetworkBase {
                     }
                     completion(.failure(networkError))
                 case .success(let value):
+                    print("Good")
                     do {
                         let jwtAccessModel = try JSONDecoder().decode(JwtAccessModel.self, from: value)
                         

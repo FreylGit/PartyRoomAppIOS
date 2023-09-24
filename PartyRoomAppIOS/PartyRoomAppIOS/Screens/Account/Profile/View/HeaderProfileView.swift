@@ -5,12 +5,14 @@ struct HeaderProfileView: View {
     @State var lastName: String
     @State var imageUrl: String
     @State var email: String
+    @EnvironmentObject var user: ApplicationUser
     @Binding var isLogin: Bool
 
     var body: some View {
         VStack {
             Button(action: {
                 TokenManager.shared.clearTokens()
+                user.loginStatus = ""
                 isLogin = false
             }) {
                 Text("Выйти")
