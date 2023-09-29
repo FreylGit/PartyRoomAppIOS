@@ -4,24 +4,23 @@ struct MainView: View {
     @StateObject  var user = ApplicationUser()
     
     var body: some View {
-           TabView{
-               LoginScreen()
-                   .tabItem{
-                       Label("Account",systemImage: "person.circle.fill")
-                   }
-                   .environmentObject(user)
-               RoomsView()
-                   .tabItem{
-                       Label("Content",systemImage: "house.fill")
-                   }
-                   .environmentObject(user)
-               ProfileScreen()
-                   .tabItem{
-                       Label("Content",systemImage: "house.fill")
-                   }
-                  
-           }
-       }
+        TabView{
+            LoginScreen()
+                .tabItem{
+                    Label("Account",systemImage: "person.circle.fill")
+                }
+                .environmentObject(user)
+            RoomsView()
+                .tabItem{
+                    Label("Content",systemImage: "house.fill")
+                }
+                .environmentObject(user)
+            NotificationsScreen()
+                .tabItem{
+                    Label("Content",systemImage: "house.fill")
+                }
+        }
+    }
 }
 
 struct MainView_Previews: PreviewProvider {

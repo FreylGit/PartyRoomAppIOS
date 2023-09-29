@@ -10,18 +10,30 @@ struct HeaderProfileView: View {
 
     var body: some View {
         VStack {
-            Button(action: {
-                TokenManager.shared.clearTokens()
-                user.loginStatus = ""
-                isLogin = false
-            }) {
-                Text("Выйти")
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+            HStack {
+                Button(action: {
+                    TokenManager.shared.clearTokens()
+                    user.loginStatus = ""
+                    isLogin = false
+                }) {
+                    Image(systemName: "arrow.left.circle.fill")
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                }
+                
+                Spacer()
+               
+                    NavigationLink(destination:NotificationsScreen()){
+                        Image(systemName: "bell.fill")
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(Color.yellow)
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                    }
             }
 
             AsyncImage(url: URL(string: imageUrl)) { image in

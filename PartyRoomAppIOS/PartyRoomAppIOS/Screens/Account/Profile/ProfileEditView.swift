@@ -15,11 +15,7 @@ struct ProfileEditView: View {
                 .cornerRadius(10)
                 .padding(2)
                 .border(Color.black)
-          
-                
             Spacer()
-            
-            
         }
         .padding()
         .navigationBarItems(trailing:

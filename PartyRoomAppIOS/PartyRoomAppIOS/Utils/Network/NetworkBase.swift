@@ -14,6 +14,7 @@ class NetworkBase {
     public var atoken = "nil"
     private var isRefreshing = false
     private var refreshSemaphore = DispatchSemaphore(value: 1)
+    
     public func requestAndParse<T: Decodable>(
         url: String,
         method: HTTPMethod,

@@ -6,7 +6,8 @@ struct BodyProfileView : View{
         VStack(alignment: .leading) {
             HStack {
                 Text("О Себе")
-                    .font(.title)
+                    .font(.title2)
+                    .fontWeight(.bold)
                 Spacer()
             }
             

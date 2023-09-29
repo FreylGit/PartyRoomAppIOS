@@ -5,7 +5,7 @@ struct ProfileScreen: View {
     @State var isLogin: Bool = true
     @EnvironmentObject var user: ApplicationUser
     @State  private var loginStatus = "accessToken" // Задайте начальное значение loginStatus
-
+    
     var body: some View {
         if isLogin{
             NavigationView {
@@ -19,9 +19,7 @@ struct ProfileScreen: View {
                             BodyProfileView(about: about).padding()
                         }
                         if let tags = profile?.tags {
-                            HStack {
-                                TagProfileView(tags: tags).padding()
-                            }
+                            TagProfileView(tags: tags,isGood: true).padding()
                         }
                         Spacer().background(Color.gray.opacity(0.5))
                     }.background(Color.gray.opacity(0.5))
@@ -32,7 +30,6 @@ struct ProfileScreen: View {
         }else {
             LoginScreen()
         }
-        
     }
     
     func loadProfile() {
@@ -58,7 +55,7 @@ struct ProfileView_Previews: PreviewProvider {
             email: "user@example.com",
             phoneNumber: "1234567890",
             details: Details(about: "Описание о себе", imagePath: "http://localhost:5069/api/Image/omvsqnfg.fom.jpg"),
-            tags: [Tag(id: "1", name: "tag1", important: true),Tag(id: "2", name: "tag2", important: true),Tag(id: "3", name: "tag1", important: true)]
+            tags: [Tag(id: "1", name: "tag1", important: true),Tag(id: "2", name: "Спорт", important: true),Tag(id: "3", name: "Искусство", important: true),Tag(id: "4", name: "12у1", important: true)]
         )
         ProfileScreen(profile: sampleProfile)
     }
