@@ -143,6 +143,8 @@ class NetworkBase {
                         if let httpResponse = response.response {
                             if let refreshToken = self.extractRefreshToken(from: httpResponse) {
                                 TokenManager.shared.saveTokens(accessToken: jwtAccessModel.token, refreshToken: refreshToken)
+                                TokenManager.shared.saveRefresh(refreshToken: refreshToken)
+                                print("REEEEF"+TokenManager.shared.getRefreshToken()!)
                             } else {
                                 print("Refresh Token not found in cookies.")
                             }

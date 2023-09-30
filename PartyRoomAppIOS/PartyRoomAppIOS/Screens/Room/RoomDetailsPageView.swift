@@ -5,60 +5,70 @@ struct RoomDetailsPageView: View {
     let roomId: String
     @EnvironmentObject var user: ApplicationUser
     @State  var roomDetails: RoomDetailsModel?
-    
-    
+    @State private var userName: String = ""
     var body: some View {
-            Form {
-                Section(header: Text("Room Details")) {
-                    if let name = roomDetails?.name {
-                        HStack {
-                            Text("Name:")
-                            Spacer()
-                            Text(name)
-                        }
-                    }
-                    if let type = roomDetails?.type {
-                        HStack {
-                            Text("Type:")
-                            Spacer()
-                            Text(type)
-                        }
-                    }
-                    if let price = roomDetails?.price {
-                        HStack {
-                            Text("Price:")
-                            Spacer()
-                            Text(String(price))
-                        }
-                    }
-                    if let destinationUser = roomDetails?.destinationUserID {
-                        NavigationLink(destination: {}){
-                            HStack {
-                                Text("Destination User:").foregroundColor(Color.black)
-                                Spacer()
-                                Text(destinationUser)
-                            }
-                        }
+        
+        VStack {
+            if let room = roomDetails{
+                Section(header: Text(room.name)
+                    .font(.largeTitle)
+                    .foregroundColor(.blue)
+                    .padding(.top, 21.0)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                )
+                {
+                    HStack {
+                        Text("Тип:")
+                        Spacer()
+                        Text(room.type)
                         
                     }
-                    if let startDate = roomDetails?.startDate {
+                    HStack {
+                        Text("Бюджет:")
+                        Spacer()
+                        Text(String(room.price))
+                    }
+                    NavigationLink(destination: {}){
                         HStack {
-                            Text("Start Date:")
+                            Text("Кому подарить:")
+                                .foregroundColor(Color.black)
                             Spacer()
-                            Text(startDate)
+                            Text(room.destinationUserID)
                         }
                     }
-                    if let finishDate = roomDetails?.finishDate {
-                        HStack {
-                            Text("Finish Date:")
-                            Spacer()
-                            Text(finishDate)
-                        }
+                    HStack {
+                        Text("Дата начала:")
+                        Spacer()
+                        Text(room.startDate)
+                    }
+                    HStack {
+                        Text("Дата конца:")
+                        Spacer()
+                        Text(room.finishDate)
+                    }
+                    VStack {
+                        TextField("Введите имя пользователя", text: $userName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                        Button(action: {
+                            print(roomId)
+                            pushInvite()
+                        }, label: {
+                            Text("Отправить приглашение")
+                                .padding()
+                                .background(Color.orange)
+                        })
+                        Spacer()
                     }
                 }
-            }.onAppear(perform: getRoom)
-            .navigationBarTitle("Room Details", displayMode: .inline)
+                .padding(.top, 21.0)
+            }
+            Spacer()
         }
+        .padding()
+        .onAppear(perform: getRoom)
+        .navigationBarTitle("Информация о комнате", displayMode: .inline)
+    }
     
     private func getRoom(){
         let token = "Bearer " + (user.jwtAccess?.token ?? "")
@@ -79,7 +89,24 @@ struct RoomDetailsPageView: View {
                         print("Error loading post: \(error)")
                     }
                 }
+        }
+    
+    private func pushInvite(){
+        var url = "http://localhost:5069/api/Notifications/PushInvite"+"?roomId="+roomId+"&username="+userName
+        NetworkBase()
+            .requestAndParse(url: url, method: .post, type: RoomDetailsModel.self){result in
+                switch result {
+                case .success(let loadedPost):
+                    self.roomDetails = loadedPost
+                    userName = ""
+                    
+                case .failure(let error):
+                    print("Error loading post: \(error)")
+                }
+                
+            }
     }
+    
     
     private func formatDate(_ dateString: String) -> String? {
         let dateFormatter = DateFormatter()

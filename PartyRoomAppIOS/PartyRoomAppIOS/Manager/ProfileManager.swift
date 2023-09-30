@@ -6,8 +6,8 @@ class TokenManager {
     private init() {}
     private let keychain = KeychainSwift()
     
-    private let accessTokenKey = ""
-    private let refreshTokenKey = ""
+    private let accessTokenKey = "accessToken"
+    private let refreshTokenKey = "refreshToken"
     
     func saveTokens(accessToken: String, refreshToken: String) {
         clearTokens()

@@ -10,14 +10,6 @@ struct RoomsView: View {
         
         NavigationView {
             VStack {
-                AsyncImage(url: URL(string: "https://play-lh.googleusercontent.com/GOOLgMYEhq8eZkOZ-MDEtRyze_wWuJ_mKayh7eV-VX_z2oVdYJaFPBiZ3qCuDN8k4w")) { image in
-                    image.resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 70, height: 70)
-                        .cornerRadius(50)
-                }placeholder: {
-                    ProgressView()
-                }
                 Text(name ?? "пустой акк")
                 Button(action: {
                     TokenManager.shared.clearTokens()
@@ -27,17 +19,27 @@ struct RoomsView: View {
                 }
                 if user.loginStatus != ""{
                     
-                    
-                    NavigationLink(destination: RoomCreateView().environmentObject(user)){
-                        
-                        Text("Создать комнату")
-                            .padding(.all, 8.0)
-                            .background(Color.green)
-                            .cornerRadius(5)
-                            .foregroundColor(.white)
-                        
-                            .padding()
+                    HStack{
+                        NavigationLink(destination: RoomCreateView().environmentObject(user)){
+                            Text("Создать комнату")
+                                .padding(.all, 8.0)
+                                .background(Color.green)
+                                .cornerRadius(5)
+                                .foregroundColor(.white)
+                            
+                                .padding()
+                        }
+                        NavigationLink(destination: ConnectRoomScreen().environmentObject(user)){
+                            Text("Присоединиться")
+                                .padding(.all, 8.0)
+                                .background(Color.orange)
+                                .cornerRadius(5)
+                                .foregroundColor(.white)
+                                .lineLimit(1)
+                                .padding()
+                        }
                     }
+                   
                     ScrollView {
                         VStack(spacing: 10) {
                             ForEach(rooms, id: \.id) { room in
