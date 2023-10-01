@@ -10,7 +10,7 @@ struct MainView: View {
                     Label("Account",systemImage: "person.circle.fill")
                 }
                 .environmentObject(user)
-            RoomsView()
+            RoomsScreen()
                 .tabItem{
                     Label("Content",systemImage: "house.fill")
                 }

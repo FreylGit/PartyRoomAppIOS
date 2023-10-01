@@ -1,21 +1,22 @@
 import SwiftUI
 
 struct ItemRoomView: View {
-    let room: RoomsModelElement // Объявляем переменную room
-    
+    let room: RoomsModelElement
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Name: \(room.name)")
-                .font(.headline)
+            Text(room.name)
+                .font(.title2)
+                .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .center)
-            Text("Type: \(room.type)")
-            Text("Price: \(room.price)")
-            Text("Запущено: \(room.isStarted ? "Yes" : "No")")
-        }.padding(.all)
-            .background(Color(room.isStarted ? .green : .orange))
-            .cornerRadius(10)
-            
-        
+                .padding(.bottom,10)
+              
+            Text("Тип: \(room.type)")
+            Text("Бюджет: \(room.price) ₽")
+        }
+        .padding(.all)
+        .background(Color(room.isStarted ? .green : .orange))
+        .cornerRadius(10)
+        .shadow(radius: 10)
     }
 }
 

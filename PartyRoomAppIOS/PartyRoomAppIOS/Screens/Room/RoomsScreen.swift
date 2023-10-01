@@ -1,13 +1,12 @@
 import SwiftUI
 
-struct RoomsView: View {
+struct RoomsScreen: View {
     @EnvironmentObject var user: ApplicationUser
     @State private var refreshToken: String? = nil
     @State  var rooms: [RoomsModelElement] = []
     @State private var name: String? = nil
     
     var body: some View {
-        
         NavigationView {
             VStack {
                 Text(name ?? "пустой акк")
@@ -43,13 +42,12 @@ struct RoomsView: View {
                     ScrollView {
                         VStack(spacing: 10) {
                             ForEach(rooms, id: \.id) { room in
-                                NavigationLink(destination: RoomDetailsPageView(roomId: room.id).environmentObject(user)) {
+                                NavigationLink(destination: RoomDetailsScreen(roomId: room.id).environmentObject(user)) {
                                     ItemRoomView(room: room)
                                         .frame(maxWidth: .infinity)
-                                        .padding(.horizontal)
+                                        .padding(.horizontal,10)
                                         .background(Color.white)
                                         .cornerRadius(10)
-                                    
                                         .padding(.vertical, 5)
                                 }
                                 .buttonStyle(PlainButtonStyle())
@@ -57,6 +55,7 @@ struct RoomsView: View {
                         }
                         
                     }
+                    
                     .onAppear(perform: loadData)
                     .onAppear(perform: loadProfile)
                 }
@@ -103,6 +102,6 @@ struct ContentView_Previews: PreviewProvider {
         let testRoom2 = RoomsModelElement(id: "2", name: "Комната 2", type: "Тип 2", price: 200, isStarted: false, startDate: "2023-09-18", finishDate: "2023-09-19")
         
         let testRooms: [RoomsModelElement] = [testRoom1, testRoom2]
-        RoomsView(rooms: testRooms).environmentObject(ApplicationUser())
+        RoomsScreen(rooms: testRooms).environmentObject(ApplicationUser())
     }
 }

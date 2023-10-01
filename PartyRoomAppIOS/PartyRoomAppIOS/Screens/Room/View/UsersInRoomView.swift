@@ -67,8 +67,7 @@ private struct UserInRoomItem : View{
             }
             
         }.padding()
-        
-        
+            
     }
     func disconnectUser(){
         var url = "http://localhost:5069/api/Room/DisconnectUser?roomId="+roomId+"&participantId="+id!

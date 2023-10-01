@@ -1,112 +1,86 @@
 import SwiftUI
 import Alamofire
 
-struct RoomDetailsPageView: View {
+struct RoomDetailsScreen: View {
     let roomId: String
     @EnvironmentObject var user: ApplicationUser
     @State  var roomDetails: RoomDetailsModel?
     @State private var userName: String = ""
     @State private var  copyLink: String = ""
     @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        ScrollView{
-            
-            
-            VStack {
-                if let room = roomDetails{
-                    if room.isAuthor {
-                        Button(action: {
-                            deleteRoom()
-                        }) {
-                            Image(systemName: "trash")
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 8)
-                                .background(Color.red)
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
+        ScrollView {
+            VStack(spacing: 20) {
+                if let room = roomDetails {
+                    VStack(alignment: .leading, spacing: 16) {
+                        if room.isAuthor {
+                            Button(action: {
+                                deleteRoom()
+                            }) {
+                                Text("Удалить")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 12)
+                                    .background(Color.red)
+                                    .cornerRadius(12)
+                            }
+                        } else {
+                            Button(action: {
+                                disconnectWithRoom()
+                            }) {
+                                Text("Выйти")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 12)
+                                    .background(Color.red)
+                                    .cornerRadius(12)
+                            }
                         }
-                    }else{
-                        Button(action: {
-                            disconnectWithRoom()
-                        }, label: {
-                            Image(systemName: "arrow.left.circle.fill")
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 8)
-                                .background(Color.red)
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
-                        })
-                    }
-                    Section(header: Text(room.name)
-                        .font(.largeTitle)
-                        .foregroundColor(.blue)
-                        .padding(.top, 21.0)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    )
-                    {
-                        HStack {
-                            Text("Тип:")
-                            Spacer()
-                            Text(room.type)
-                        }
-                        HStack {
-                            Text("Бюджет:")
-                            Spacer()
-                            Text(String(room.price))
-                        }
-                        if let userName = room.destinationUserName{
-                            NavigationLink(destination: {ProfileScreen(isLogin: true,isCurrnetProfile: false,username: userName)}){
-                                HStack {
-                                    Text("Кому подарить:")
-                                        .foregroundColor(Color.black)
-                                    Spacer()
-                                    Text(userName)
+                        
+                        Section(header:
+                            Text(room.name)
+                                .font(.title)
+                                .foregroundColor(.blue)
+                                .padding(.top, 21)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        ) {
+                            RoomInfoView(type: room.type, price: room.price, userName: room.destinationUserName, startDate: room.startDate, finishDate: room.finishDate, isAuthor: room.isAuthor, isStarted: room.isStarted, link: room.link)
+                            
+                            if room.isAuthor && !room.isStarted {
+                                VStack(spacing: 16) {
+                                    TextField("Введите имя пользователя", text: $userName)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                        .padding()
+                                    
+                                    Button(action: {
+                                        pushInvite()
+                                    }) {
+                                        Text("Отправить приглашение")
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 20)
+                                            .padding(.vertical, 12)
+                                            .background(Color.orange)
+                                            .cornerRadius(12)
+                                    }
                                 }
                             }
-                        }
-                        
-                        HStack {
-                            Text("Дата начала:")
-                            Spacer()
-                            Text(room.startDate)
-                        }
-                        HStack {
-                            Text("Дата конца:")
-                            Spacer()
-                            Text(room.finishDate)
-                        }
-                        if room.isAuthor && !room.isStarted{
-                            HStack{
-                                Text("Ссылка:")
-                                Spacer()
-                                Text(room.link!)
-                                    .onTapGesture {
-                                        let pasteboard = UIPasteboard.general
-                                        pasteboard.string = room.link ?? ""
-                                    }
-                            }
-                            VStack {
-                                TextField("Введите имя пользователя", text: $userName)
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .padding()
-                                Button(action: {
-                                    pushInvite()
-                                }, label: {
-                                    Text("Отправить приглашение")
-                                        .padding()
-                                        .background(Color.orange)
-                                })
-                            }
                             
-                        
+                            UsersInRoomView(roomId: roomId)
                         }
-                        UsersInRoomView(roomId: roomId)
+                        .padding(.top, 21)
                     }
-                    .padding(.top, 21.0)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(16)
+                    .shadow(radius: 4)
                 }
                 Spacer()
             }
-            .padding()
+          
             .onAppear(perform: getRoom)
             .navigationBarTitle("Информация о комнате", displayMode: .inline)
         }
@@ -215,7 +189,7 @@ struct RoomDetailsPageView_Previews: PreviewProvider {
                                            destinationUserID: "123",
                                            startDate: "2023-09-17T12:00:00.000Z",
                                            finishDate: "2023-09-18T12:00:00.000Z")
-        RoomDetailsPageView(roomId: "1",roomDetails: roomDetails)
+        RoomDetailsScreen(roomId: "1",roomDetails: roomDetails)
             .environmentObject(ApplicationUser())
             .previewLayout(.sizeThatFits)
             .padding()

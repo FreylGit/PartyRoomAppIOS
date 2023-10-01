@@ -71,7 +71,6 @@ struct HeaderProfileView: View {
         }
         .padding(22)
         .frame(maxWidth: .infinity)
-        
     }
 }
 
