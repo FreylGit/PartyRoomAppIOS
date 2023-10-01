@@ -1,8 +1,10 @@
 
 import Foundation
 struct ProfileModel: Codable {
-    let id, firtsName, lastName, userName: String
-    let email, phoneNumber: String
+    let id: String?
+    let firtsName, lastName, userName: String
+    let email: String?
+    let phoneNumber: String?
     let details: Details
     let tags: [Tag]
 }
@@ -17,4 +19,5 @@ struct Details: Codable {
 struct Tag: Codable,Hashable {
     let id, name: String
     let important: Bool
+    let isLike: Bool
 }

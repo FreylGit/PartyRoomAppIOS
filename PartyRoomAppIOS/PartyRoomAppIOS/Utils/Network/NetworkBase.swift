@@ -67,6 +67,62 @@ class NetworkBase {
             }
     }
     
+    public func sendPostRequest(url: String,
+                                method: HTTPMethod,
+                                parameters: Parameters? = nil,
+                                headers: HTTPHeaders? = nil,
+                                completion: @escaping (Result<Void, NetworkError>) -> Void) {
+        
+        if let storedAccessToken = TokenManager.shared.getAccessToken() {
+            atoken = "Bearer " + storedAccessToken
+        }
+        
+        let headersr: HTTPHeaders = ["Authorization": atoken]
+        
+        AF.request(url, method: method, parameters: parameters, headers: headersr)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .failure(let error):
+                    if let statusCode = response.response?.statusCode {
+                        if statusCode == 401 {
+                            print("Поймал 401")
+                            self.refresh { result in
+                                switch result {
+                                case .success:
+                                    self.sendPostRequest(url: url, method: method, parameters: parameters, headers: headers, completion: completion)
+                                case .failure(let networkError):
+                                    completion(.failure(networkError))
+                                }
+                            }
+                            return
+                        }
+                    }
+                    let networkError: NetworkError
+                    switch error {
+                    case let afError as AFError:
+                        networkError = .responseValidationFailed(reason: afError.localizedDescription)
+                    default:
+                        networkError = .unknownError
+                    }
+                    completion(.failure(networkError))
+                case .success:
+                    print("Запрос отправлен")
+                    completion(.success(())) // Указываем, что запрос выполнен успешно
+                }
+            }
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private func refresh(completion: @escaping (Result<JwtAccessModel , NetworkError>) -> Void) {
         
         if isRefreshing {

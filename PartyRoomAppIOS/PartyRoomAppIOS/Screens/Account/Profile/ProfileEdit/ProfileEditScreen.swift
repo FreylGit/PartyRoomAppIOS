@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProfileEditView: View {
+struct ProfileEditScreen: View {
     @State private var bioText = ""
     @State private var tagName = ""
     @Environment(\.presentationMode) var presentationMode
@@ -29,9 +29,9 @@ struct ProfileEditView: View {
     }
 }
 
-struct ProfileEditView_Previews: PreviewProvider {
+struct ProfileEditScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditView()
+        ProfileEditScreen()
     }
 }
 

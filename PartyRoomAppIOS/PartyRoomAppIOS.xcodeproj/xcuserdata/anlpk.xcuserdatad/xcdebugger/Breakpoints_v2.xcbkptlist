@@ -347,8 +347,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "login(email:password:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -363,8 +363,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "registration(model:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -373,14 +373,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2F54E2A4-35DC-4DA6-BF3C-D323FD89E1D9"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "login(email:password:completion:)"
             landmarkType = "7">
             <Locations>
@@ -429,6 +429,36 @@
                   endingLineNumber = "145"
                   offsetFromSymbolStart = "1892">
                </Location>
+               <Location
+                  uuid = "2F54E2A4-35DC-4DA6-BF3C-D323FD89E1D9 - 66905b774c51926b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Foundation.Data, Alamofire.AFError&gt;) -&gt; () in PartyRoomAppIOS.NetworkBase.login(email: Swift.String, password: Swift.String, completion: (Swift.Result&lt;PartyRoomAppIOS.JwtAccessModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "1956">
+               </Location>
+               <Location
+                  uuid = "2F54E2A4-35DC-4DA6-BF3C-D323FD89E1D9 - 66905b774c51924a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Foundation.Data, Alamofire.AFError&gt;) -&gt; () in PartyRoomAppIOS.NetworkBase.login(email: Swift.String, password: Swift.String, completion: (Swift.Result&lt;PartyRoomAppIOS.JwtAccessModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "1956">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -436,16 +466,63 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F91DB9CC-B009-4F1D-B9DD-A18FADD4EC60"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F91DB9CC-B009-4F1D-B9DD-A18FADD4EC60 - 99df386a3fd11a1f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.NetworkBase.refresh(completion: (Swift.Result&lt;PartyRoomAppIOS.JwtAccessModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "F91DB9CC-B009-4F1D-B9DD-A18FADD4EC60 - 99df386a3fd11334"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.NetworkBase.refresh(completion: (Swift.Result&lt;PartyRoomAppIOS.JwtAccessModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "F91DB9CC-B009-4F1D-B9DD-A18FADD4EC60 - 99df386a3fd113d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.NetworkBase.refresh(completion: (Swift.Result&lt;PartyRoomAppIOS.JwtAccessModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -458,8 +535,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,8 +551,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,8 +567,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -506,8 +583,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -522,8 +599,8 @@
             filePath = "PartyRoomAppIOS/Screens/Room/RoomDetailsPageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "getRoom()"
             landmarkType = "7">
          </BreakpointContent>
@@ -532,15 +609,315 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "44CE4997-E647-4319-B539-A271110AE38A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "refresh(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "44CE4997-E647-4319-B539-A271110AE38A - 99df386a3fd11926"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.NetworkBase.refresh(completion: (Swift.Result&lt;PartyRoomAppIOS.JwtAccessModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "548">
+               </Location>
+               <Location
+                  uuid = "44CE4997-E647-4319-B539-A271110AE38A - 99df386a3fd112df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.NetworkBase.refresh(completion: (Swift.Result&lt;PartyRoomAppIOS.JwtAccessModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "142"
+                  endingLineNumber = "142"
+                  offsetFromSymbolStart = "548">
+               </Location>
+               <Location
+                  uuid = "44CE4997-E647-4319-B539-A271110AE38A - 99df386a3fd112fe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.NetworkBase.refresh(completion: (Swift.Result&lt;PartyRoomAppIOS.JwtAccessModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "548">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "15D225F8-F2C0-461A-96C6-31D719977D1D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/Room/RoomDetailsPageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "pushInvite()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "15D225F8-F2C0-461A-96C6-31D719977D1D - a8fd337a9660d61"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.RoomDetailsPageView.pushInvite() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/RoomDetailsPageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "532">
+               </Location>
+               <Location
+                  uuid = "15D225F8-F2C0-461A-96C6-31D719977D1D - c00a2dea622fde92"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(), PartyRoomAppIOS.NetworkError&gt;) -&gt; () in PartyRoomAppIOS.RoomDetailsPageView.pushInvite() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/RoomDetailsPageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "15D225F8-F2C0-461A-96C6-31D719977D1D - a8fd337a9660d61"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.RoomDetailsPageView.pushInvite() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/RoomDetailsPageView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "972">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C07F7752-AE4A-4FDE-A110-D4E549494841"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "connecttoRoom()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C07F7752-AE4A-4FDE-A110-D4E549494841 - 9b42e3d069c2d30d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.ConnectRoomScreen.connecttoRoom(link: Swift.String) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "308">
+               </Location>
+               <Location
+                  uuid = "C07F7752-AE4A-4FDE-A110-D4E549494841 - 959cce57887e2f25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(), PartyRoomAppIOS.NetworkError&gt;) -&gt; () in PartyRoomAppIOS.ConnectRoomScreen.connecttoRoom(link: Swift.String) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "C07F7752-AE4A-4FDE-A110-D4E549494841 - 1b8b49d4c25b8f51"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.ConnectRoomScreen.connecttoRoom() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "672">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E217BF0-D894-4D34-8001-7D50F34A113D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "connecttoRoom()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5E217BF0-D894-4D34-8001-7D50F34A113D - 1b8b49d4c25b8f51"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.ConnectRoomScreen.connecttoRoom() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "456">
+               </Location>
+               <Location
+                  uuid = "5E217BF0-D894-4D34-8001-7D50F34A113D - b6e81ef55f32ec7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(), PartyRoomAppIOS.NetworkError&gt;) -&gt; () in PartyRoomAppIOS.ConnectRoomScreen.connecttoRoom() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "16D97FDB-8371-43CC-AD4B-527673242A85"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "loadProfile()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "16D97FDB-8371-43CC-AD4B-527673242A85 - 6f594ab57104cc70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.ProfileScreen.loadProfile() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "16D97FDB-8371-43CC-AD4B-527673242A85 - 6f594ab57104cc70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.ProfileScreen.loadProfile() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "16D97FDB-8371-43CC-AD4B-527673242A85 - e8bd65884149625d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;PartyRoomAppIOS.ProfileModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; () in PartyRoomAppIOS.ProfileScreen.loadProfile() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "480">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2613B773-26E9-4C47-B213-DAFE63C4642D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "loadProfile()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
