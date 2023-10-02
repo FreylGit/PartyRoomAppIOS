@@ -15,21 +15,29 @@ struct ProfileScreen: View {
                     VStack {
                         if let firstName = profile?.firtsName, let lastName = profile?.lastName, let imageUrl = profile?.details.imagePath, let email = profile?.userName {
                             HeaderProfileView(firstName: firstName, lastName: lastName, imageUrl: imageUrl, email: email, isLogin: $isLogin,isCurrnetProfile: isCurrnetProfile)
-                                .background(Color.white)
+                            Rectangle()
+                                    .frame(height: 2) 
+                                    .foregroundColor(Color.gray)
                         }
                         if let about = profile?.details.about {
-                            BodyProfileView(about: about).padding()
+                            BodyProfileView(about: about)
+                                .padding()
+                                .shadow(radius: 5)
                         }
                         if let tags = profile?.tags {
                             TagProfileView(tags: tags.filter { tag in
                                 return tag.isLike
-                            },isGood: true,isCurrnetProfile: isCurrnetProfile).padding()
+                            },isGood: true,isCurrnetProfile: isCurrnetProfile)
+                            .padding()
+                            .shadow(radius: 5)
                             TagProfileView(tags: tags.filter { tag in
                                 return !tag.isLike
-                            },isGood: false,isCurrnetProfile: isCurrnetProfile).padding()
+                            },isGood: false,isCurrnetProfile: isCurrnetProfile)
+                            .padding()
+                            .shadow(radius: 5)
                         }
-                        Spacer().background(Color.gray.opacity(0.5))
-                    }.background(Color.gray.opacity(0.5))
+                        
+                    }
                 }
                 .onAppear(perform: {
                     if isCurrnetProfile {

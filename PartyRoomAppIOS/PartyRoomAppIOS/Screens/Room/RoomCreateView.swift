@@ -7,8 +7,11 @@ struct RoomCreateView: View {
     @State private var budget: String = ""
     @State private var startDate = Date()
     @State private var endDate = Date()
+    @Environment(\.presentationMode) var presentationMode
+    @State private var shouldDismiss = false
     @EnvironmentObject var user: ApplicationUser
     var body: some View {
+        
         VStack {
             Text("Создание новой комнаты").bold()
             TextField("Название", text: $name).padding()
@@ -26,12 +29,31 @@ struct RoomCreateView: View {
             DatePicker("Дата конца", selection: $endDate, displayedComponents: .date)
                 .padding()
             Button(action: {
-                CreateRoom()
+                CreateRoomTest(presentationMode: presentationMode)
             }, label: {
                 Text("Создать")
             })
         }.padding()
     }
+    private func CreateRoomTest(presentationMode: Binding<PresentationMode>){
+        let url = "http://localhost:5069/api/Room"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let roomCreate = RoomCreateModel(name: name, type: type, price: Int(budget)!, startDate: dateFormatter.string(from:startDate), finishDate: dateFormatter.string(from:endDate))
+        NetworkBase().sendPostRequestBody(url: url, objectToEncode: roomCreate) { result in
+            switch result {
+            case .success(let data):
+                if let responseData = data {
+                    presentationMode.wrappedValue.dismiss() // Закрываем текущее представление
+                } else {
+                    print("Пустой ответ")
+                }
+            case .failure(let error):
+                print("Ошибка запроса: \(error)")
+            }
+        }
+    }
+    
     
     private func CreateRoom(){
         let url = URL(string:"http://localhost:5069/api/Room")
@@ -57,7 +79,6 @@ struct RoomCreateView: View {
                 print("Ошибка запроса")
                 return
             }
-            
             guard let data = data else {
                 
                 return

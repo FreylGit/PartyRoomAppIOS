@@ -1,5 +1,11 @@
 import SwiftUI
 
+
+struct AppFonts {
+    static let headlineFont = Font.system(size: 18).weight(.semibold)
+    static let bodyFont = Font.system(size: 16)
+}
+
 struct HeaderProfileView: View {
     @State var firstName: String
     @State var lastName: String
@@ -7,11 +13,12 @@ struct HeaderProfileView: View {
     @State var email: String
     @EnvironmentObject var user: ApplicationUser
     @Binding var isLogin: Bool
-    @State var isCurrnetProfile:Bool
+    @State var isCurrnetProfile: Bool
+
     var body: some View {
         VStack {
-            if isCurrnetProfile{
-                HStack {
+                if isCurrnetProfile {
+                    HStack {
                     Button(action: {
                         TokenManager.shared.clearTokens()
                         user.loginStatus = ""
@@ -20,14 +27,12 @@ struct HeaderProfileView: View {
                         Image(systemName: "arrow.left.circle.fill")
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
-                            .background(Color.red)
+                            .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(12)
                     }
-                    
                     Spacer()
-                    
-                    NavigationLink(destination:NotificationsScreen()){
+                    NavigationLink(destination: NotificationsScreen()) {
                         Image(systemName: "bell.fill")
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
@@ -36,52 +41,60 @@ struct HeaderProfileView: View {
                             .cornerRadius(12)
                     }
                 }
+                    .padding(.horizontal)
             }
-           
-            
+
             AsyncImage(url: URL(string: imageUrl)) { image in
-                image
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                    .background(Color.gray)
-                    .clipShape(Circle())
-            } placeholder: {
-                ProgressView()
-            }
-            
-            HStack {
-                Text(firstName).font(.headline)
-                Text(lastName).font(.headline)
-            }
-            Text(email)
+                            image
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .background(Color.gray)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                        } placeholder: {
+                            ProgressView()
+                        }
+
+            Text(firstName)
+                .font(AppFonts.headlineFont)
+                .foregroundColor(Color.black)
+
+            Text(lastName)
+                .font(AppFonts.headlineFont)
+                .foregroundColor(Color.black)
+
+            Text("@"+email)
+                .font(AppFonts.bodyFont)
                 .foregroundColor(Color.blue)
-            if isCurrnetProfile{
-                NavigationLink(destination:ProfileEditScreen()){
-                    HStack{
+                .padding(.bottom, 20)
+
+            if isCurrnetProfile {
+                NavigationLink(destination: ProfileEditScreen()) {
+                    HStack {
                         Text("Редактировать")
                         Image(systemName: "pencil")
                     }
                     .padding(.all, 8)
                     .background(Color.orange)
                     .cornerRadius(12)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(.white)
                 }
+                .padding(.bottom, 20)
             }
-           
         }
-        .padding(22)
         .frame(maxWidth: .infinity)
+        .background(Color.white)
     }
 }
-
 
 struct HeaderProfileView_Previews: PreviewProvider {
     static var previews: some View {
         let firstName = "Andrey"
         let lastName = "Ryabokon"
         let imageUrl = "http://localhost:5069/api/Image/omvsqnfg.fom.jpg"
-        let email = "user@example.com"
+        let email = "andrey"
         let isLogin = Binding.constant(true)
-        HeaderProfileView(firstName: firstName, lastName: lastName,imageUrl: imageUrl,email: email,isLogin: isLogin,isCurrnetProfile: true)
+        HeaderProfileView(firstName: firstName, lastName: lastName, imageUrl: imageUrl, email: email, isLogin: isLogin, isCurrnetProfile: true)
+            .environmentObject(ApplicationUser()) // Добавьте необходимые зависимости
     }
 }

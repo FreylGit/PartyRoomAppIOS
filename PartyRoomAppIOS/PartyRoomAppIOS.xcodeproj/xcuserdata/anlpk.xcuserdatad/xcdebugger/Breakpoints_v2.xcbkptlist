@@ -347,8 +347,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "login(email:password:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -363,9 +363,9 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
-            landmarkName = "registration(model:completion:)"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "extractRefreshToken(from:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -379,9 +379,9 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
-            landmarkName = "login(email:password:completion:)"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "registration(model:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -472,8 +472,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
             <Locations>
@@ -535,8 +535,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -551,9 +551,9 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "refresh(completion:)"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "login(email:password:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -567,8 +567,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -583,8 +583,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -615,8 +615,8 @@
             filePath = "PartyRoomAppIOS/Utils/Network/NetworkBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "refresh(completion:)"
             landmarkType = "7">
             <Locations>
@@ -852,8 +852,8 @@
             filePath = "PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "loadProfile()"
             landmarkType = "7">
             <Locations>
@@ -915,10 +915,58 @@
             filePath = "PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "loadProfile()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "310478D0-8204-41F6-A599-4E09A93C938B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/Room/RoomCreateView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "CreateRoom()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "310478D0-8204-41F6-A599-4E09A93C938B - 9b1f9cc566bcb948"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.RoomCreateView.CreateRoom() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/RoomCreateView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "2880">
+               </Location>
+               <Location
+                  uuid = "310478D0-8204-41F6-A599-4E09A93C938B - f0ad7e65c64f71bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in PartyRoomAppIOS.RoomCreateView.CreateRoom() -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/RoomCreateView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "332">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

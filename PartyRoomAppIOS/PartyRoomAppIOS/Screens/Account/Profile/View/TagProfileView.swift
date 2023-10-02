@@ -5,56 +5,55 @@ struct TagProfileView : View {
     var isGood: Bool
     @State var isCurrnetProfile:Bool
     var body: some View {
-        VStack(alignment: .leading) {
-            if isGood {
-                Text("Предпочтения")
-                    .font(.title2)
-                    .fontWeight(.bold)
-            }else{
-                Text("Антипатия")
-                    .font(.title2)
-                    .fontWeight(.bold)
-            }
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 5) {
-                    ForEach(tags, id: \.self.id) { tag in
-                        TagView(tag: tag,isCurrnetProfile: isCurrnetProfile)
-                            .cornerRadius(10)
-                            .padding(.trailing, 17.0)
+            VStack(alignment: .leading) {
+                if isGood {
+                    Text("Предпочтения")
+                        .font(AppFonts.headlineFont)
+                        .fontWeight(.bold)
+                } else {
+                    Text("Антипатия")
+                        .font(AppFonts.headlineFont)
+                        .fontWeight(.bold)
+                }
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 5) {
+                        ForEach(tags, id: \.self.id) { tag in
+                            TagView(tag: tag, isCurrnetProfile: isCurrnetProfile)
+                                .cornerRadius(10)
+                                .padding(.trailing, 17.0)
+                        }
                     }
                 }
             }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.white)
+            .cornerRadius(20)
         }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color.white)
-        .cornerRadius(20)
-    }
 }
 
 struct TagView: View {
     var tag: Tag
     @State var isCurrnetProfile:Bool
     var body: some View {
-        HStack {
-            Text(tag.name)
-                .padding(.horizontal, 12.0)
-                .padding(.vertical, 8.0)
-                .lineLimit(1)
-            if isCurrnetProfile{
-                Button(action: {
-                    print(tag.name + " нужно удалить")
-                }) {
-                    Image(systemName: "trash")
-                        .foregroundColor(Color.red)
-                        .padding(.trailing, 10.0)
+            HStack {
+                Text(tag.name)
+                    .padding(.horizontal, 12.0)
+                    .padding(.vertical, 8.0)
+                    .lineLimit(1)
+                if isCurrnetProfile {
+                    Button(action: {
+                        print(tag.name + " нужно удалить")
+                    }) {
+                        Image(systemName: "trash")
+                            .foregroundColor(Color.red)
+                            .padding(.trailing, 10.0)
+                    }
                 }
             }
-            
+            .cornerRadius(25)
+            .background(Color.green)
         }
-        .cornerRadius(25)
-        .background(Color.green)
-    }
 }
 
 

@@ -78,7 +78,6 @@ class NetworkBase {
         }
         
         let headersr: HTTPHeaders = ["Authorization": atoken]
-        
         AF.request(url, method: method, parameters: parameters, headers: headersr)
             .validate()
             .response { response in
@@ -111,6 +110,47 @@ class NetworkBase {
                     completion(.success(())) // Указываем, что запрос выполнен успешно
                 }
             }
+    }
+    
+    public func sendPostRequestBody<T: Encodable>(
+        url: String,
+        parameters: Parameters? = nil,
+        headers: HTTPHeaders? = nil,
+        objectToEncode: T,
+        completion: @escaping (Result<Data?, Error>) -> Void)
+    {
+        guard let url = URL(string: url) else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        if let token = TokenManager.shared.getAccessToken() {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        do {
+            let jsonData = try JSONEncoder().encode(objectToEncode)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            completion(.success(data))
+        }
+        
+        task.resume()
     }
 
     

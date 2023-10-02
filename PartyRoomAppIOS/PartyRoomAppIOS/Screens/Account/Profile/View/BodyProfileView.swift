@@ -2,22 +2,22 @@ import SwiftUI
 
 struct BodyProfileView : View{
     @State var about:String
-    var body: some View{
-        VStack(alignment: .leading) {
-            HStack {
-                Text("О Себе")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                Spacer()
+    var body: some View {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("О Себе")
+                        .font(AppFonts.headlineFont)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+
+                Text(about)
+                    .multilineTextAlignment(.leading)
             }
-            
-            Text(about)
-                .multilineTextAlignment(.leading)
+            .padding()
+            .background(Color.white)
+            .cornerRadius(20)
         }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(20)
-    }
 }
 
 struct BodyProfileView_Previews: PreviewProvider {

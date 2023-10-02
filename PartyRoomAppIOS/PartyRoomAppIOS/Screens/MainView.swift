@@ -15,7 +15,7 @@ struct MainView: View {
                     Label("Content",systemImage: "house.fill")
                 }
                 .environmentObject(user)
-            NotificationsScreen()
+            TestView()
                 .tabItem{
                     Label("Content",systemImage: "house.fill")
                 }
