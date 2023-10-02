@@ -365,7 +365,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "277"
             endingLineNumber = "277"
-            landmarkName = "extractRefreshToken(from:)"
+            landmarkName = "registration(model:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -381,7 +381,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "241"
             endingLineNumber = "241"
-            landmarkName = "registration(model:completion:)"
+            landmarkName = "login(email:password:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -553,7 +553,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
             endingLineNumber = "199"
-            landmarkName = "login(email:password:completion:)"
+            landmarkName = "refresh(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -838,133 +838,6 @@
                   startingLineNumber = "25"
                   endingLineNumber = "25"
                   offsetFromSymbolStart = "128">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "16D97FDB-8371-43CC-AD4B-527673242A85"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "loadProfile()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "16D97FDB-8371-43CC-AD4B-527673242A85 - 6f594ab57104cc70"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PartyRoomAppIOS.ProfileScreen.loadProfile() -&gt; ()"
-                  moduleName = "PartyRoomAppIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "16D97FDB-8371-43CC-AD4B-527673242A85 - 6f594ab57104cc70"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PartyRoomAppIOS.ProfileScreen.loadProfile() -&gt; ()"
-                  moduleName = "PartyRoomAppIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "124">
-               </Location>
-               <Location
-                  uuid = "16D97FDB-8371-43CC-AD4B-527673242A85 - e8bd65884149625d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;PartyRoomAppIOS.ProfileModel, PartyRoomAppIOS.NetworkError&gt;) -&gt; () in PartyRoomAppIOS.ProfileScreen.loadProfile() -&gt; ()"
-                  moduleName = "PartyRoomAppIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "480">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2613B773-26E9-4C47-B213-DAFE63C4642D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PartyRoomAppIOS/Screens/Account/Profile/ProfileScreen.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "loadProfile()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "310478D0-8204-41F6-A599-4E09A93C938B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PartyRoomAppIOS/Screens/Room/RoomCreateView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "CreateRoom()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "310478D0-8204-41F6-A599-4E09A93C938B - 9b1f9cc566bcb948"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PartyRoomAppIOS.RoomCreateView.CreateRoom() -&gt; ()"
-                  moduleName = "PartyRoomAppIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/RoomCreateView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "2880">
-               </Location>
-               <Location
-                  uuid = "310478D0-8204-41F6-A599-4E09A93C938B - f0ad7e65c64f71bd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in PartyRoomAppIOS.RoomCreateView.CreateRoom() -&gt; ()"
-                  moduleName = "PartyRoomAppIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/Room/RoomCreateView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "332">
                </Location>
             </Locations>
          </BreakpointContent>

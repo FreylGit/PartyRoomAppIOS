@@ -139,7 +139,7 @@ class NetworkBase {
             completion(.failure(error))
             return
         }
-        
+        //TODO: Добавить ошибку с токеном
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {

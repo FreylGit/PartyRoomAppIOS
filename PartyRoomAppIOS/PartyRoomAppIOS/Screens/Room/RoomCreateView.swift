@@ -8,7 +8,6 @@ struct RoomCreateView: View {
     @State private var startDate = Date()
     @State private var endDate = Date()
     @Environment(\.presentationMode) var presentationMode
-    @State private var shouldDismiss = false
     @EnvironmentObject var user: ApplicationUser
     var body: some View {
         
@@ -52,38 +51,6 @@ struct RoomCreateView: View {
                 print("Ошибка запроса: \(error)")
             }
         }
-    }
-    
-    
-    private func CreateRoom(){
-        let url = URL(string:"http://localhost:5069/api/Room")
-        var request = URLRequest(url: url!)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let token = TokenManager.shared.getAccessToken() {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let roomCreate = RoomCreateModel(name: name, type: type, price: Int(budget)!, startDate: dateFormatter.string(from:startDate), finishDate: dateFormatter.string(from:endDate))
-        do {
-            let jsonData = try JSONEncoder().encode(roomCreate)
-            request.httpBody = jsonData
-        } catch {
-            print("Ошибка")
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Ошибка запроса")
-                return
-            }
-            guard let data = data else {
-                
-                return
-            }
-        }.resume()
     }
 }
 

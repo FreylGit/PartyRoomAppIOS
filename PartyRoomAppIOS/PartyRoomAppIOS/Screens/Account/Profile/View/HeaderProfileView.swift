@@ -10,7 +10,7 @@ struct HeaderProfileView: View {
     @State var firstName: String
     @State var lastName: String
     @State var imageUrl: String
-    @State var email: String
+    @State var username: String
     @EnvironmentObject var user: ApplicationUser
     @Binding var isLogin: Bool
     @State var isCurrnetProfile: Bool
@@ -63,7 +63,7 @@ struct HeaderProfileView: View {
                 .font(AppFonts.headlineFont)
                 .foregroundColor(Color.black)
 
-            Text("@"+email)
+            Text("@"+username)
                 .font(AppFonts.bodyFont)
                 .foregroundColor(Color.blue)
                 .padding(.bottom, 20)
@@ -92,9 +92,9 @@ struct HeaderProfileView_Previews: PreviewProvider {
         let firstName = "Andrey"
         let lastName = "Ryabokon"
         let imageUrl = "http://localhost:5069/api/Image/omvsqnfg.fom.jpg"
-        let email = "andrey"
+        let username = "andrey"
         let isLogin = Binding.constant(true)
-        HeaderProfileView(firstName: firstName, lastName: lastName, imageUrl: imageUrl, email: email, isLogin: isLogin, isCurrnetProfile: true)
+        HeaderProfileView(firstName: firstName, lastName: lastName, imageUrl: imageUrl, username: username, isLogin: isLogin, isCurrnetProfile: true)
             .environmentObject(ApplicationUser()) // Добавьте необходимые зависимости
     }
 }

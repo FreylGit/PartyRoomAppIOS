@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA05698D2AB704B20049EA2A /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA05698C2AB704B20049EA2A /* ProfileManager.swift */; };
 		AA0569902AB7056D0049EA2A /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA05698F2AB7056D0049EA2A /* KeychainSwift */; };
+		AA2193D02ACB594400F30ACA /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2193CF2ACB594400F30ACA /* ProfileViewModel.swift */; };
 		AA3FF1BA2AB8E81D0072E08B /* RegistrationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FF1B92AB8E81D0072E08B /* RegistrationScreen.swift */; };
 		AA3FF1BD2AB9E9170072E08B /* AccountRegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FF1BC2AB9E9170072E08B /* AccountRegistrationModel.swift */; };
 		AA3FF1BF2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FF1BE2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		AA05698C2AB704B20049EA2A /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		AA2193CF2ACB594400F30ACA /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		AA3FF1B92AB8E81D0072E08B /* RegistrationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreen.swift; sourceTree = "<group>"; };
 		AA3FF1BC2AB9E9170072E08B /* AccountRegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegistrationModel.swift; sourceTree = "<group>"; };
 		AA3FF1BE2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationProfileDetailsScreen.swift; sourceTree = "<group>"; };
@@ -114,6 +116,14 @@
 				AA9528662AC76001005C414D /* InviteItemModel.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		AA2193CE2ACB590200F30ACA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA2193CF2ACB594400F30ACA /* ProfileViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		AA3FF1B82AB8E7EA0072E08B /* Registration */ = {
@@ -213,6 +223,7 @@
 				AA05698B2AB704930049EA2A /* Manager */,
 				AAF8A67F2AB651E30080A250 /* Utils */,
 				AAF8A6742AB5E14A0080A250 /* Screens */,
+				AA2193CE2ACB590200F30ACA /* ViewModels */,
 				AAF8A6692AB5A63B0080A250 /* Models */,
 				AAF8A6662AB4F6570080A250 /* Constants */,
 				AAF8A6562AB4F03C0080A250 /* Assets.xcassets */,
@@ -382,6 +393,7 @@
 				AAB101862AB78D3900798D19 /* ProfileEditScreen.swift in Sources */,
 				AA9528702ACA1730005C414D /* RoomInfoView.swift in Sources */,
 				AAF8A66D2AB5AFA50080A250 /* JwtAccessModel.swift in Sources */,
+				AA2193D02ACB594400F30ACA /* ProfileViewModel.swift in Sources */,
 				AAB1018E2AB8CFCA00798D19 /* BodyProfileView.swift in Sources */,
 				AAF8A6822AB652620080A250 /* NetworkBase.swift in Sources */,
 				AA3FF1BA2AB8E81D0072E08B /* RegistrationScreen.swift in Sources */,
