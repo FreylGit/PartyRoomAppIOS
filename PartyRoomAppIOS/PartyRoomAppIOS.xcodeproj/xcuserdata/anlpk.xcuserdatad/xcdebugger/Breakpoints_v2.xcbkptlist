@@ -741,8 +741,8 @@
             filePath = "PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "connecttoRoom()"
             landmarkType = "7">
             <Locations>
@@ -804,8 +804,8 @@
             filePath = "PartyRoomAppIOS/Screens/Room/ConnectRoomScreen.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "connecttoRoom()"
             landmarkType = "7">
             <Locations>

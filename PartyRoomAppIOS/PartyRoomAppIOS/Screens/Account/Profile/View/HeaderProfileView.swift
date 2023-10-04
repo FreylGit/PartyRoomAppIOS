@@ -32,7 +32,7 @@ struct HeaderProfileView: View {
                             .cornerRadius(12)
                     }
                     Spacer()
-                    NavigationLink(destination: NotificationsScreen()) {
+                    NavigationLink(destination: NotificationsScreen(viewModel: NotificationsViewModel())) {
                         Image(systemName: "bell.fill")
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
@@ -66,7 +66,7 @@ struct HeaderProfileView: View {
             Text("@"+username)
                 .font(AppFonts.bodyFont)
                 .foregroundColor(Color.blue)
-                .padding(.bottom, 20)
+                .padding(.bottom, 10)
 
             if isCurrnetProfile {
                 NavigationLink(destination: ProfileEditScreen()) {
@@ -79,7 +79,7 @@ struct HeaderProfileView: View {
                     .cornerRadius(12)
                     .foregroundColor(.white)
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 10)
             }
         }
         .frame(maxWidth: .infinity)

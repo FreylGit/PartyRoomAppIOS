@@ -3,21 +3,17 @@ import SwiftUI
 struct RoomsScreen: View {
     @EnvironmentObject var user: ApplicationUser
     @State private var refreshToken: String? = nil
-    @State  var rooms: [RoomsModelElement] = []
-    @State private var name: String? = nil
-    
+    @ObservedObject private var viewModel = RoomsViewModel()
     var body: some View {
         NavigationView {
             VStack {
-                Text(name ?? "пустой акк")
+                Text(viewModel.name ?? "пустой акк")
                 Button(action: {
                     TokenManager.shared.clearTokens()
                     user.loginStatus = ""
                 }){
                     Text("DELETE TOKEN")
                 }
-                if user.loginStatus != ""{
-                    
                     HStack{
                         NavigationLink(destination: RoomCreateView().environmentObject(user)){
                             Text("Создать комнату")
@@ -41,7 +37,7 @@ struct RoomsScreen: View {
                    
                     ScrollView {
                         VStack(spacing: 10) {
-                            ForEach(rooms, id: \.id) { room in
+                            ForEach(viewModel.rooms, id: \.id) { room in
                                 NavigationLink(destination: RoomDetailsScreen(roomId: room.id).environmentObject(user)) {
                                     ItemRoomView(room: room)
                                         .frame(maxWidth: .infinity)
@@ -56,41 +52,14 @@ struct RoomsScreen: View {
                         
                     }
                     
-                    .onAppear(perform: loadData)
-                    .onAppear(perform: loadProfile)
+                    .onAppear(perform: viewModel.loadData)
+                    .onAppear(perform: viewModel.loadProfile)
                 }
                 Spacer()
                 
-            }
             
             
-        }
-    }
-    
-    func loadData() {
-        NetworkBase()
-            .requestAndParse(
-                url:"http://localhost:5069/api/Room",
-                method: .get,
-                parameters:nil,
-                type: [RoomsModelElement].self) { result in
-                    switch result {
-                    case .success(let loadedRooms):
-                        self.rooms = loadedRooms
-                    case .failure(let error):
-                        print("Error loading post: \(error)")
-                    }
-                }
-    }
-    
-    func loadProfile() {
-        NetworkBase().requestAndParse(url: "http://localhost:5069/api/Profile", method: .get, type: ProfileModel.self){result in
-            switch result{
-            case .success(let loadedProfile):
-                self.name = loadedProfile.firtsName
-            case .failure(let error):
-                print("Error loading profile \(error)")
-            }
+            
         }
     }
     
@@ -102,6 +71,6 @@ struct ContentView_Previews: PreviewProvider {
         let testRoom2 = RoomsModelElement(id: "2", name: "Комната 2", type: "Тип 2", price: 200, isStarted: false, startDate: "2023-09-18", finishDate: "2023-09-19")
         
         let testRooms: [RoomsModelElement] = [testRoom1, testRoom2]
-        RoomsScreen(rooms: testRooms).environmentObject(ApplicationUser())
+        RoomsScreen().environmentObject(ApplicationUser())
     }
 }

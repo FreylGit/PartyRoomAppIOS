@@ -58,7 +58,6 @@ struct LoginScreen: View {
                 user.loginStatus = jwtAccessModel.token
                 print("Вход выполнен успешно: \(jwtAccessModel)")
             case .failure(let error):
-                // Обработка ошибки
                 print("Ошибка входа: \(error)")
             }
         }
@@ -66,9 +65,9 @@ struct LoginScreen: View {
 }
 
 struct AccountView_Previews: PreviewProvider {
-    @State static private var loginStatus = "accessToken" // Задайте начальное значение loginStatus
+    @State static private var loginStatus = "accessToken"
 
     static var previews: some View {
-        LoginScreen()
+        LoginScreen().environmentObject(ApplicationUser())
     }
 }

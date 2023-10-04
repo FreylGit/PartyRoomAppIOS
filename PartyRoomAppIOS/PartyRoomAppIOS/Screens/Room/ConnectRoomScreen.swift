@@ -6,8 +6,11 @@ struct ConnectRoomScreen: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack{
+            Spacer()
             TextField("Ссылка", text: $roomLink)
-                .padding(.top, 100.0)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding([.top, .leading, .trailing])
+
             Button(action: {
                 connecttoRoom()
             }, label: {

@@ -6,7 +6,6 @@ struct ProfileScreen: View {
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
     }
-
     var body: some View {
         if viewModel.isLogin {
             NavigationView {
