@@ -842,5 +842,181 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5440A010-2296-454F-8706-E207D3A6A0D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/ViewModels/RoomCreateViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "CreateRoomTest(name:type:budget:startDate:endDate:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5440A010-2296-454F-8706-E207D3A6A0D1 - f78444290d5dd690"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.RoomCreateViewModel.CreateRoomTest(name: Swift.String, type: Swift.String, budget: Swift.String, startDate: Foundation.Date, endDate: Foundation.Date) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/ViewModels/RoomCreateViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8"
+                  offsetFromSymbolStart = "660">
+               </Location>
+               <Location
+                  uuid = "5440A010-2296-454F-8706-E207D3A6A0D1 - f78444290d5dd690"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PartyRoomAppIOS.RoomCreateViewModel.CreateRoomTest(name: Swift.String, type: Swift.String, budget: Swift.String, startDate: Foundation.Date, endDate: Foundation.Date) -&gt; ()"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/ViewModels/RoomCreateViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "8"
+                  endingLineNumber = "8"
+                  offsetFromSymbolStart = "676">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1FBBBBF7-9E15-4EE8-BB3E-11BF73EC8990"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/Account/Profile/ProfileEdit/ProfileEditScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "7"
+            endingLineNumber = "7"
+            landmarkName = "init(viewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8BCF7EF-B7C1-47ED-BE72-26DB45A9F676"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/ViewModels/ProfileViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "toProfileEditViewModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "26217398-FD71-433B-9CC0-82EC647DAB4A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/TestView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "navigationBar"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75BC0080-590F-4C2B-B9D3-EE8332DC21AE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/MainView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FDC24A87-E5D7-4E07-9850-C635FF765EAF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/MainView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "previews"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "FDC24A87-E5D7-4E07-9850-C635FF765EAF - 2e546ece033fbf2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.environmentObject&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Combine.ObservableObject&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environmentObject&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Combine.ObservableObject&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.tabItem&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(() -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.tabItem&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(() -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;)&gt; in PartyRoomAppIOS.MainView.body.getter : some"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "1340">
+               </Location>
+               <Location
+                  uuid = "FDC24A87-E5D7-4E07-9850-C635FF765EAF - 2e546ece033fbf2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.environmentObject&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Combine.ObservableObject&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environmentObject&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Combine.ObservableObject&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.tabItem&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(() -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.tabItem&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(() -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0&gt;)&gt; in PartyRoomAppIOS.MainView.body.getter : some"
+                  moduleName = "PartyRoomAppIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anlpk/Desktop/repositories/PartyRoomAppIOS/PartyRoomAppIOS/PartyRoomAppIOS/Screens/MainView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "1324">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0846B776-4305-427B-B523-E96CD450B4D9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PartyRoomAppIOS/Screens/MainView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

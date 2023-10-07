@@ -13,6 +13,17 @@ class ProfileViewModel: ObservableObject {
         self.isCurrentProfile = isCurrentProfile
         self.username = username
     }
+    init(){
+        
+    }
+    func toProfileEditViewModel() -> ProfileEditViewModel{
+        let model = ProfileEditViewModel()
+        if let about = self.profile?.details.about{
+            model.bioText = about
+        }
+        
+        return model
+    }
     
     func loadCurrentProfile() {
         NetworkBase().requestAndParse(url: "http://localhost:5069/api/Profile", method: .get, type: ProfileModel.self) { result in

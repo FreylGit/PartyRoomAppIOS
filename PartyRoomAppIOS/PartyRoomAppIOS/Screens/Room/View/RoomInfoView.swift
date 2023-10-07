@@ -30,7 +30,7 @@ struct RoomInfoView: View {
             }
 
             if let userName = userName {
-                NavigationLink(destination: ProfileScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName) )) {
+                NavigationLink(destination: TestView(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName),isLogin: true )) {
                     HStack {
                         Text("Кому подарить:")
                             .font(.headline)

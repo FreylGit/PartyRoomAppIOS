@@ -32,7 +32,7 @@ struct HeaderProfileView: View {
                             .cornerRadius(12)
                     }
                     Spacer()
-                    NavigationLink(destination: NotificationsScreen(viewModel: NotificationsViewModel())) {
+                        NavigationLink(destination: NotificationsScreen()) {
                         Image(systemName: "bell.fill")
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
@@ -69,7 +69,7 @@ struct HeaderProfileView: View {
                 .padding(.bottom, 10)
 
             if isCurrnetProfile {
-                NavigationLink(destination: ProfileEditScreen()) {
+                NavigationLink(destination: ProfileEditScreen(viewModel: ProfileEditViewModel())) {
                     HStack {
                         Text("Редактировать")
                         Image(systemName: "pencil")

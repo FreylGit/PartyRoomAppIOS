@@ -16,7 +16,7 @@ struct Details: Codable {
 }
 
 
-struct Tag: Codable,Hashable {
+struct Tag: Codable,Identifiable {
     let id, name: String
     let important: Bool
     let isLike: Bool

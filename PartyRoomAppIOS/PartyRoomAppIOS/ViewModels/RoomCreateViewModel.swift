@@ -4,6 +4,9 @@ import SwiftUI
 public class RoomCreateViewModel : ObservableObject{
     
     func CreateRoomTest(name:String,type:String,budget:String,startDate:Date,endDate:Date){
+        if(name.isEmpty || type.isEmpty || budget.isEmpty || startDate >= endDate  ){
+            return
+        }
         let url = "http://localhost:5069/api/Room"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"

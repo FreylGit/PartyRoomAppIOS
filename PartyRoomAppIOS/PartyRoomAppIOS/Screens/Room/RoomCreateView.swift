@@ -1,6 +1,6 @@
-
 import SwiftUI
 import Combine
+
 struct RoomCreateView: View {
     @State private var name: String = ""
     @State private var type: String = ""
@@ -11,32 +11,57 @@ struct RoomCreateView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        
-        VStack {
-            Text("Создание новой комнаты").bold()
-            TextField("Название", text: $name).padding()
-            TextField("Тип", text: $type).padding()
-            TextField("Бюджет", text: $budget) .keyboardType(.numberPad)
-                .padding()
-                .onReceive(Just(budget)) { newValue in
-                    let filtered = newValue.filter { "0123456789".contains($0) }
-                    if filtered != newValue {
-                        self.budget = filtered
+        NavigationView {
+            VStack {
+                Text("Создание новой комнаты")
+                    .font(.largeTitle)
+                    .padding(.bottom, 20)
+
+                TextField("Название", text: $name)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                TextField("Тип", text: $type)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                TextField("Бюджет", text: $budget)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numberPad)
+                    .padding()
+                    .onReceive(Just(budget)) { newValue in
+                        let filtered = newValue.filter { "0123456789".contains($0) }
+                        if filtered != newValue {
+                            self.budget = filtered
+                        }
                     }
+
+                DatePicker("Дата начала", selection: $startDate, displayedComponents: .date)
+                    .datePickerStyle(DefaultDatePickerStyle())
+                    .padding()
+                
+                DatePicker("Дата конца", selection: $endDate, displayedComponents: .date)
+                    .datePickerStyle(DefaultDatePickerStyle())
+                    .padding()
+
+                Button(action: {
+                    viewModel.CreateRoomTest(name: name, type: type, budget: budget, startDate: startDate, endDate: endDate)
+                }) {
+                    Text("Создать")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
                 }
-            DatePicker("Дата начала", selection: $startDate, displayedComponents: .date)
-                .padding()
-            DatePicker("Дата конца", selection: $endDate, displayedComponents: .date)
-                .padding()
-            Button(action: {
-                viewModel.CreateRoomTest(name: name, type: type, budget: budget, startDate: startDate, endDate: endDate)
-            }, label: {
-                Text("Создать")
-            })
-        }.padding()
+                .padding(.top, 20)
+            }
+            .padding()
+            .navigationBarTitle("", displayMode: .inline)
+          
+        }
     }
 }
-
 
 struct RoomCreateView_Previews: PreviewProvider {
     static var previews: some View {

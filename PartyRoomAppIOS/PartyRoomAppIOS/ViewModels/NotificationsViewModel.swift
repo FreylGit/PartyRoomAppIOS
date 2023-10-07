@@ -9,7 +9,7 @@ public class NotificationsViewModel : ObservableObject{
             switch result {
             case .success(let loadedInviteItems):
                 self.inviteItems = loadedInviteItems
-                print(loadedInviteItems.count)
+                print("Уведомлений"+String(loadedInviteItems.count))
             case .failure(let error):
                 print("Error loading profile \(error)")
                 
@@ -17,30 +17,28 @@ public class NotificationsViewModel : ObservableObject{
         }
     }
     
-    func deleteNotification(at offsets: IndexSet) {
-        print("Удалить")
-        for index in offsets {
-            let deletedItem = self.inviteItems?[index]
-            if let deletedItem = deletedItem {
-                print("Удаленный элемент: \(deletedItem.roomName)")
-                let url = "http://localhost:5069/api/Notifications/InviteReaction?inviteId=\(deletedItem.id)&isConnect=false"
+    func deleteNotification(id:String, atIndex index: Int) {
+       
+                let url = "http://localhost:5069/api/Notifications/InviteReaction?inviteId=\(id)&isConnect=false"
                 NetworkBase().sendPostRequest(url: url, method: .post) { result in
                     switch result {
                     case .success(let r):
                         print("Удалил")
+                        if let deletedItem = self.inviteItems?[index] {
+                                        print("Удаленный элемент: \(deletedItem.roomName)")
+                                        self.inviteItems?.remove(at: index)
+                                    }
                     case .failure(let error):
                         print("Error loading profile \(error)")
                     }
                 }
                 
-                self.inviteItems?.remove(at: index)
-            }
-        }
+            
     }
     
     func ConnectToRoom(id:String, atIndex index: Int){
         print("Вступить")
-        var url = "http://localhost:5069/api/Notifications/InviteReaction"
+        let url = "http://localhost:5069/api/Notifications/InviteReaction"
         let parameters: Parameters = ["inviteId": id, "isConnect": "true"]
         
         NetworkBase().sendPostRequest(url: url,method: .post, parameters: parameters) { result in

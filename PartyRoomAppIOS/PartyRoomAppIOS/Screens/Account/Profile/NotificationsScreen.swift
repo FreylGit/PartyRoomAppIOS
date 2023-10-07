@@ -1,57 +1,69 @@
 import SwiftUI
-import Alamofire
 
 struct NotificationsScreen: View {
-    @ObservedObject  var viewModel : NotificationsViewModel
+    @ObservedObject var viewModel = NotificationsViewModel()
     
-    init(viewModel: NotificationsViewModel) {
-        self.viewModel = viewModel
+    init() {
+        viewModel.GetInvite()
     }
-    
     var body: some View {
         NavigationView {
-            List {
-                if let  inviteItems = viewModel.inviteItems{
-                    ForEach(inviteItems, id: \.id) { inviteItem in
-                        HStack {
-                            HStack( spacing: 8) {
+            ScrollView {
+                VStack {
+                    if let inviteItems = viewModel.inviteItems {
+                        ForEach(inviteItems, id: \.id) { inviteItem in
+                            HStack(spacing: 8) {
                                 Text(inviteItem.roomName)
-                                    .font(.headline)
+                                    .font(.system(size: 14)) 
                                     .foregroundColor(.primary)
-                                Spacer()
-                                Button{
-                                    if let index = inviteItems.firstIndex(where: { $0.id == inviteItem.id }){
-                                        viewModel.ConnectToRoom(id:inviteItem.id,atIndex: index)
-                                    }
+                                    .frame(maxWidth: 170)
                                     
-                                } label:{
+                                Spacer()
+                                Button(action: {
+                                    if let index = inviteItems.firstIndex(where: { $0.id == inviteItem.id }) {
+                                        viewModel.ConnectToRoom(id: inviteItem.id, atIndex: index)
+                                    }
+                                }) {
                                     Text("Вступить")
-                                        .padding()
+                                        .padding(.all, 7.0)
                                         .background(Color.green)
-                                        .cornerRadius(15)
+                                        .cornerRadius(5)
                                         .foregroundColor(.black)
+                                        .font(.system(size: 14))
+                                }
+                                Button(action: {
+                                    if let index = inviteItems.firstIndex(where: { $0.id == inviteItem.id }) {
+                                        viewModel.deleteNotification(id: inviteItem.id, atIndex: index)
+                                    }
+                                }) {
+                                    Text("Отклонить")
+                                        .padding(.all, 7.0)
+                                        .background(Color.red)
+                                        .cornerRadius(5)
+                                        .foregroundColor(.black)
+                                        .font(.system(size: 14))
                                 }
                             }
+                            .padding()
+                            .background(Color.gray)
+                            .cornerRadius(15)
                         }
-                        .padding(8)
+                        .padding([.leading, .bottom, .trailing],10)
+                        
                     }
-                    .onDelete(perform: viewModel.deleteNotification)
-                    
                 }
-                
             }
-            .onAppear(perform: {
+            .onAppear {
                 viewModel.GetInvite()
-            })
+            }
+            .navigationBarTitle("Уведомления")
         }
-        .navigationBarTitle("Уведомления")
     }
 }
 
-
 struct NotificationsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationsScreen(viewModel: NotificationsViewModel())
+        NotificationsScreen()
     }
 }
 

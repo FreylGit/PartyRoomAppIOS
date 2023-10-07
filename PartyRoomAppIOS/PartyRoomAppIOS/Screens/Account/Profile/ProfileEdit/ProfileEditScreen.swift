@@ -3,12 +3,15 @@ import SwiftUI
 struct ProfileEditScreen: View {
     @State private var bioText = ""
     @State private var tagName = ""
+    @ObservedObject private var viewModel = ProfileEditViewModel()
+    init(viewModel: ProfileEditViewModel) {
+        _bioText = State(initialValue: viewModel.bioText)
+    }
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack(alignment: .leading) {
             Text("О Себе")
                 .font(.headline)
-            
             TextEditor(text: $bioText)
                 .frame(height: 100)
                 .background(Color.blue)
@@ -16,6 +19,8 @@ struct ProfileEditScreen: View {
                 .padding(2)
                 .border(Color.black)
             Spacer()
+            AddTagView(isLike: true)
+            AddTagView(isLike: false)
         }
         .padding()
         .navigationBarItems(trailing:
@@ -31,7 +36,9 @@ struct ProfileEditScreen: View {
 
 struct ProfileEditScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditScreen()
+        let viewModel = ProfileEditViewModel()
+        viewModel.bioText = "wqfqwf'wqfqwf wfqwlfw fqwf qwfwq "
+        return ProfileEditScreen(viewModel: viewModel)
     }
 }
 

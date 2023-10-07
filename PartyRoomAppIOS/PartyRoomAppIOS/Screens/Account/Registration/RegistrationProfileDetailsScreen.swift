@@ -40,9 +40,9 @@ struct RegistrationProfileDetailsScreen: View {
             }
         }else{
             
-            LoginScreen()
+            //LoginScreen()
             
-                .navigationBarHidden(true)
+             //   .navigationBarHidden(true)
         }
         
     }

@@ -9,7 +9,8 @@ struct LoginScreen: View {
     
     var body: some View {
         if user.loginStatus != "" && user.loginStatus != nil{
-                ProfileScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: true)).frame(maxWidth: .infinity)
+               // ProfileScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: true)).frame(maxWidth: .infinity)
+            TestView(isLogin: true)
             
             } else {NavigationView {
                 VStack {
