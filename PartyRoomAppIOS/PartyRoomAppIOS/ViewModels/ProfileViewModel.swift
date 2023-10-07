@@ -49,4 +49,16 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
+    
+    func deleteTag(id:String){
+        let url = "http://localhost:5069/api/Profile/DeleteTag?tagId="+id
+        NetworkBase().sendPostRequest(url: url, method: .delete){result in
+            switch result{
+            case .success():
+                print("delete")
+            case .failure(let error):
+                print("Error loading profile \(error)")
+                }
+        }
+    }
 }

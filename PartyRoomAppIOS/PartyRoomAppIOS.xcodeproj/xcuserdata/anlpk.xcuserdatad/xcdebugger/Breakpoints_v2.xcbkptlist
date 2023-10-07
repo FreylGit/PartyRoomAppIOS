@@ -932,8 +932,8 @@
             filePath = "PartyRoomAppIOS/Screens/TestView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "navigationBar"
             landmarkType = "24">
          </BreakpointContent>

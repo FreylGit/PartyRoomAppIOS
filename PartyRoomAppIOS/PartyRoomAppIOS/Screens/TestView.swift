@@ -5,28 +5,40 @@ struct TestView: View {
     @EnvironmentObject var user: ApplicationUser
     @State var isLogin: Bool
     var body: some View {
-      
-            NavigationView {
+        
+        NavigationView {
+            ScrollView{
                 VStack{
                     if viewModel.isCurrentProfile{
                         navigationBar
                     }
+                    HStack{
+                        Spacer()
+                        header
+                        Spacer()
+                    }
                     
-                    header
+                    
+                    Rectangle()
+                        .frame(height: 2)
+                        .foregroundColor(Color.gray)
+                    
                     about
+                        .padding()
+                    
+                    
                     if let tags = viewModel.profile?.tags{
                         TagCollectionView(tags:tags.filter { tag in
                             return tag.isLike
                         }, isGood: true, isCurrnetProfile: viewModel.isCurrentProfile)
-                        
+                        .padding()
                         TagCollectionView(tags:tags.filter { tag in
                             return !tag.isLike
                         }, isGood: false, isCurrnetProfile: viewModel.isCurrentProfile)
+                        .padding()
                     }
-                    
-                    
                     Spacer()
-                } 
+                }
                 .onAppear(perform: {
                     if viewModel.isCurrentProfile {
                         viewModel.loadCurrentProfile()
@@ -34,9 +46,9 @@ struct TestView: View {
                         viewModel.loadProfile()
                     }
                 })
-            
+            }
         }
-       
+        
     }
     
     var navigationBar : some View{
@@ -55,18 +67,20 @@ struct TestView: View {
             }
             Spacer()
             NavigationLink(destination: NotificationsScreen()) {
-            Image(systemName: "bell.fill")
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(Color.yellow)
-                .foregroundColor(.white)
-                .cornerRadius(12)
+                Image(systemName: "bell.fill")
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(Color.yellow)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+            }
         }
-        }
+        
         .padding(.horizontal ,22)
     }
     
     var header:some View{
+        
         VStack{
             if let imagePath = viewModel.profile?.details.imagePath{
                 AsyncImage(url: URL(string: imagePath))
@@ -108,27 +122,34 @@ struct TestView: View {
                     .foregroundColor(.white)
                 }
                 .padding(.bottom, 10)
+                
             }
+            
             
         }
     }
     
     var about : some View{
-        VStack(alignment: .leading) {
+        VStack {
+            VStack(alignment: .leading){
+                HStack {
+                    Text("О Себе")
+                        .font(AppFonts.headlineFont)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                if let about = viewModel.profile?.details.about{
+                    Text(about)
+                        .multilineTextAlignment(.leading)
+                }
+            }
+            .padding()
             
-            HStack {
-                Text("О Себе")
-                    .font(AppFonts.headlineFont)
-                    .fontWeight(.bold)
-                Spacer()
-            }
-            if let about = viewModel.profile?.details.about{
-                Text(about)
-                    .multilineTextAlignment(.leading)
-            }
             
         }
-        .padding()
+        .background(Color.white)
+        .cornerRadius(20)
+        .frame(maxWidth: .infinity)
     }
 }
 struct TagCollectionView : View{
@@ -147,14 +168,37 @@ struct TagCollectionView : View{
                     .fontWeight(.bold)
             }
             ScrollView(.horizontal, showsIndicators: false) {
-                           HStack(spacing: 5) {
-                               ForEach(tags) {tag in
-                                   tagItemCollection(tag: tag,isCurrnetProfile: true)
-                                   
-                               }
-                           }
-                       }
-                   }
+                HStack(spacing: 5) {
+                    ForEach(tags) {tag in
+                        HStack {
+                            Text(tag.name)
+                                .padding(.horizontal, 12.0)
+                                .padding(.vertical, 8.0)
+                                .lineLimit(1)
+                            if isCurrnetProfile {
+                                Button(action: {
+                                    ProfileViewModel().deleteTag(id: tag.id)
+                                    if let index = tags.firstIndex(where: { $0.id == tag.id
+                                    }) {
+                                        
+                                        tags.remove(at: index)
+                                    }
+                                    
+                                }) {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(isGood ? Color.red : Color.black)
+                                        .padding(.trailing, 10.0)
+                                }
+                            }
+                        }
+                        .cornerRadius(25)
+                        .background(isGood ? Color.green : Color.red)
+                        // tagItemCollection(tag: tag,isCurrnetProfile: true)
+                        
+                    }
+                }
+            }
+        }
         .frame(maxWidth: .infinity)
         .padding()
         .background(Color.white)
@@ -173,6 +217,7 @@ struct TagCollectionView : View{
                 if isCurrnetProfile {
                     Button(action: {
                         print(tag.name + " нужно удалить")
+                        
                     }) {
                         Image(systemName: "trash")
                             .foregroundColor(Color.red)
@@ -199,7 +244,7 @@ struct TestView_Previews: PreviewProvider {
             details: Details(about: "Описание о себе", imagePath: "http://localhost:5069/api/Image/omvsqnfg.fom.jpg"),
             tags: [Tag(id: "1", name: "tag1", important: true, isLike: false), Tag(id: "2", name: "Спорт", important: true, isLike: true), Tag(id: "3", name: "Искусство", important: true, isLike: false), Tag(id: "4", name: "12у1", important: true, isLike: true)]
         )
-
+        
         let viewModel = ProfileViewModel(isLogin: true, isCurrentProfile: true)
         viewModel.profile = sampleProfile
         viewModel.isLogin = true

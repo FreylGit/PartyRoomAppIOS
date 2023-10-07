@@ -2,10 +2,6 @@ import SwiftUI
 
 struct NotificationsScreen: View {
     @ObservedObject var viewModel = NotificationsViewModel()
-    
-    init() {
-        viewModel.GetInvite()
-    }
     var body: some View {
         NavigationView {
             ScrollView {
