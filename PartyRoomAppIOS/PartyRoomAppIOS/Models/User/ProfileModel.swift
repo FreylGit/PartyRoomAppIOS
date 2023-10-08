@@ -1,7 +1,7 @@
 
 import Foundation
 struct ProfileModel: Codable {
-    let id: String?
+    let id: String
     let firtsName, lastName, userName: String
     let email: String?
     let phoneNumber: String?

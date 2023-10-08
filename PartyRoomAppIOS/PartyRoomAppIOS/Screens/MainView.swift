@@ -15,6 +15,10 @@ struct MainView: View {
                     Label("Content",systemImage: "house.fill")
                 }
                 .environmentObject(user)
+            RoomDetailsScreen()
+                .tabItem {
+                    Label("Test",systemImage: "pencil")
+                }
         }
     }
 }

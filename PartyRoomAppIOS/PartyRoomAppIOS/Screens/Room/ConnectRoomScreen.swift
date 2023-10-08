@@ -23,7 +23,7 @@ struct ConnectRoomScreen: View {
     
     private func connecttoRoom(){
         let url = "http://localhost:5069/api/Room/ConnectToRoom"+"?link="+roomLink
-        let parameters: Parameters = ["link" : roomLink]
+        let _: Parameters = ["link" : roomLink]
         NetworkBase().sendPostRequest(url: url,method: .post){result in
             switch result{
             case .success:

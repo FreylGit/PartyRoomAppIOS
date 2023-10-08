@@ -14,7 +14,7 @@ public class RoomCreateViewModel : ObservableObject{
         NetworkBase().sendPostRequestBody(url: url, objectToEncode: roomCreate) { result in
             switch result {
             case .success(let data):
-                if let responseData = data {
+                if data != nil {
                 } else {
                     print("Пустой ответ")
                 }

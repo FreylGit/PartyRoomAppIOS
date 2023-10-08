@@ -80,7 +80,6 @@ struct RoomDetailsScreen: View {
                 }
                 Spacer()
             }
-          
             .onAppear(perform: getRoom)
             .navigationBarTitle("Информация о комнате", displayMode: .inline)
         }

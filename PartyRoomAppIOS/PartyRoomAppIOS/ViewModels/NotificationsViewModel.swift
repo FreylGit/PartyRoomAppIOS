@@ -22,7 +22,7 @@ public class NotificationsViewModel : ObservableObject{
                 let url = "http://localhost:5069/api/Notifications/InviteReaction?inviteId=\(id)&isConnect=false"
                 NetworkBase().sendPostRequest(url: url, method: .post) { result in
                     switch result {
-                    case .success(let r):
+                    case .success(_):
                         print("Удалил")
                         if let deletedItem = self.inviteItems?[index] {
                                         print("Удаленный элемент: \(deletedItem.roomName)")

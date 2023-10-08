@@ -21,7 +21,6 @@ struct RoomsScreen: View {
                                 .background(Color.green)
                                 .cornerRadius(5)
                                 .foregroundColor(.white)
-                            
                                 .padding()
                         }
                         NavigationLink(destination: ConnectRoomScreen().environmentObject(user)){
@@ -38,7 +37,7 @@ struct RoomsScreen: View {
                     ScrollView {
                         VStack(spacing: 10) {
                             ForEach(viewModel.rooms, id: \.id) { room in
-                                NavigationLink(destination: RoomDetailsScreen(roomId: room.id).environmentObject(user)) {
+                                NavigationLink(destination: RoomDetailsScreen(viewModel: RoomDetailsViewModel(roomId: room.id)).environmentObject(user)) {
                                     ItemRoomView(room: room)
                                         .frame(maxWidth: .infinity)
                                         .padding(.horizontal,10)
@@ -51,7 +50,6 @@ struct RoomsScreen: View {
                         }
                         
                     }
-                    
                     .onAppear(perform: viewModel.loadData)
                     .onAppear(perform: viewModel.loadProfile)
                 }
@@ -66,7 +64,7 @@ struct ContentView_Previews: PreviewProvider {
         let testRoom1 = RoomsModelElement(id: "1", name: "Комната 1", type: "Тип 1", price: 100, isStarted: true, startDate: "2023-09-17", finishDate: "2023-09-18")
         let testRoom2 = RoomsModelElement(id: "2", name: "Комната 2", type: "Тип 2", price: 200, isStarted: false, startDate: "2023-09-18", finishDate: "2023-09-19")
         
-        let testRooms: [RoomsModelElement] = [testRoom1, testRoom2]
+        let _: [RoomsModelElement] = [testRoom1, testRoom2]
         RoomsScreen().environmentObject(ApplicationUser())
     }
 }
