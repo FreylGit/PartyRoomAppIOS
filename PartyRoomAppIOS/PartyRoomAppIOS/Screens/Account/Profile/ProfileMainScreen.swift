@@ -3,30 +3,27 @@ import SwiftUI
 struct ProfileMainScreen: View {
     @ObservedObject var viewModel =  ProfileViewModel()
     @EnvironmentObject var user: ApplicationUser
+    @State private var isExpanded = false
+
     @State var isLogin: Bool
     var body: some View {
-        
         NavigationView {
             ScrollView{
                 VStack{
                     if viewModel.isCurrentProfile{
                         navigationBar
+                            .padding(.bottom,50)
                     }
-                    HStack{
-                        Spacer()
+                  
+                     
                         header
-                        Spacer()
-                    }
+                     
+                    
                     
                     
                     Rectangle()
                         .frame(height: 2)
                         .foregroundColor(Color.gray)
-                    
-                    about
-                        .padding()
-                    
-                    
                     if let tags = viewModel.profile?.tags{
                         TagCollectionView(tags:tags.filter { tag in
                             return tag.isLike
@@ -57,15 +54,27 @@ struct ProfileMainScreen: View {
                 TokenManager.shared.clearTokens()
                 user.loginStatus = ""
                 isLogin = false
-            }){
-                Image(systemName: "arrow.left.circle.fill")
-                    .padding(10)
-                    .frame(width: 60)
-                    .background(Color.blue)
+            }) {
+                HStack {
+                    Image(systemName: "arrow.left.circle.fill")
+                    Text("Выйти")
+                }
+                .padding(7)
+            }
+            .frame(width: 100)
+            .foregroundColor(.white)
+            .background(Color.red)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+
+            Spacer()
+            NavigationLink(destination: ProfileEditScreen(viewModel: viewModel.toProfileEditViewModel()))  {
+                    Image(systemName: "pencil")
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(Color.orange)
                     .foregroundColor(.white)
                     .cornerRadius(12)
             }
-            Spacer()
             NavigationLink(destination: NotificationsScreen()) {
                 Image(systemName: "bell.fill")
                     .padding(.horizontal, 12)
@@ -80,53 +89,71 @@ struct ProfileMainScreen: View {
     }
     
     var header:some View{
-        
-        VStack{
+        HStack(alignment:.center){
+
             if let imagePath = viewModel.profile?.details.imagePath{
                 AsyncImage(url: URL(string: imagePath))
                 { image in
                     image
                         .resizable()
-                        .frame(width: 80, height: 80)
+                        .frame(width: 100, height: 100)
                         .background(Color.gray)
                         .clipShape(Circle())
-                    
+                        
                         .overlay(Circle().stroke(Color.blue, lineWidth: 2))
+                    
                 } placeholder: {
                     ProgressView()
                 }
+                .padding(.bottom,30)
             }
             if let profile = viewModel.profile{
-                Text(profile.firtsName)
-                    .font(Font.system(size: 18).weight(.semibold))
-                    .foregroundColor(Color.black)
-                
-                Text(profile.lastName)
-                    .font(Font.system(size: 18).weight(.semibold))
-                    .foregroundColor(Color.black)
-                
-                Text("@"+profile.userName)
-                    .font(Font.system(size: 16))
-                    .foregroundColor(Color.blue)
-                    .padding(.bottom, 10)
-            }
-            if  viewModel.isCurrentProfile {
-                NavigationLink(destination: ProfileEditScreen(viewModel: viewModel.toProfileEditViewModel())) {
-                    HStack {
-                        Text("Редактировать")
-                        Image(systemName: "pencil")
+                VStack(alignment: .leading){
+                    HStack{
+                        Text(profile.firtsName)
+                            .font(Font.system(size: 18).weight(.semibold))
+                            .foregroundColor(Color.black)
+                        
+                        Text(profile.lastName)
+                            .font(Font.system(size: 18).weight(.semibold))
+                            .foregroundColor(Color.black)
                     }
-                    .padding(.all, 8)
-                    .background(Color.orange)
-                    .cornerRadius(12)
-                    .foregroundColor(.white)
+                    
+                    Text("@"+profile.userName)
+                        .font(Font.system(size: 16))
+                        .foregroundColor(Color.blue)
+                        .padding(.bottom, 7)
+                    Text("О себе")
+                        .font(Font.system(size: 16))
+                        .fontWeight(.medium)
+                    
+                    if isExpanded {
+                        Text(profile.details.about)
+                            .multilineTextAlignment(.leading)
+                            .fontWeight(.light)
+                    } else {
+                        Text(profile.details.about)
+                            .multilineTextAlignment(.leading)
+                            .fontWeight(.light)
+                            .lineLimit(2)
+                    }
+                    Button(action: {
+                        withAnimation {
+                            isExpanded.toggle()
+                        }
+                    }) {
+                        Text(isExpanded ? "Свернуть" : "Развернуть")
+                            .font(.system(size: 14))
+                            .foregroundColor(.blue)
+                    }
                 }
-                .padding(.bottom, 10)
                 
             }
+                
             
-            
+          Spacer()
         }
+        .padding(6)
     }
     
     var about : some View{
@@ -212,7 +239,7 @@ struct TestView_Previews: PreviewProvider {
             userName: "Username",
             email: "user@example.com",
             phoneNumber: "1234567890",
-            details: Details(about: "Описание о себе", imagePath: "http://localhost:5069/api/Image/omvsqnfg.fom.jpg"),
+            details: Details(about: "Привет! Я здесь, чтобы делиться и учиться. Люблю путешествия, науку и искусство. Давайте общаться и развиваться вместе! 🌍📚🎨 #СоциальнаяСеть #Личность", imagePath: "http://localhost:5069/api/Image/omvsqnfg.fom.jpg"),
             tags: [Tag(id: "1", name: "tag1", important: true, isLike: false), Tag(id: "2", name: "Спорт", important: true, isLike: true), Tag(id: "3", name: "Искусство", important: true, isLike: false), Tag(id: "4", name: "12у1", important: true, isLike: true)]
         )
         

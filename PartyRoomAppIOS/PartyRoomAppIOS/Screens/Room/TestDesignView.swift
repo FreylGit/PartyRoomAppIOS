@@ -3,6 +3,7 @@ import SwiftUI
 struct RoomDetailsScreen: View {
     @ObservedObject   var viewModel = RoomDetailsViewModel(roomId: "")
     @Environment(\.presentationMode) var presentationMode
+    @State private var isShowingToast = false
     var body: some View {
         ScrollView{
             navigationBar
@@ -10,6 +11,23 @@ struct RoomDetailsScreen: View {
             invite
             userCollections
             Spacer()
+            if isShowingToast {
+                GeometryReader { geometry in
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(Color.black)
+                                .opacity(0.7)
+                                .cornerRadius(10)
+                                .frame(width: geometry.size.width, height: 60)
+                            Text("Ссылка скопирована")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                        }
+                    }
+                    .padding(.bottom, 30)
+                }
+            }
         }.onAppear(perform: {
             viewModel.loadUsers()
             viewModel.getRoom()
@@ -119,6 +137,7 @@ struct RoomDetailsScreen: View {
                                     .onTapGesture {
                                         let pasteboard = UIPasteboard.general
                                         pasteboard.string = room.link ?? ""
+                                        showToast()
                                     }
                             }
                             
@@ -191,11 +210,17 @@ struct RoomDetailsScreen: View {
     }
     
     
-    
+    func showToast() {
+        isShowingToast = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            withAnimation {
+                isShowingToast = false
+            }
+        }
+    }
     
 }
 
 #Preview {
-    
     RoomDetailsScreen()
 }
