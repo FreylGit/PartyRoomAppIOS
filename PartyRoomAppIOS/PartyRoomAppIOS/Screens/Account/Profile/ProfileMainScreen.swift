@@ -14,25 +14,25 @@ struct ProfileMainScreen: View {
                         navigationBar
                             .padding(.bottom,50)
                     }
-                  
-                     
+                                    
                         header
-                     
-                    
-                    
-                    
-                    Rectangle()
-                        .frame(height: 2)
-                        .foregroundColor(Color.gray)
+
+                    Divider()
                     if let tags = viewModel.profile?.tags{
-                        TagCollectionView(tags:tags.filter { tag in
-                            return tag.isLike
-                        }, isGood: true, isCurrnetProfile: viewModel.isCurrentProfile)
-                        .padding()
-                        TagCollectionView(tags:tags.filter { tag in
-                            return !tag.isLike
-                        }, isGood: false, isCurrnetProfile: viewModel.isCurrentProfile)
-                        .padding()
+                        VStack(alignment: .leading){
+                            Text("Предпочтения")
+                                .font(.largeTitle)
+                            
+                            TagCloudView(tags:tags.filter { tag in
+                                return tag.isLike
+                            },isCurrentProfile: viewModel.isCurrentProfile,isGood: true)
+                            Text("Антипатия")
+                                .font(.largeTitle)
+                            TagCloudView(tags:tags.filter { tag in
+                                return !tag.isLike
+                            },isCurrentProfile: viewModel.isCurrentProfile,isGood: false)
+                        }
+                        .padding(7)
                     }
                     Spacer()
                 }
@@ -235,12 +235,16 @@ struct TestView_Previews: PreviewProvider {
         let sampleProfile = ProfileModel(
             id: "1",
             firtsName: "Иван",
+            
             lastName: "Иванов",
             userName: "Username",
             email: "user@example.com",
             phoneNumber: "1234567890",
             details: Details(about: "Привет! Я здесь, чтобы делиться и учиться. Люблю путешествия, науку и искусство. Давайте общаться и развиваться вместе! 🌍📚🎨 #СоциальнаяСеть #Личность", imagePath: "http://localhost:5069/api/Image/omvsqnfg.fom.jpg"),
-            tags: [Tag(id: "1", name: "tag1", important: true, isLike: false), Tag(id: "2", name: "Спорт", important: true, isLike: true), Tag(id: "3", name: "Искусство", important: true, isLike: false), Tag(id: "4", name: "12у1", important: true, isLike: true)]
+            tags: [Tag(id: "1", name: "tag1", important: true, isLike: false), Tag(id: "2", name: "Спорт", important: true, isLike: true), Tag(id: "3", name: "Искусство", important: true, isLike: false), Tag(id: "4", name: "1dqwd2у1", important: true, isLike: true),
+                Tag(id: "5", name: "12у1", important: true, isLike: true),
+                Tag(id: "6", name: "12уdwqdwq1", important: true, isLike: true),
+                Tag(id: "7", name: "12у1", important: true, isLike: true)]
         )
         
         let viewModel = ProfileViewModel(isLogin: true, isCurrentProfile: true)

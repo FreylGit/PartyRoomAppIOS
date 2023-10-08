@@ -1,110 +1,105 @@
 import SwiftUI
-
-struct TestView: View {
-    @State private var isExpanded = false
+struct TagCloudView: View {
+    @State var tags: [Tag]
+    let isCurrentProfile:Bool
+    let isGood:Bool
+    @State private var totalHeight = CGFloat.zero
 
     var body: some View {
-        ScrollView{
-            navigationBar
-            HStack(alignment:.center){
-                AsyncImage(url: URL(string: "http://localhost:5069/api/Image/omvsqnfg.fom.jpg")) { image in
-                    image
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .background(Color.gray)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.blue, lineWidth: 2))
-                } placeholder: {
-                    ProgressView()
+        VStack(alignment: .leading) {
+             
+                GeometryReader { geometry in
+                    self.generateContent(in: geometry)
                 }
-                
-                VStack(alignment: .leading){
-                    HStack{
-                        Text("Andre")
-                            .font(Font.system(size: 18).weight(.semibold))
-                            .foregroundColor(Color.black)
-                        
-                        Text("Ryabokon")
-                            .font(Font.system(size: 18).weight(.semibold))
-                            .foregroundColor(Color.black)
-                    }
-                    
-                    Text("@sdqwfqw")
-                        .font(Font.system(size: 16))
-                        .foregroundColor(Color.blue)
-                        .padding(.bottom, 7)
-                    Text("О себе")
-                        .font(Font.system(size: 18).weight(.semibold))
-                    
-                    if isExpanded {
-                        Text("Привет! Я здесь, чтобы делиться и учиться. Люблю путешествия, науку и искусство. Давайте общаться и развиваться вместе! 🌍📚🎨 #СоциальнаяСеть #Личность")
-                            .multilineTextAlignment(.leading)
-                    } else {
-                        Text("Привет! Я здесь, чтобы делиться и учиться.")
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(2)
-                    }
-                    
-                    Button(action: {
-                        withAnimation {
-                            isExpanded.toggle()
+            }
+            .frame(height: totalHeight)
+    }
+
+    private func generateContent(in g: GeometryProxy) -> some View {
+        var width = CGFloat.zero
+        var height = CGFloat.zero
+
+        return ZStack(alignment: .topLeading) {
+            ForEach(self.tags) { tag in
+                self.item(for: tag)
+                    .padding([.horizontal, .vertical], 4)
+                    .alignmentGuide(.leading, computeValue: { d in
+                        if (abs(width - d.width) > g.size.width)
+                        {
+                            width = 0
+                            height -= d.height
                         }
-                    }) {
-                        Text(isExpanded ? "Свернуть" : "Развернуть")
-                            .font(.system(size: 14))
-                            .foregroundColor(.blue)
-                    }
-                }
-                
-                
-                Spacer()
+                        let result = width
+                        if tag == self.tags.last! {
+                            width = 0 //last item
+                        } else {
+                            width -= d.width
+                        }
+                        return result
+                    })
+                    .alignmentGuide(.top, computeValue: {d in
+                        let result = height
+                        if tag == self.tags.last! {
+                            height = 0 // last item
+                        }
+                        return result
+                    })
             }
-            .padding()
-            Spacer()
-        }
+        }.background(viewHeightReader($totalHeight))
     }
-    
-    var navigationBar: some View {
+
+    private func item(for tag: Tag) -> some View {
         HStack {
-            Button(action: {
-                // Действие, которое должно выполняться при нажатии кнопки
-            }) {
-                HStack {
-                    Image(systemName: "arrow.left.circle.fill")
-                    Text("Выйти")
+            Text(tag.name)
+                .padding(.all, 5)
+                .font(.body)
+            if isCurrentProfile{
+                Button(action: {
+                    if let index = self.tags.firstIndex(where: { $0.id == tag.id }) {
+                        self.tags.remove(at: index)
+                    }
+                }) {
+                    Image(systemName: "xmark.circle")
+                        .padding(.trailing, 10.0)
                 }
-                .padding(7)
+                
             }
-            .frame(width: 100)
-            .foregroundColor(.white)
-            .background(Color.red)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-
-            Spacer()
-            NavigationLink(destination: ProfileEditScreen(viewModel: ProfileEditViewModel())) {
-                    Image(systemName: "pencil")
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(Color.orange)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-            }
-            NavigationLink(destination: NotificationsScreen()) {
-                Image(systemName: "bell.fill")
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(Color.yellow)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-            }
+          
         }
-        .padding(.horizontal)
+  
+        .background(tag.isLike ? Color.green : Color.red)
+        .foregroundColor(Color.white)
+        .cornerRadius(5)
     }
 
+    private func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {
+        return GeometryReader { geometry -> Color in
+            let rect = geometry.frame(in: .local)
+            DispatchQueue.main.async {
+                binding.wrappedValue = rect.size.height
+            }
+            return .clear
+        }
+    }
 }
-
-
-
-#Preview {
-    TestView()
+struct TestTagCloudView: View {
+    @State private var tags: [Tag] = [
+        Tag(id: "1", name: "Ninetendo", important: false, isLike: false),
+        Tag(id: "2", name: "XBox", important: true, isLike: false),
+        Tag(id: "3", name: "PlayStation", important: false, isLike: false),
+        Tag(id: "4", name: "PlayStation 2", important: true, isLike: false),
+        Tag(id: "5", name: "PlayStation 3", important: false, isLike: false),
+        Tag(id: "6", name: "PlayStation 4", important: true, isLike: false)
+    ]
+    var body: some View {
+        VStack {
+           
+            TagCloudView(tags: tags,isCurrentProfile: true,isGood: true)
+        }
+    }
+}
+struct TestTagCloudView_Previews: PreviewProvider {
+    static var previews: some View {
+        TestTagCloudView()
+    }
 }

@@ -20,4 +20,7 @@ struct Tag: Codable,Identifiable {
     let id, name: String
     let important: Bool
     let isLike: Bool
+    static func == (lhs: Tag, rhs: Tag) -> Bool {
+            return lhs.id == rhs.id
+        }
 }
