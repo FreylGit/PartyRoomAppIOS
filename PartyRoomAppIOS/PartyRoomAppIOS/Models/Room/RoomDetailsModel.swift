@@ -9,6 +9,7 @@ import Foundation
 struct RoomDetailsModel: Codable {
     let name, type: String
     let price: Int
+    let quantityParticipant : Int
     let isAuthor: Bool
     let isStarted: Bool
     let link:String?
@@ -16,7 +17,7 @@ struct RoomDetailsModel: Codable {
     var destinationUserName: String?
 
     enum CodingKeys: String, CodingKey {
-        case name, type, price
+        case name, type, price,quantityParticipant
         case destinationUserID = "destinationUserId"
         case startDate, finishDate
         case isAuthor

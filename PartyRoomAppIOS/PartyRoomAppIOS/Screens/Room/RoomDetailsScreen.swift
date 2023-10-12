@@ -1,198 +1,342 @@
 import SwiftUI
-import Alamofire
 
 struct RoomDetailsScreen: View {
-    let roomId: String
-    @EnvironmentObject var user: ApplicationUser
-    @State  var roomDetails: RoomDetailsModel?
-    @State private var userName: String = ""
-    @State private var  copyLink: String = ""
+    @ObservedObject   var viewModel = RoomDetailsViewModel(roomId: "")
     @Environment(\.presentationMode) var presentationMode
-    
+    @State private var isShowingToast = false
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                if let room = roomDetails {
-                    VStack(alignment: .leading, spacing: 16) {
-                        if room.isAuthor {
-                            Button(action: {
-                                deleteRoom()
-                            }) {
-                                Text("Удалить")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, 20)
-                                    .padding(.vertical, 12)
-                                    .background(Color.red)
-                                    .cornerRadius(12)
-                            }
-                        } else {
-                            Button(action: {
-                                disconnectWithRoom()
-                            }) {
-                                Text("Выйти")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, 20)
-                                    .padding(.vertical, 12)
-                                    .background(Color.red)
-                                    .cornerRadius(12)
-                            }
+        ScrollView{
+            //navigationBar
+            header
+            dateInfo
+            budget
+            Divider()
+                .padding(1)
+                .background(.gray)
+            infot
+            info
+            invite
+            userCollections
+            Spacer()
+            if isShowingToast {
+                GeometryReader { geometry in
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(Color.black)
+                                .opacity(0.7)
+                                .cornerRadius(10)
+                                .frame(width: geometry.size.width, height: 60)
+                            Text("Ссылка скопирована")
+                                .font(.headline)
+                                .foregroundColor(.white)
                         }
-                        
-                        Section(header:
-                            Text(room.name)
-                                .font(.title)
-                                .foregroundColor(.blue)
-                                .padding(.top, 21)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        ) {
-                            RoomInfoView(type: room.type, price: room.price, userName: room.destinationUserName, startDate: room.startDate, finishDate: room.finishDate, isAuthor: room.isAuthor, isStarted: room.isStarted, link: room.link)
-                            
-                            if room.isAuthor && !room.isStarted {
-                                VStack(spacing: 16) {
-                                    TextField("Введите имя пользователя", text: $userName)
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                                        .padding()
-                                    
-                                    Button(action: {
-                                        pushInvite()
-                                    }) {
-                                        Text("Отправить приглашение")
-                                            .fontWeight(.bold)
-                                            .foregroundColor(.white)
-                                            .padding(.horizontal, 20)
-                                            .padding(.vertical, 12)
-                                            .background(Color.orange)
-                                            .cornerRadius(12)
-                                    }
-                                }
-                            }
-                            
-                            UsersInRoomView(roomId: roomId)
-                        }
-                        .padding(.top, 21)
                     }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(16)
-                    .shadow(radius: 4)
+                    .padding(.bottom, 30)
                 }
+            }
+        }
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8), Color(red: 0.04, green: 0.08, blue: 0.22).opacity(0.9)]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+            
+        )
+        .onAppear(perform: {
+            viewModel.loadUsers()
+            viewModel.getRoom()
+        })
+        
+    }
+    var header : some View{
+        HStack{
+            if let name = viewModel.roomDetails?.name{
+                Text(name)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                Spacer()
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                    Image(systemName: "gearshape")
+                        .imageScale(.large)
+                        .foregroundColor(.yellow)
+                }
+            }
+        }
+        .padding(.horizontal,30)
+    }
+    var dateInfo: some View {
+        HStack {
+            if let room = viewModel.roomDetails
+            {
+                VStack {
+                    Text(formattedDate(dateString:room.startDate))
+                }
+                .padding(9)
+                .background(
+                    Color.green
+                        .opacity(0.4)
+                        .blur(radius: 10)
+                )
+                .border(Color.green)
+                .cornerRadius(12)
+                Spacer()
+                VStack {
+                    Text(formattedDate(dateString:room.finishDate))
+                }
+                .padding(9)
+                .background(
+                    Color.red
+                        .opacity(0.5)
+                        .blur(radius: 10)
+                )
+                .border(Color.red)
+                .cornerRadius(12)
+            }
+        }
+        .foregroundColor(.white)
+        .padding(.horizontal, 50)
+    }
+    
+    var budget: some View{
+        HStack{
+            if let budget = viewModel.roomDetails?.price{
+                VStack(){
+                    Text("Бюджет")
+                        .fontWeight(.bold)
+                    
+                    Text("\(budget) ₽".replacingOccurrences(of: ",", with: " "))
+                }
+                .padding()
                 Spacer()
             }
-            .onAppear(perform: getRoom)
-            .navigationBarTitle("Информация о комнате", displayMode: .inline)
+          
         }
+        .foregroundColor(.white)
     }
     
-    private func getRoom(){
-        let token = "Bearer " + (user.jwtAccess?.token ?? "")
-        let headers: HTTPHeaders = ["Authorization": token]
-        
-        NetworkBase()
-            .requestAndParse(
-                url:"http://localhost:5069/api/Room/"+roomId,
-                method: .get,
-                parameters:nil,
-                headers: headers,
-                type: RoomDetailsModel.self) { result in
-                    switch result {
-                    case .success(let loadedPost):
-                        self.roomDetails = loadedPost
-                        
-                    case .failure(let error):
-                        print("Error loading post: \(error)")
+    var navigationBar : some View{
+        HStack{
+            if let isAuthor = viewModel.roomDetails?.isAuthor{
+                if isAuthor{
+                    Button(action: {
+                        viewModel.deleteRoom()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Удалить")
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 12)
+                            .background(Color.red)
+                            .cornerRadius(12)
                     }
                 }
-        
-    }
-    
-    private func pushInvite(){
-        var url = "http://localhost:5069/api/Notifications/PushInvite"
-        let parameters: Parameters = ["roomId": roomId, "username": userName]
-        
-        NetworkBase().sendPostRequest(url: url,method: .post, parameters: parameters) { result in
-            switch result {
-            case .success:
-                userName = ""
-            case .failure(let error):
-                print("Error loading post: \(error)")
+                else{
+                    Button(action: {
+                        viewModel.disconnectWithRoom()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text("Выйти")
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 12)
+                            .background(Color.red)
+                            .cornerRadius(12)
+                    }
+                }
             }
-        }
-    }
-    
-    private func deleteRoom(){
-        var url = "http://localhost:5069/api/Room"
-        let parameters: Parameters = ["roomId":roomId]
-        NetworkBase().sendPostRequest(url: url,method: .delete, parameters: parameters){ result in
-            switch result{
-            case .success:
-                print("Комната удалена")
-                self.presentationMode.wrappedValue.dismiss()
-            case .failure(let error):
-                print("Error loading post: \(error)")
-            }
-        }
-    }
-    
-    private func disconnectWithRoom(){
-        let url = "http://localhost:5069/api/Room/DisconnectUser"
-        let parameters: Parameters = ["roomId":roomId]
-        NetworkBase().sendPostRequest(url: url,method: .delete, parameters: parameters){ result in
-            switch result{
-            case .success:
-                print("Комната покинута")
-                self.presentationMode.wrappedValue.dismiss()
-            case .failure(let error):
-                print("Error loading post: \(error)")
-            }
-        }
-    }
-    
-    private func formatDate(_ dateString: String) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        
-        if let date = dateFormatter.date(from: dateString) {
-            let outputFormatter = DateFormatter()
-            outputFormatter.dateFormat = "MMM dd, yyyy hh:mm a"
-            return outputFormatter.string(from: date)
-        }
-        
-        return nil
-    }
-}
-
-struct KeyValueView: View {
-    let key: String
-    let value: String
-    
-    var body: some View {
-        HStack {
-            Text(key)
+            
             Spacer()
-            Text(value)
-                .foregroundColor(.blue)
+        }
+        .foregroundColor(.white)
+        .fontWeight(.bold)
+        .padding(.horizontal ,22)
+    }
+    
+    var infot: some View{
+        HStack{
+            if let link = viewModel.roomDetails?.link{
+                HStack{
+                    Image(systemName: "paperclip")
+                        .imageScale(.large)
+                        .foregroundColor(.blue)
+                    Text("Ссылка-приглашение")
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .onTapGesture {
+                            let pasteboard = UIPasteboard.general
+                            pasteboard.string = link ?? ""
+                            showToast()
+                        }
+                }
+                .padding(10)
+                .background(Color.orange)
+                
+            }
+        }
+        
+        .cornerRadius(15)
+        
+        
+    }
+    
+    var info: some View {
+        VStack {
+            if let room = viewModel.roomDetails {
+                VStack {
+                    if let userName = room.destinationUserName {
+                        NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName),isLogin: true )) {
+                            HStack {
+                                Text("Кому подарить:")
+                                    .font(.headline)
+                                    .foregroundColor(.blue)
+                                Spacer()
+                                Text(userName)
+                                    .font(.body)
+                            }
+                        }
+                    }
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+            }
+        }
+        
+    }
+    
+    var invite : some View{
+        VStack{
+            if let  room = viewModel.roomDetails{
+                if room.isAuthor && !room.isStarted {
+                    VStack(spacing: 16) {
+                        TextField("Введите имя пользователя", text: $viewModel.userName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                        
+                        Button(action: {
+                            viewModel.pushInvite()
+                        }) {
+                            Text("Отправить приглашение")
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 12)
+                                .background(Color.orange)
+                                .cornerRadius(12)
+                        }
+                    }
+                }
+                
+            }
         }
     }
+    
+    var userCollections : some View{
+        ForEach(viewModel.users ?? [], id: \.id) { user in
+            HStack {
+                AsyncImage(url: URL(string: user.details.imagePath)) { image in
+                    image
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .background(Color.gray)
+                        .clipShape(Circle())
+                } placeholder: {
+                    ProgressView()
+                }
+                Text(user.userName)
+                Spacer()
+                Button(action: {
+                    // Действие, которое должно выполняться при нажатии на кнопку
+                }) {
+                    Image(systemName: "trash")
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                }
+            }.padding()
+        }
+    }
+    
+    
+    func showToast() {
+        isShowingToast = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            withAnimation {
+                isShowingToast = false
+            }
+        }
+    }
+    
+    let dateFormatter: DateFormatter = {
+         let formatter = DateFormatter()
+         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+         formatter.locale = Locale(identifier: "ru")
+         return formatter
+     }()
+    
+    func formattedDate(dateString: String) -> String {
+        var formattedDateString = dateString
+
+            // Check if the date string contains milliseconds
+            if let dotRange = dateString.range(of: ".", options: .literal) {
+                // Remove the milliseconds part
+                formattedDateString = String(dateString[..<dotRange.lowerBound])
+            }
+
+            if let date = dateFormatter.date(from: formattedDateString) {
+                let outputFormatter = DateFormatter()
+                outputFormatter.dateFormat = "dd.MM.yyyy \n HH:mm"
+                return outputFormatter.string(from: date)
+            } else {
+                return "Invalid Date"
+            }
+       }
 }
 
-struct RoomDetailsPageView_Previews: PreviewProvider {
+struct RoomDetailsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        let roomDetails = RoomDetailsModel(name: "Sample Room",
-                                           type: "Sample Type",
-                                           price: 100,
-                                           isAuthor: true,
-                                           isStarted: false,
-                                           link: "qwdqw",
-                                           destinationUserID: "123",
-                                           startDate: "2023-09-17T12:00:00.000Z",
-                                           finishDate: "2023-09-18T12:00:00.000Z")
-        RoomDetailsScreen(roomId: "1",roomDetails: roomDetails)
-            .environmentObject(ApplicationUser())
-            .previewLayout(.sizeThatFits)
-            .padding()
-            .previewDisplayName("Room Details Preview")
+        let viewModel = RoomDetailsViewModel(roomId: "sampleRoomId")
         
+        let roomDetails = RoomDetailsModel(
+            name: "Sample Room",
+            type: "Sample Type",
+            price: 1000,
+            quantityParticipant: 4,
+            isAuthor: true,
+            isStarted: false,
+            link: "https://example.com",
+            destinationUserID: "sampleUserID",
+            startDate: "2023-10-04T19:00:26.542",
+            finishDate: "2023-10-05T19:00:26.542",
+            destinationUserName: "Sample User"
+        )
+        
+        viewModel.roomDetails = roomDetails
+        
+        //viewModel.userName = "SampleUserName"
+        
+        let sampleProfile = ProfileModel(
+            id: "sampleUserID",
+            firtsName: "John",
+            lastName: "Doe",
+            userName: "johndoe",
+            email: "john@example.com",
+            phoneNumber: "123-456-7890",
+            details: Details(about: "About John Doe", imagePath: "http://localhost:5069/api/Image/omvsqnfg.fom.jpg"),
+            tags: [
+                Tag(id: "1", name: "Tag1", important: true, isLike: false),
+                Tag(id: "2", name: "Tag2", important: false, isLike: true)
+            ]
+        )
+        
+        // Assign the sample ProfileModel to the viewModel's users property
+        viewModel.users = [sampleProfile]
+        
+        // Pass the viewModel to RoomDetailsScreen
+        return RoomDetailsScreen(viewModel: viewModel)
     }
 }

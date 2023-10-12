@@ -1,13 +1,12 @@
 import SwiftUI
 struct TagCloudView: View {
-    @State var tags: [Tag]
+    @Binding var tags: [Tag]
     let isCurrentProfile:Bool
     let isGood:Bool
     @State private var totalHeight = CGFloat.zero
 
     var body: some View {
         VStack(alignment: .leading) {
-             
                 GeometryReader { geometry in
                     self.generateContent(in: geometry)
                 }
@@ -62,7 +61,6 @@ struct TagCloudView: View {
                     Image(systemName: "xmark.circle")
                         .padding(.trailing, 10.0)
                 }
-                
             }
           
         }
@@ -94,7 +92,7 @@ struct TestTagCloudView: View {
     var body: some View {
         VStack {
            
-            TagCloudView(tags: tags,isCurrentProfile: true,isGood: true)
+            TagCloudView(tags: $tags,isCurrentProfile: true,isGood: true)
         }
     }
 }

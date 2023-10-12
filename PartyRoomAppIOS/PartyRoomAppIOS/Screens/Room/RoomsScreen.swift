@@ -3,7 +3,7 @@ import SwiftUI
 struct RoomsScreen: View {
     @EnvironmentObject var user: ApplicationUser
     @State private var refreshToken: String? = nil
-    @ObservedObject private var viewModel = RoomsViewModel()
+    @ObservedObject  var viewModel = RoomsViewModel()
     var body: some View {
         NavigationView {
             VStack {
@@ -23,6 +23,7 @@ struct RoomsScreen: View {
                                 .foregroundColor(.white)
                                 .padding()
                         }
+                        Spacer()
                         NavigationLink(destination: ConnectRoomScreen().environmentObject(user)){
                             Text("Присоединиться")
                                 .padding(.all, 8.0)
@@ -41,7 +42,6 @@ struct RoomsScreen: View {
                                     ItemRoomView(room: room)
                                         .frame(maxWidth: .infinity)
                                         .padding(.horizontal,10)
-                                        .background(Color.white)
                                         .cornerRadius(10)
                                         .padding(.vertical, 5)
                                 }
@@ -52,19 +52,33 @@ struct RoomsScreen: View {
                     }
                     .onAppear(perform: viewModel.loadData)
                     .onAppear(perform: viewModel.loadProfile)
-                }
-                Spacer()        
+                }.background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8), Color(red: 0.04, green: 0.08, blue: 0.22).opacity(0.9)]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                            .ignoresSafeArea()
+                            
+                )
+                Spacer()
         }
+        
     }
     
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let testRoom1 = RoomsModelElement(id: "1", name: "Комната 1", type: "Тип 1", price: 100, isStarted: true, startDate: "2023-09-17", finishDate: "2023-09-18")
-        let testRoom2 = RoomsModelElement(id: "2", name: "Комната 2", type: "Тип 2", price: 200, isStarted: false, startDate: "2023-09-18", finishDate: "2023-09-19")
+        let testRoom1 = RoomsModelElement(id: "1", name: "Комната 1", type: "Тип 1", price: 100,quantityParticipant: 1, isStarted: true, startDate: "2023-09-17", finishDate: "2023-10-01T13:14:03.36")
+        let testRoom2 = RoomsModelElement(id: "2", name: "Комната 2", type: "Тип 2", price: 200,quantityParticipant: 2, isStarted: false, startDate: "2023-09-18", finishDate: "2023-09-19")
         
-        let _: [RoomsModelElement] = [testRoom1, testRoom2]
-        RoomsScreen().environmentObject(ApplicationUser())
+        let rooms: [RoomsModelElement] = [testRoom1, testRoom2]
+        
+        let viewModel = RoomsViewModel()
+        viewModel.rooms = rooms
+        viewModel.name = "Имя пользователя"
+        
+        return RoomsScreen(viewModel: viewModel).environmentObject(ApplicationUser())
     }
 }

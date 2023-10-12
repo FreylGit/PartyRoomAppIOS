@@ -11,13 +11,14 @@
 		AA0569902AB7056D0049EA2A /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA05698F2AB7056D0049EA2A /* KeychainSwift */; };
 		AA2193D02ACB594400F30ACA /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2193CF2ACB594400F30ACA /* ProfileViewModel.swift */; };
 		AA2193D22ACC939B00F30ACA /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2193D12ACC939B00F30ACA /* NotificationsViewModel.swift */; };
+		AA2DE7FA2AD4997000ABA64D /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2DE7F92AD4997000ABA64D /* SwiftUIView.swift */; };
 		AA3FF1BA2AB8E81D0072E08B /* RegistrationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FF1B92AB8E81D0072E08B /* RegistrationScreen.swift */; };
 		AA3FF1BD2AB9E9170072E08B /* AccountRegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FF1BC2AB9E9170072E08B /* AccountRegistrationModel.swift */; };
 		AA3FF1BF2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FF1BE2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift */; };
 		AA7EF7752AD176C400F825A8 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7EF7742AD176C400F825A8 /* ProfileEditViewModel.swift */; };
 		AA7EF7772AD1BB8300F825A8 /* ProfileMainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7EF7762AD1BB8300F825A8 /* ProfileMainScreen.swift */; };
 		AA8E78D92AD2B15000B0098D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8E78D82AD2B15000B0098D /* TestView.swift */; };
-		AA8E78DB2AD2B96400B0098D /* TestDesignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8E78DA2AD2B96400B0098D /* TestDesignView.swift */; };
+		AA8E78DB2AD2B96400B0098D /* RoomDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8E78DA2AD2B96400B0098D /* RoomDetailsScreen.swift */; };
 		AA8E78DD2AD2B9F500B0098D /* RoomDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8E78DC2AD2B9F500B0098D /* RoomDetailsViewModel.swift */; };
 		AA9528672AC76001005C414D /* InviteItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9528662AC76001005C414D /* InviteItemModel.swift */; };
 		AA95286A2AC774AB005C414D /* ConnectRoomScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9528692AC774AB005C414D /* ConnectRoomScreen.swift */; };
@@ -56,13 +57,14 @@
 		AA05698C2AB704B20049EA2A /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		AA2193CF2ACB594400F30ACA /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		AA2193D12ACC939B00F30ACA /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		AA2DE7F92AD4997000ABA64D /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		AA3FF1B92AB8E81D0072E08B /* RegistrationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationScreen.swift; sourceTree = "<group>"; };
 		AA3FF1BC2AB9E9170072E08B /* AccountRegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegistrationModel.swift; sourceTree = "<group>"; };
 		AA3FF1BE2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationProfileDetailsScreen.swift; sourceTree = "<group>"; };
 		AA7EF7742AD176C400F825A8 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		AA7EF7762AD1BB8300F825A8 /* ProfileMainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreen.swift; sourceTree = "<group>"; };
 		AA8E78D82AD2B15000B0098D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		AA8E78DA2AD2B96400B0098D /* TestDesignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDesignView.swift; sourceTree = "<group>"; };
+		AA8E78DA2AD2B96400B0098D /* RoomDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsScreen.swift; sourceTree = "<group>"; };
 		AA8E78DC2AD2B9F500B0098D /* RoomDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewModel.swift; sourceTree = "<group>"; };
 		AA9528662AC76001005C414D /* InviteItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteItemModel.swift; sourceTree = "<group>"; };
 		AA9528692AC774AB005C414D /* ConnectRoomScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectRoomScreen.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				AAF8A6752AB5E1880080A250 /* Room */,
 				AAF8A6602AB4F0A60080A250 /* MainView.swift */,
 				AA8E78D82AD2B15000B0098D /* TestView.swift */,
+				AA2DE7F92AD4997000ABA64D /* SwiftUIView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -294,7 +297,7 @@
 				AAF8A6542AB4F03B0080A250 /* RoomsScreen.swift */,
 				AAF8A67B2AB600CF0080A250 /* RoomCreateView.swift */,
 				AA9528692AC774AB005C414D /* ConnectRoomScreen.swift */,
-				AA8E78DA2AD2B96400B0098D /* TestDesignView.swift */,
+				AA8E78DA2AD2B96400B0098D /* RoomDetailsScreen.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -367,11 +370,12 @@
 			};
 			buildConfigurationList = AAF8A64A2AB4F03B0080A250 /* Build configuration list for PBXProject "PartyRoomAppIOS" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = AAF8A6462AB4F03B0080A250;
 			packageReferences = (
@@ -407,7 +411,7 @@
 			files = (
 				AAE5C3222ACE046D0040C27C /* RoomCreateViewModel.swift in Sources */,
 				AA8E78D92AD2B15000B0098D /* TestView.swift in Sources */,
-				AA8E78DB2AD2B96400B0098D /* TestDesignView.swift in Sources */,
+				AA8E78DB2AD2B96400B0098D /* RoomDetailsScreen.swift in Sources */,
 				AAD0FF512AC62366005ADF69 /* NotificationsScreen.swift in Sources */,
 				AAF8A6652AB4F4950080A250 /* LoginScreen.swift in Sources */,
 				AAF8A67A2AB5E3DD0080A250 /* RoomDetailsModel.swift in Sources */,
@@ -431,6 +435,7 @@
 				AAF8A6732AB5DC730080A250 /* ProfileModel.swift in Sources */,
 				AAF8A6552AB4F03B0080A250 /* RoomsScreen.swift in Sources */,
 				AAE5C3202ACE01B40040C27C /* RoomsViewModel.swift in Sources */,
+				AA2DE7FA2AD4997000ABA64D /* SwiftUIView.swift in Sources */,
 				AAB1018C2AB8CB5400798D19 /* HeaderProfileView.swift in Sources */,
 				AA7EF7772AD1BB8300F825A8 /* ProfileMainScreen.swift in Sources */,
 				AA3FF1BD2AB9E9170072E08B /* AccountRegistrationModel.swift in Sources */,

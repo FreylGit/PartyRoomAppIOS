@@ -9,22 +9,26 @@ struct LoginScreen: View {
     
     var body: some View {
         if user.loginStatus != "" && user.loginStatus != nil{
-               // ProfileScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: true)).frame(maxWidth: .infinity)
+
             ProfileMainScreen(isLogin: true)
             
             } else {NavigationView {
                 VStack {
-                    
+                    Spacer()
                     Text("Вход")
+                        .font(.title)
+                        .fontWeight(.medium)
+                        .foregroundColor(.white)
                     VStack{
                         TextField("Email", text: $username)
-                            .padding([.top, .leading, .trailing])
+                            .padding(.horizontal)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         
                         TextField("Пароль", text: $password)
                             .padding(.all)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }.padding([.top, .leading, .trailing])
+                    }
+                    .padding(10)
                     NavigationLink(
                         destination: RegistrationScreen(),
                         isActive: $isRegistrationActive,
@@ -41,10 +45,19 @@ struct LoginScreen: View {
                             .foregroundColor(.white)
                             .cornerRadius(5)
                     }
+                    Spacer()
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8), Color(red: 0.04, green: 0.08, blue: 0.22).opacity(0.9)]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                            .ignoresSafeArea()
+                            
+                )
             }
         }
     }

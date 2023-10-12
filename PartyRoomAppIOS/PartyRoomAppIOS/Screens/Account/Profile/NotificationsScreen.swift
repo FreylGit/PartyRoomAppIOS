@@ -5,7 +5,9 @@ struct NotificationsScreen: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                Spacer()
                 VStack {
+                    
                     if let inviteItems = viewModel.inviteItems {
                         ForEach(inviteItems, id: \.id) { inviteItem in
                             HStack(spacing: 8) {
@@ -47,13 +49,16 @@ struct NotificationsScreen: View {
                         .padding([.leading, .bottom, .trailing],10)
                         
                     }
+                    
                 }
             }
             .onAppear {
                 viewModel.GetInvite()
             }
+            
             .navigationBarTitle("Уведомления")
         }
+        
     }
 }
 

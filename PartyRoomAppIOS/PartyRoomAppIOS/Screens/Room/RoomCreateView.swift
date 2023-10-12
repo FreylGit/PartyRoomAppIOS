@@ -9,10 +9,9 @@ struct RoomCreateView: View {
     @State private var endDate = Date()
     @ObservedObject private var viewModel = RoomCreateViewModel()
     @Environment(\.presentationMode) var presentationMode
-
     var body: some View {
         NavigationView {
-            VStack {
+            VStack{
                 Text("Создание новой комнаты")
                     .font(.largeTitle)
                     .padding(.bottom, 20)
@@ -36,15 +35,18 @@ struct RoomCreateView: View {
                         }
                     }
 
-                DatePicker("Дата начала", selection: $startDate, displayedComponents: .date)
+                DatePicker("Дата начала", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
                     .datePickerStyle(DefaultDatePickerStyle())
                     .padding()
                 
-                DatePicker("Дата конца", selection: $endDate, displayedComponents: .date)
-                    .datePickerStyle(DefaultDatePickerStyle())
+                DatePicker("Дата конца", selection: $endDate, displayedComponents: [.date, .hourAndMinute])
+                    .datePickerStyle(CompactDatePickerStyle())
                     .padding()
+                
+
 
                 Button(action: {
+                    print(endDate)
                     viewModel.CreateRoomTest(name: name, type: type, budget: budget, startDate: startDate, endDate: endDate)
                 }) {
                     Text("Создать")
@@ -53,14 +55,27 @@ struct RoomCreateView: View {
                         .padding()
                         .background(Color.blue)
                         .cornerRadius(10)
+                
                 }
                 .padding(.top, 20)
+              Spacer()
             }
+            .foregroundColor(.white)
             .padding()
-            .navigationBarTitle("", displayMode: .inline)
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8), Color(red: 0.04, green: 0.08, blue: 0.22).opacity(0.9)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
+            )
+          
           
         }
+        
     }
+    
 }
 
 struct RoomCreateView_Previews: PreviewProvider {
