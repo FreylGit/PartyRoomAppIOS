@@ -20,13 +20,8 @@ struct LoginScreen: View {
                         .fontWeight(.medium)
                         .foregroundColor(.white)
                     VStack{
-                        TextField("Email", text: $username)
-                            .padding(.horizontal)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        TextField("Пароль", text: $password)
-                            .padding(.all)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        CustomTextFieldView(inputText: $username, label: "Email")
+                        CustomTextFieldView(inputText: $password, label: "Пароль")
                     }
                     .padding(10)
                     NavigationLink(
@@ -49,15 +44,7 @@ struct LoginScreen: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8), Color(red: 0.04, green: 0.08, blue: 0.22).opacity(0.9)]),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                            .ignoresSafeArea()
-                            
-                )
+                .background(GradientBackgroundView())
             }
         }
     }

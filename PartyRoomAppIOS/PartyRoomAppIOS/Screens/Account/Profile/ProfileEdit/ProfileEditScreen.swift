@@ -37,16 +37,7 @@ struct ProfileEditScreen: View {
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                     HStack{
-                        TextField(text: $tagGoodName, label:{
-                            Text("Например готовить")
-                                .foregroundColor(.white)
-                        })
-                            .padding(.vertical,10)
-                            .padding(.horizontal,10)
-                            .background(Color.brown.opacity(0.2))
-                            .foregroundColor(.white)
-                        
-                      
+                        CustomTextFieldView(inputText: $tagGoodName, label: "Например готовить")
                         Button(action: {
                             viewModel.goodTag.append(Tag(id: tagGoodName, name: tagGoodName, important: true, isLike: true))
                             tagGoodName = ""
@@ -66,14 +57,8 @@ struct ProfileEditScreen: View {
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                     HStack{
-                        TextField(text: $tagBeadName, label:{
-                            Text("Например спорт")
-                                .foregroundColor(.white)
-                        })
-                        .padding(.vertical,10)
-                        .padding(.horizontal,10)
-                        .background(Color.brown.opacity(0.2))
-                        .foregroundColor(.white)
+                        CustomTextFieldView(inputText: $tagBeadName, label: "Например спорт")
+                       
                         Button(action: {
                             viewModel.beadTag.append(Tag(id: tagBeadName, name: tagBeadName, important: true, isLike: false))
                             tagBeadName = ""
@@ -100,15 +85,7 @@ struct ProfileEditScreen: View {
             
         }
         )
-        .background(
-            LinearGradient(
-                gradient: Gradient(colors: [Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8), Color(red: 0.04, green: 0.08, blue: 0.22).opacity(0.9)]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                    .ignoresSafeArea()
-                    
-        )
+        .background(GradientBackgroundView()) 
     }
 }
 

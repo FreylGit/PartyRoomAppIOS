@@ -9,29 +9,20 @@ struct ConnectRoomScreen: View {
         NavigationView {
             VStack {
                 Spacer()
-                TextField("Ссылка", text: $roomLink)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding([.top, .leading, .trailing])
-
+                CustomTextFieldView(inputText: $roomLink, label: "Сылка")
+                    .padding(.bottom)
                 Button(action: {
                     connecttoRoom()
                 }, label: {
                     Text("Присоединиться")
-                        .padding(5)
+                        .padding(7)
                         .foregroundColor(.white)
                         .background(Color.orange)
                 })
                 Spacer()
             }
             .padding()
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8), Color(red: 0.04, green: 0.08, blue: 0.22).opacity(0.9)]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
-            )
+            .background(GradientBackgroundView())
             
         }
         

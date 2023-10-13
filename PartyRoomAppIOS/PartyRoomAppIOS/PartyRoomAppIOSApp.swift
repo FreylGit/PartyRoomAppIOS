@@ -5,7 +5,10 @@ struct PartyRoomAppIOSApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .background(GradientBackgroundView())
         }
+        
     }
 }
+
 

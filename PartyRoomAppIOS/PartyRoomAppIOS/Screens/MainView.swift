@@ -10,7 +10,7 @@ struct MainView: View {
                 }
                 .environmentObject(user)
             
-            RoomsScreen()
+             RoomsScreen()
                 .tabItem{
                     Label("Content",systemImage: "house.fill")
                 }
@@ -21,11 +21,13 @@ struct MainView: View {
                     Label("Test",systemImage: "pencil")
                 }
         }
-        
+        .background(Color.clear)
         .accentColor(.yellow)
         .onAppear {
-                    UITabBar.appearance().unselectedItemTintColor = .white
-                }
+            UITabBar.appearance().unselectedItemTintColor = .gray
+        }
+       // .preferredColorScheme(.dark)
+       
     }
 }
 

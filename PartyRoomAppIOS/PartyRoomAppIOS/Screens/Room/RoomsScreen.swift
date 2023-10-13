@@ -4,6 +4,7 @@ struct RoomsScreen: View {
     @EnvironmentObject var user: ApplicationUser
     @State private var refreshToken: String? = nil
     @ObservedObject  var viewModel = RoomsViewModel()
+
     var body: some View {
         NavigationView {
             VStack {
@@ -48,19 +49,12 @@ struct RoomsScreen: View {
                                 .buttonStyle(PlainButtonStyle())
                             }
                         }
-                        
                     }
                     .onAppear(perform: viewModel.loadData)
                     .onAppear(perform: viewModel.loadProfile)
-                }.background(
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8), Color(red: 0.04, green: 0.08, blue: 0.22).opacity(0.9)]),
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                            .ignoresSafeArea()
-                            
-                )
+                Spacer()
+                }
+            .background(GradientBackgroundView())
                 Spacer()
         }
         
@@ -79,6 +73,6 @@ struct ContentView_Previews: PreviewProvider {
         viewModel.rooms = rooms
         viewModel.name = "Имя пользователя"
         
-        return RoomsScreen(viewModel: viewModel).environmentObject(ApplicationUser())
+        return RoomsScreen().environmentObject(ApplicationUser())
     }
 }

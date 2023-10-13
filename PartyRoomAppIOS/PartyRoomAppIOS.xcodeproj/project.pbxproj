@@ -16,6 +16,8 @@
 		AA3FF1BD2AB9E9170072E08B /* AccountRegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FF1BC2AB9E9170072E08B /* AccountRegistrationModel.swift */; };
 		AA3FF1BF2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FF1BE2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift */; };
 		AA61211E2AD9D51A00CD147B /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA61211D2AD9D51A00CD147B /* CustomDateFormatter.swift */; };
+		AA6121212AD9DAAB00CD147B /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6121202AD9DAAB00CD147B /* CustomTextFieldView.swift */; };
+		AA6121232AD9F50B00CD147B /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6121222AD9F50B00CD147B /* GradientBackgroundView.swift */; };
 		AA7EF7752AD176C400F825A8 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7EF7742AD176C400F825A8 /* ProfileEditViewModel.swift */; };
 		AA7EF7772AD1BB8300F825A8 /* ProfileMainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7EF7762AD1BB8300F825A8 /* ProfileMainScreen.swift */; };
 		AA8E78D92AD2B15000B0098D /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8E78D82AD2B15000B0098D /* TagCloudView.swift */; };
@@ -57,6 +59,8 @@
 		AA3FF1BC2AB9E9170072E08B /* AccountRegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegistrationModel.swift; sourceTree = "<group>"; };
 		AA3FF1BE2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationProfileDetailsScreen.swift; sourceTree = "<group>"; };
 		AA61211D2AD9D51A00CD147B /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
+		AA6121202AD9DAAB00CD147B /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
+		AA6121222AD9F50B00CD147B /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		AA7EF7742AD176C400F825A8 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		AA7EF7762AD1BB8300F825A8 /* ProfileMainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreen.swift; sourceTree = "<group>"; };
 		AA8E78D82AD2B15000B0098D /* TagCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCloudView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,15 @@
 			path = Formatter;
 			sourceTree = "<group>";
 		};
+		AA61211F2AD9DA6F00CD147B /* GlobalReuseView */ = {
+			isa = PBXGroup;
+			children = (
+				AA6121202AD9DAAB00CD147B /* CustomTextFieldView.swift */,
+				AA6121222AD9F50B00CD147B /* GradientBackgroundView.swift */,
+			);
+			path = GlobalReuseView;
+			sourceTree = "<group>";
+		};
 		AA9528682AC76F15005C414D /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +245,7 @@
 		AAF8A6512AB4F03B0080A250 /* PartyRoomAppIOS */ = {
 			isa = PBXGroup;
 			children = (
+				AA61211F2AD9DA6F00CD147B /* GlobalReuseView */,
 				AAF8A6522AB4F03B0080A250 /* PartyRoomAppIOSApp.swift */,
 				AA05698B2AB704930049EA2A /* Manager */,
 				AAF8A67F2AB651E30080A250 /* Utils */,
@@ -414,12 +428,14 @@
 				AA7EF7752AD176C400F825A8 /* ProfileEditViewModel.swift in Sources */,
 				AA2193D02ACB594400F30ACA /* ProfileViewModel.swift in Sources */,
 				AA8E78DD2AD2B9F500B0098D /* RoomDetailsViewModel.swift in Sources */,
+				AA6121232AD9F50B00CD147B /* GradientBackgroundView.swift in Sources */,
 				AAF8A6822AB652620080A250 /* NetworkBase.swift in Sources */,
 				AA3FF1BA2AB8E81D0072E08B /* RegistrationScreen.swift in Sources */,
 				AAF8A66B2AB5A6640080A250 /* AccountLogin.swift in Sources */,
 				AAF8A6712AB5CB8A0080A250 /* RoomsModel.swift in Sources */,
 				AA05698D2AB704B20049EA2A /* ProfileManager.swift in Sources */,
 				AAF6B2272AB6F5970034A665 /* ItemRoomView.swift in Sources */,
+				AA6121212AD9DAAB00CD147B /* CustomTextFieldView.swift in Sources */,
 				AAF8A66F2AB5B83B0080A250 /* ApplicationUser.swift in Sources */,
 				AA3FF1BF2AB9EEFB0072E08B /* RegistrationProfileDetailsScreen.swift in Sources */,
 				AAF8A67C2AB600CF0080A250 /* RoomCreateScreen.swift in Sources */,
