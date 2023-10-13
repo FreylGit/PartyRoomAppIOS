@@ -6,16 +6,21 @@ struct RoomDetailsScreen: View {
     @State private var isShowingToast = false
     var body: some View {
         ScrollView{
-            //navigationBar
             header
             dateInfo
             budget
             Divider()
                 .padding(1)
                 .background(.gray)
-            infot
+            if let isStarted = viewModel.roomDetails?.isStarted{
+                if !isStarted{
+                    infot
+                    //info
+                    invite
+                }
+                
+            }
             info
-            invite
             userCollections
             Spacer()
             if isShowingToast {
@@ -113,45 +118,9 @@ struct RoomDetailsScreen: View {
                 .padding()
                 Spacer()
             }
-          
-        }
-        .foregroundColor(.white)
-    }
-    
-    var navigationBar : some View{
-        HStack{
-            if let isAuthor = viewModel.roomDetails?.isAuthor{
-                if isAuthor{
-                    Button(action: {
-                        viewModel.deleteRoom()
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Удалить")
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 12)
-                            .background(Color.red)
-                            .cornerRadius(12)
-                    }
-                }
-                else{
-                    Button(action: {
-                        viewModel.disconnectWithRoom()
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text("Выйти")
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 12)
-                            .background(Color.red)
-                            .cornerRadius(12)
-                    }
-                }
-            }
             
-            Spacer()
         }
         .foregroundColor(.white)
-        .fontWeight(.bold)
-        .padding(.horizontal ,22)
     }
     
     var infot: some View{
@@ -174,10 +143,7 @@ struct RoomDetailsScreen: View {
                 
             }
         }
-        
         .cornerRadius(15)
-        
-        
     }
     
     var info: some View {
@@ -185,25 +151,24 @@ struct RoomDetailsScreen: View {
             if let room = viewModel.roomDetails {
                 VStack {
                     if let userName = room.destinationUserName {
-                        NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName),isLogin: true )) {
                             HStack {
                                 Text("Кому подарить:")
                                     .font(.headline)
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(.white)
                                 Spacer()
-                                Text(userName)
+                                NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName),isLogin: true )) {
+                                Text("@"+userName)
                                     .font(.body)
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             }
                         }
+                        .padding()
+                        .background(Color.clear)
+                        .cornerRadius(10)
                     }
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 5)
             }
         }
-        
     }
     
     var invite : some View{
@@ -235,28 +200,36 @@ struct RoomDetailsScreen: View {
     
     var userCollections : some View{
         ForEach(viewModel.users ?? [], id: \.id) { user in
-            HStack {
-                AsyncImage(url: URL(string: user.details.imagePath)) { image in
-                    image
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .background(Color.gray)
-                        .clipShape(Circle())
-                } placeholder: {
-                    ProgressView()
-                }
-                Text(user.userName)
-                Spacer()
-                Button(action: {
-                    // Действие, которое должно выполняться при нажатии на кнопку
-                }) {
-                    Image(systemName: "trash")
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                        .background(Color.red)
+            NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: user.userName),isLogin: true )) {
+                HStack {
+                    AsyncImage(url: URL(string: user.details.imagePath)) { image in
+                        image
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .background(Color.gray)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    Text(user.userName)
                         .foregroundColor(.white)
-                        .cornerRadius(12)
+                    Spacer()
+                    if let isAuthor = viewModel.roomDetails?.isAuthor{
+                        if isAuthor{
+                            Button(action: {
+                                // Действие, которое должно выполняться при нажатии на кнопку
+                            }) {
+                                Image(systemName: "trash")
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 8)
+                                    .background(Color.red)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(12)
+                            }
+                        }
+                    }
                 }
+               
             }.padding()
         }
     }
@@ -272,29 +245,29 @@ struct RoomDetailsScreen: View {
     }
     
     let dateFormatter: DateFormatter = {
-         let formatter = DateFormatter()
-         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-         formatter.locale = Locale(identifier: "ru")
-         return formatter
-     }()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        formatter.locale = Locale(identifier: "ru")
+        return formatter
+    }()
     
     func formattedDate(dateString: String) -> String {
         var formattedDateString = dateString
-
-            // Check if the date string contains milliseconds
-            if let dotRange = dateString.range(of: ".", options: .literal) {
-                // Remove the milliseconds part
-                formattedDateString = String(dateString[..<dotRange.lowerBound])
-            }
-
-            if let date = dateFormatter.date(from: formattedDateString) {
-                let outputFormatter = DateFormatter()
-                outputFormatter.dateFormat = "dd.MM.yyyy \n HH:mm"
-                return outputFormatter.string(from: date)
-            } else {
-                return "Invalid Date"
-            }
-       }
+        
+        // Check if the date string contains milliseconds
+        if let dotRange = dateString.range(of: ".", options: .literal) {
+            // Remove the milliseconds part
+            formattedDateString = String(dateString[..<dotRange.lowerBound])
+        }
+        
+        if let date = dateFormatter.date(from: formattedDateString) {
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = "dd.MM.yyyy \n HH:mm"
+            return outputFormatter.string(from: date)
+        } else {
+            return "Invalid Date"
+        }
+    }
 }
 
 struct RoomDetailsScreen_Previews: PreviewProvider {
@@ -333,10 +306,8 @@ struct RoomDetailsScreen_Previews: PreviewProvider {
             ]
         )
         
-        // Assign the sample ProfileModel to the viewModel's users property
         viewModel.users = [sampleProfile]
         
-        // Pass the viewModel to RoomDetailsScreen
         return RoomDetailsScreen(viewModel: viewModel)
     }
 }

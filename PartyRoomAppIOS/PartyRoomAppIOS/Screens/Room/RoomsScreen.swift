@@ -15,7 +15,7 @@ struct RoomsScreen: View {
                     Text("DELETE TOKEN")
                 }
                     HStack{
-                        NavigationLink(destination: RoomCreateView()){
+                        NavigationLink(destination: RoomCreateScreen()){
                             Text("Создать комнату")
                                 .padding(.all, 8.0)
                                 .background(Color.green)

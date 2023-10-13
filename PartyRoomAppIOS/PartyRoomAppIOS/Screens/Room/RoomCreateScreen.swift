@@ -1,7 +1,7 @@
 import SwiftUI
 import Combine
 
-struct RoomCreateView: View {
+struct RoomCreateScreen: View {
     @State private var name: String = ""
     @State private var type: String = ""
     @State private var budget: String = ""
@@ -80,6 +80,6 @@ struct RoomCreateView: View {
 
 struct RoomCreateView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomCreateView()
+        RoomCreateScreen()
     }
 }

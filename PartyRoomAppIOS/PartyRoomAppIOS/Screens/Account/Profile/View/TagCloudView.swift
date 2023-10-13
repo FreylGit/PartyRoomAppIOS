@@ -49,7 +49,7 @@ struct TagCloudView: View {
 
     private func item(for tag: Tag) -> some View {
         HStack {
-            Text(tag.name)
+            Text("#"+tag.name)
                 .padding(.all, 5)
                 .font(.body)
             if isCurrentProfile{

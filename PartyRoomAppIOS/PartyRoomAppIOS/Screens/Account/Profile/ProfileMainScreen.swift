@@ -172,7 +172,7 @@ struct ProfileMainScreen: View {
             VStack(alignment: .leading){
                 HStack {
                     Text("О Себе")
-                        .font(AppFonts.headlineFont)
+                        .font(.body)
                         .fontWeight(.bold)
                     Spacer()
                 }
@@ -196,12 +196,12 @@ struct TagCollectionView : View{
         VStack(alignment: .leading) {
             if isGood {
                 Text("Предпочтения")
-                    .font(AppFonts.headlineFont)
+                    .font(.body)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
             } else {
                 Text("Антипатия")
-                    .font(AppFonts.headlineFont)
+                    .font(.body)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
             }
