@@ -7,57 +7,38 @@ struct RegistrationScreen: View {
     @State private var email = ""
     @State private var phoneNumber = ""
     @State private var password = ""
-
+    
     var body: some View {
         
-            VStack {
-                Text("Регистрация")
-                    .font(.largeTitle)
-                    
-
-                TextField("Имя", text: $firstName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding([.top, .leading, .trailing])
-
-                TextField("Фамилия", text: $lastName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding([.top, .leading, .trailing])
-
-                TextField("Имя пользователя", text: $userName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding([.top, .leading, .trailing])
-
-                TextField("Email", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.emailAddress)
-                    .padding([.top, .leading, .trailing])
-
-                TextField("Номер телефона", text: $phoneNumber)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.phonePad)
-                    .padding([.top, .leading, .trailing])
-
-                SecureField("Пароль", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+        VStack {
+            Spacer()
+            Text("Регистрация")
+                .font(.largeTitle)
+                .foregroundColor(.white)
+            CustomTextFieldView(inputText: $firstName, label: "Имя")
+            CustomTextFieldView(inputText: $lastName, label: "Фамилия")
+            CustomTextFieldView(inputText: $userName, label: "Имя пользователя")
+            CustomTextFieldView(inputText: $email, label: "Email")
+            CustomTextFieldView(inputText: $phoneNumber, label: "Номер телефона")
+            CustomTextFieldView(inputText: $password, label: "Пароль")
+            /*Button(action: {
+             sendRegistration()
+             }) {*/
+            NavigationLink(destination: RegistrationProfileDetailsScreen()){
+                Text("Далее")
+                    .font(.headline)
                     .padding()
-
-                /*Button(action: {
-                    sendRegistration()
-                }) {*/
-                NavigationLink(destination: RegistrationProfileDetailsScreen()){
-                    Text("Далее")
-                        .font(.headline)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
                 
-                    
+                
                 //}
             }
-            .padding()
+            Spacer()
         }
-       
+        .padding()
+        .background(GradientBackgroundView())
     }
     
     //TODO: Работает, не забыть потом вызвать

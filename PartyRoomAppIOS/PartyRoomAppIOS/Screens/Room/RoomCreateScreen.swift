@@ -12,22 +12,14 @@ struct RoomCreateScreen: View {
     var body: some View {
         NavigationView {
             VStack{
+                Spacer()
                 Text("Создание новой комнаты")
                     .font(.largeTitle)
                     .padding(.bottom, 20)
-
-                TextField("Название", text: $name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
                 
-                TextField("Тип", text: $type)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                TextField("Бюджет", text: $budget)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.numberPad)
-                    .padding()
+                CustomTextFieldView(inputText: $name, label: "Название")
+                CustomTextFieldView(inputText: $type, label: "Тип")
+                CustomTextFieldView(inputText: $budget, label: "Бюджет")
                     .onReceive(Just(budget)) { newValue in
                         let filtered = newValue.filter { "0123456789".contains($0) }
                         if filtered != newValue {

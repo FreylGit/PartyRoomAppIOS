@@ -7,30 +7,26 @@ struct ProfileEditScreen: View {
     @ObservedObject private var viewModel = ProfileEditViewModel()
     init(viewModel: ProfileEditViewModel) {
         _bioText = State(initialValue: viewModel.bioText)
-        self.viewModel = viewModel  
+        self.viewModel = viewModel
     }
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         ScrollView{
-            
-            
             VStack(alignment: .leading) {
                 Text("О Себе")
                     .font(.headline)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                    TextEditor(text: $bioText)
+                TextEditor(text: $bioText)
                     .scrollContentBackground(.hidden)
                     .foregroundColor(.white)
-                        .frame(height: 100)
-                        .cornerRadius(15)
-                        .padding(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.black, lineWidth: 3)
-                        )
-
-                   
+                    .frame(height: 100)
+                    .cornerRadius(15)
+                    .padding(5)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.black, lineWidth: 3)
+                    )
                 VStack(alignment: .leading) {
                     Text("Предпочтения")
                         .font(.largeTitle)
@@ -58,7 +54,7 @@ struct ProfileEditScreen: View {
                         .fontWeight(.bold)
                     HStack{
                         CustomTextFieldView(inputText: $tagBeadName, label: "Например спорт")
-                       
+                        
                         Button(action: {
                             viewModel.beadTag.append(Tag(id: tagBeadName, name: tagBeadName, important: true, isLike: false))
                             tagBeadName = ""
@@ -85,7 +81,7 @@ struct ProfileEditScreen: View {
             
         }
         )
-        .background(GradientBackgroundView()) 
+        .background(GradientBackgroundView())
     }
 }
 

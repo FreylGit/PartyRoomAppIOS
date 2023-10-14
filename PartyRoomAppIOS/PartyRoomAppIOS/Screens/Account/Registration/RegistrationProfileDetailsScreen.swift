@@ -1,50 +1,88 @@
 import SwiftUI
 
 struct RegistrationProfileDetailsScreen: View {
-    @State private var bioText: String = ""
-    @State private var tagName: String = ""
-    @State private var tags: [String] = [] // Массив для хранения тегов
+ 
     @State private var isRegister = false
     @State  private var loginStatus = "accessToken" // Задайте начальное значение loginStatus
-    
+    @State private var bioText = ""
+    @State private var tagGoodName = ""
+    @State private var tagBeadName = ""
+    @ObservedObject private var viewModel = ProfileEditViewModel()
     var body: some View {
-        if !isRegister{
-            ScrollView{
-                VStack {
-                    Text("Расскажи о себе")
-                        .font(.headline)
-                    
-                    TextEditor(text: $bioText)
-                        .frame(height: 100)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding(2)
-                        .border(Color.black)
-                    AddTagView(isLike: true)
-                    
-                    AddTagView(isLike: false)
-                    Spacer()
-                    
-                    Button(action: {
-                        isRegister = true
-                    }){
-                        Text("Зарегистрироваться")
-                            .font(.headline)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+        ScrollView{
+            VStack(alignment: .leading) {
+                Text("О Себе")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                TextEditor(text: $bioText)
+                    .scrollContentBackground(.hidden)
+                    .foregroundColor(.white)
+                    .frame(height: 100)
+                    .cornerRadius(15)
+                    .padding(5)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.black, lineWidth: 3)
+                    )
+                VStack(alignment: .leading) {
+                    Text("Предпочтения")
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                    HStack{
+                        CustomTextFieldView(inputText: $tagGoodName, label: "Например готовить")
+                        Button(action: {
+                            viewModel.goodTag.append(Tag(id: tagGoodName, name: tagGoodName, important: true, isLike: true))
+                            tagGoodName = ""
+                        }){
+                            Image(systemName: "plus")
+                                .padding(10)
+                        }
+                        .background(Color.green)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
+                    
+                    TagCloudView(tags:$viewModel.goodTag,isCurrentProfile: true,isGood: true)
+                    Divider()
+                    
+                    Text("Антипатия")
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                    HStack{
+                        CustomTextFieldView(inputText: $tagBeadName, label: "Например спорт")
+                        
+                        Button(action: {
+                            viewModel.beadTag.append(Tag(id: tagBeadName, name: tagBeadName, important: true, isLike: false))
+                            tagBeadName = ""
+                        }){
+                            Image(systemName: "plus")
+                                .padding(10)
+                        }
+                        .background(Color.green)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                    TagCloudView(tags:$viewModel.beadTag,isCurrentProfile: true,isGood: false)
                 }
-                .padding(.all)
+                HStack(){
+                    Spacer()
+                    Button(action: {}){
+                        Text("Зарегистироваться")
+                            .foregroundColor(.black)
+                    }
+                    .padding()
+                    .background(.orange)
+                    .cornerRadius(10)
+                    Spacer()
+                }
+               
+                Spacer()
+                
             }
-        }else{
-            
-            //LoginScreen()
-            
-             //   .navigationBarHidden(true)
         }
-        
+        .padding()
+        .background(GradientBackgroundView())
     }
 }
 
