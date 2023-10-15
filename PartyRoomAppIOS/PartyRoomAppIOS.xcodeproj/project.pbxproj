@@ -23,6 +23,7 @@
 		AA61212C2ADBF91100CD147B /* FirstHelloScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA61212B2ADBF91100CD147B /* FirstHelloScreen.swift */; };
 		AA61212E2ADBFD1D00CD147B /* SecondHelloScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA61212D2ADBFD1D00CD147B /* SecondHelloScreen.swift */; };
 		AA6121302ADC039300CD147B /* TestSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA61212F2ADC039300CD147B /* TestSelectView.swift */; };
+		AA6121322ADC3C5200CD147B /* IsLoginMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6121312ADC3C5200CD147B /* IsLoginMainView.swift */; };
 		AA7EF7752AD176C400F825A8 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7EF7742AD176C400F825A8 /* ProfileEditViewModel.swift */; };
 		AA7EF7772AD1BB8300F825A8 /* ProfileMainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7EF7762AD1BB8300F825A8 /* ProfileMainScreen.swift */; };
 		AA8E78D92AD2B15000B0098D /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8E78D82AD2B15000B0098D /* TagCloudView.swift */; };
@@ -71,6 +72,7 @@
 		AA61212B2ADBF91100CD147B /* FirstHelloScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstHelloScreen.swift; sourceTree = "<group>"; };
 		AA61212D2ADBFD1D00CD147B /* SecondHelloScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondHelloScreen.swift; sourceTree = "<group>"; };
 		AA61212F2ADC039300CD147B /* TestSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSelectView.swift; sourceTree = "<group>"; };
+		AA6121312ADC3C5200CD147B /* IsLoginMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsLoginMainView.swift; sourceTree = "<group>"; };
 		AA7EF7742AD176C400F825A8 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 		AA7EF7762AD1BB8300F825A8 /* ProfileMainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreen.swift; sourceTree = "<group>"; };
 		AA8E78D82AD2B15000B0098D /* TagCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCloudView.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				AAF8A6752AB5E1880080A250 /* Room */,
 				AAF8A6602AB4F0A60080A250 /* MainView.swift */,
 				AA2DE7F92AD4997000ABA64D /* SwiftUIView.swift */,
+				AA6121312ADC3C5200CD147B /* IsLoginMainView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				AA7EF7772AD1BB8300F825A8 /* ProfileMainScreen.swift in Sources */,
 				AA3FF1BD2AB9E9170072E08B /* AccountRegistrationModel.swift in Sources */,
 				AAF8A6612AB4F0A60080A250 /* MainView.swift in Sources */,
+				AA6121322ADC3C5200CD147B /* IsLoginMainView.swift in Sources */,
 				AA9528672AC76001005C414D /* InviteItemModel.swift in Sources */,
 				AAF8A6532AB4F03B0080A250 /* PartyRoomAppIOSApp.swift in Sources */,
 				AA95286A2AC774AB005C414D /* ConnectRoomScreen.swift in Sources */,

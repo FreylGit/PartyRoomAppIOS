@@ -36,7 +36,7 @@ struct LoginScreen: View {
                             .foregroundColor(.white)
                             .cornerRadius(5)
                     }
-                    .background(NavigationLink("", destination: MainView(), isActive: $isLoggedin))
+                    .background(NavigationLink("", destination: IsLoginMainView(), isActive: $isLoggedin))
                    
                     Spacer()
                 }

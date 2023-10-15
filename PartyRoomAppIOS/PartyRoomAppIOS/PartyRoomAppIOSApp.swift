@@ -4,8 +4,14 @@ import SwiftUI
 struct PartyRoomAppIOSApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .background(GradientBackgroundView())
+            if let token = TokenManager.shared.getRefreshToken(){
+                if token == "refreshToken"{
+                    MainView()
+                        .background(GradientBackgroundView())
+                }else{
+                    IsLoginMainView()
+                }
+            }
         }
         
     }

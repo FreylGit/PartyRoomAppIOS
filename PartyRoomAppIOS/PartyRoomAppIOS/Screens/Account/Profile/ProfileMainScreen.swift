@@ -5,7 +5,7 @@ struct ProfileMainScreen: View {
     @EnvironmentObject var user: ApplicationUser
     @State private var isExpanded = false
     @State private var isLoggedin = false
-    @State var isLogin: Bool
+
     var body: some View {
         NavigationView {
             ScrollView{
@@ -53,21 +53,22 @@ struct ProfileMainScreen: View {
     var navigationBar : some View{
         HStack{
             Button(action: {
-                TokenManager.shared.clearTokens()
-                isLoggedin = true
-            }) {
-                HStack {
-                    Image(systemName: "arrow.left.circle.fill")
-                    Text("Выйти")
-                }
-                .padding(7)
-            }
-            .background(NavigationLink("", destination: MainView(),isActive:$isLoggedin ))
-            .frame(width: 100)
-            .foregroundColor(.white)
-            .background(Color.red)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            
+                            TokenManager.shared.clearTokens()
+                            isLoggedin = true
+                        }) {
+                            HStack {
+                                Image(systemName: "arrow.left.circle.fill")
+                                Text("Выйти")
+                            }
+                            .padding(7)
+                        }
+                        .frame(width: 100)
+                        .foregroundColor(.white)
+                        .background(Color.red)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .fullScreenCover(isPresented: $isLoggedin, content: {
+                            LoginScreen()
+                        })
             Spacer()
             NavigationLink(destination: ProfileEditScreen(viewModel: viewModel.toProfileEditViewModel()))  {
                 Image(systemName: "pencil")
@@ -259,6 +260,6 @@ struct TestView_Previews: PreviewProvider {
         viewModel.goodTag = sampleProfile.tags
         viewModel.isLogin = true
         
-        return ProfileMainScreen(viewModel: viewModel,isLogin: isLogin)
+        return ProfileMainScreen(viewModel: viewModel)
     }
 }

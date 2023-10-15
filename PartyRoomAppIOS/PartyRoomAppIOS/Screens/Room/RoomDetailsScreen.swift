@@ -150,7 +150,7 @@ struct RoomDetailsScreen: View {
                                     .font(.headline)
                                     .foregroundColor(.white)
                                 Spacer()
-                                NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName),isLogin: true )) {
+                                NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName))) {
                                 Text("@"+userName)
                                     .font(.body)
                                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -193,7 +193,7 @@ struct RoomDetailsScreen: View {
     
     var userCollections : some View{
         ForEach(viewModel.users ?? [], id: \.id) { user in
-            NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: user.userName),isLogin: true )) {
+            NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: user.userName))) {
                 HStack {
                     AsyncImage(url: URL(string: user.details.imagePath)) { image in
                         image

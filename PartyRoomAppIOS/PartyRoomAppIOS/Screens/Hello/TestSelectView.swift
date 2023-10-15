@@ -35,7 +35,7 @@ struct TestSelectView: View {
                             .foregroundColor(.white)
                             .cornerRadius(5)
                     }
-                    .background(NavigationLink("", destination: ProfileMainScreen(isLogin: true), isActive: $isLoggedin))
+                    .background(NavigationLink("", destination: ProfileMainScreen(), isActive: $isLoggedin))
                    
                     Spacer()
                 }
