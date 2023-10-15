@@ -29,7 +29,6 @@ struct RoomSettings: View {
     }
     
     var navigationBar : some View{
-        
         HStack{
             if let isAuthor = viewModel.roomDetails?.isAuthor {
                 if isAuthor {

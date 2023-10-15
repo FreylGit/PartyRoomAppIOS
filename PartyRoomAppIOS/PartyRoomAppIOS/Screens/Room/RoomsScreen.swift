@@ -4,7 +4,7 @@ struct RoomsScreen: View {
     @EnvironmentObject var user: ApplicationUser
     @State private var refreshToken: String? = nil
     @ObservedObject  var viewModel = RoomsViewModel()
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -15,51 +15,49 @@ struct RoomsScreen: View {
                 }){
                     Text("DELETE TOKEN")
                 }
-                    HStack{
-                        NavigationLink(destination: RoomCreateScreen()){
-                            Text("Создать комнату")
-                                .padding(.all, 8.0)
-                                .background(Color.green)
-                                .cornerRadius(5)
-                                .foregroundColor(.white)
-                                .padding()
-                        }
-                        Spacer()
-                        NavigationLink(destination: ConnectRoomScreen()){
-                            Text("Присоединиться")
-                                .padding(.all, 8.0)
-                                .background(Color.orange)
-                                .cornerRadius(5)
-                                .foregroundColor(.white)
-                                .lineLimit(1)
-                                .padding()
-                        }
+                HStack{
+                    NavigationLink(destination: RoomCreateScreen()){
+                        Text("Создать комнату")
+                            .padding(.all, 8.0)
+                            .background(Color.green)
+                            .cornerRadius(5)
+                            .foregroundColor(.white)
+                            .padding()
                     }
-                   
-                    ScrollView {
-                        VStack(spacing: 10) {
-                            ForEach(viewModel.rooms, id: \.id) { room in
-                                NavigationLink(destination: RoomDetailsScreen(viewModel: RoomDetailsViewModel(roomId: room.id))) {
-                                    ItemRoomView(room: room)
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.horizontal,10)
-                                        .cornerRadius(10)
-                                        .padding(.vertical, 5)
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                            }
-                        }
+                    Spacer()
+                    NavigationLink(destination: ConnectRoomScreen()){
+                        Text("Присоединиться")
+                            .padding(.all, 8.0)
+                            .background(Color.orange)
+                            .cornerRadius(5)
+                            .foregroundColor(.white)
+                            .lineLimit(1)
+                            .padding()
                     }
-                    .onAppear(perform: viewModel.loadData)
-                    .onAppear(perform: viewModel.loadProfile)
-                Spacer()
                 }
-            .background(GradientBackgroundView())
+                
+                ScrollView {
+                    VStack(spacing: 10) {
+                        ForEach(viewModel.rooms, id: \.id) { room in
+                            NavigationLink(destination: RoomDetailsScreen(viewModel: RoomDetailsViewModel(roomId: room.id))) {
+                                ItemRoomView(room: room)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal,10)
+                                    .cornerRadius(10)
+                                    .padding(.vertical, 5)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                }
+                .onAppear(perform: viewModel.loadData)
+                .onAppear(perform: viewModel.loadProfile)
                 Spacer()
+            }
+            .background(GradientBackgroundView())
+            Spacer()
         }
-        
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

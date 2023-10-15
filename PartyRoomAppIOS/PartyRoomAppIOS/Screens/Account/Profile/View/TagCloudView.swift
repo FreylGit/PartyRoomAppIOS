@@ -56,6 +56,7 @@ struct TagCloudView: View {
                 Button(action: {
                     if let index = self.tags.firstIndex(where: { $0.id == tag.id }) {
                         self.tags.remove(at: index)
+                        self.deleteTag(id: tag.id)
                     }
                 }) {
                     Image(systemName: "xmark.circle")
@@ -69,6 +70,7 @@ struct TagCloudView: View {
         .foregroundColor(Color.white)
         .cornerRadius(5)
     }
+   
 
     private func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {
         return GeometryReader { geometry -> Color in
@@ -79,6 +81,17 @@ struct TagCloudView: View {
             return .clear
         }
     }
+    private func deleteTag(id:String){
+         let url = "http://localhost:5069/api/Profile/DeleteTag?tagId="+id
+         NetworkBase().sendPostRequest(url: url, method: .delete){result in
+             switch result{
+             case .success():
+                 print("delete")
+             case .failure(let error):
+                 print("Error loading profile \(error)")
+                 }
+         }
+     }
 }
 struct TestTagCloudView: View {
     @State private var tags: [Tag] = [

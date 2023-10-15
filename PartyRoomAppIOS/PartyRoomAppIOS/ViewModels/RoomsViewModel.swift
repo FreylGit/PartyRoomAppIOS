@@ -4,11 +4,11 @@ public class RoomsViewModel: ObservableObject{
     @Published  var rooms: [RoomsModelElement] = []
     @Published  var name: String? = nil
     let dateFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
-            formatter.locale = Locale(identifier: "ru") // Установка локализации на русский
-            return formatter
-        }()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+        formatter.locale = Locale(identifier: "ru") // Установка локализации на русский
+        return formatter
+    }()
     func loadData() {
         let url = APIClient.shared.roomURL
         NetworkBase()

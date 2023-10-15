@@ -123,7 +123,7 @@ class NetworkBase {
                     completion(.failure(networkError))
                 case .success:
                     print("Запрос отправлен")
-                    completion(.success(())) 
+                    completion(.success(()))
                 }
             }
     }
@@ -168,7 +168,7 @@ class NetworkBase {
         
         task.resume()
     }
-
+    
     
     
     

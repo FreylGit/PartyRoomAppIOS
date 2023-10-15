@@ -9,7 +9,6 @@ struct RegistrationScreen: View {
     @State private var password = ""
     
     var body: some View {
-        
         VStack {
             Spacer()
             Text("Регистрация")

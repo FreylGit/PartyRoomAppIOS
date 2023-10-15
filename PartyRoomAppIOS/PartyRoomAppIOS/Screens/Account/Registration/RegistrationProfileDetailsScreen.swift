@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RegistrationProfileDetailsScreen: View {
- 
+    
     @State private var isRegister = false
     @State  private var loginStatus = "accessToken" 
     @State private var bioText = ""
@@ -76,7 +76,7 @@ struct RegistrationProfileDetailsScreen: View {
                     .cornerRadius(10)
                     Spacer()
                 }
-               
+                
                 Spacer()
                 
             }

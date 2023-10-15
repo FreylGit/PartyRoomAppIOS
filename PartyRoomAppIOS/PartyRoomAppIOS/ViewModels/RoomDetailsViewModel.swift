@@ -80,6 +80,7 @@ public class RoomDetailsViewModel : ObservableObject{
                     }
                 }
     }
+    
     func getRoom(){
         let url = URL(string: APIClient.shared.roomURL.absoluteString + "/" + roomId)
         NetworkBase()

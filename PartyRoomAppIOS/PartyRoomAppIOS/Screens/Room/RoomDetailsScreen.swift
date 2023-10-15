@@ -5,47 +5,47 @@ struct RoomDetailsScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingToast = false
     var body: some View {
-            ScrollView{
-                header
-                dateInfo
-                budget
-                Divider()
-                    .padding(1)
-                    .background(.gray)
-                if let isStarted = viewModel.roomDetails?.isStarted{
-                    if !isStarted{
-                        infot
-                        //info
-                        invite
-                    }
-                    
+        ScrollView{
+            header
+            dateInfo
+            budget
+            Divider()
+                .padding(1)
+                .background(.gray)
+            if let isStarted = viewModel.roomDetails?.isStarted{
+                if !isStarted{
+                    infot
+                    //info
+                    invite
                 }
-                info
-                userCollections
-                Spacer()
-                if isShowingToast {
-                    GeometryReader { geometry in
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(Color.black)
-                                    .opacity(0.7)
-                                    .cornerRadius(10)
-                                    .frame(width: geometry.size.width, height: 60)
-                                Text("Ссылка скопирована")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-                            }
+                
+            }
+            info
+            userCollections
+            Spacer()
+            if isShowingToast {
+                GeometryReader { geometry in
+                    VStack {
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(Color.black)
+                                .opacity(0.7)
+                                .cornerRadius(10)
+                                .frame(width: geometry.size.width, height: 60)
+                            Text("Ссылка скопирована")
+                                .font(.headline)
+                                .foregroundColor(.white)
                         }
-                        .padding(.bottom, 30)
                     }
+                    .padding(.bottom, 30)
                 }
             }
-            .background(GradientBackgroundView()) 
-            .onAppear(perform: {
-                viewModel.loadUsers()
-                viewModel.getRoom()
-            })
+        }
+        .background(GradientBackgroundView())
+        .onAppear(perform: {
+            viewModel.loadUsers()
+            viewModel.getRoom()
+        })
         
         
     }
@@ -145,12 +145,12 @@ struct RoomDetailsScreen: View {
             if let room = viewModel.roomDetails {
                 VStack {
                     if let userName = room.destinationUserName {
-                            HStack {
-                                Text("Кому подарить:")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-                                Spacer()
-                                NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName))) {
+                        HStack {
+                            Text("Кому подарить:")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                            Spacer()
+                            NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName))) {
                                 Text("@"+userName)
                                     .font(.body)
                                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -222,7 +222,7 @@ struct RoomDetailsScreen: View {
                         }
                     }
                 }
-               
+                
             }.padding()
         }
     }
@@ -282,8 +282,6 @@ struct RoomDetailsScreen_Previews: PreviewProvider {
         )
         
         viewModel.roomDetails = roomDetails
-        
-        //viewModel.userName = "SampleUserName"
         
         let sampleProfile = ProfileModel(
             id: "sampleUserID",

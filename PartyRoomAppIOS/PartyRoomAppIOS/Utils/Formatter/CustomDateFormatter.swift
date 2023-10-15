@@ -13,9 +13,7 @@ class CustomDateFormatter{
     func formattedDate(dateString: String) -> String {
         var formattedDateString = dateString
         
-        // Check if the date string contains milliseconds
         if let dotRange = dateString.range(of: ".", options: .literal) {
-            // Remove the milliseconds part
             formattedDateString = String(dateString[..<dotRange.lowerBound])
         }
         

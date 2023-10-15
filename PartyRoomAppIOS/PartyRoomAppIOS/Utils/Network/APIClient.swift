@@ -16,6 +16,4 @@ class APIClient {
     var notificationURL: URL {
         return URL(string: baseURL + "/Notifications")!
     }
-    
-    // Добавьте другие URL-адреса, если необходимо
 }

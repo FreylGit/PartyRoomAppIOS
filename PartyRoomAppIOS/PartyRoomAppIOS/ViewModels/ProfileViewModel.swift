@@ -4,7 +4,6 @@ import Alamofire
 class ProfileViewModel: ObservableObject {
     @Published var profile: ProfileModel?
     @Published var isLogin: Bool = true
-    @Published var loginStatus: String = "accessToken"
     @Published var isCurrentProfile: Bool = true
     @Published var username: String?
     @Published  var goodTag:[Tag] = []
@@ -61,7 +60,7 @@ class ProfileViewModel: ObservableObject {
     func loadProfile() {
         if let username = username {
             let url = URL(string: APIClient.shared.profileURL.absoluteString + "/" + username)
-
+            
             NetworkBase().requestAndParse(url: url!, method: .get, type: ProfileModel.self) { result in
                 switch result {
                 case .success(let loadedProfile):
@@ -74,7 +73,7 @@ class ProfileViewModel: ObservableObject {
                             return !tag.isLike
                         }
                     }
-                   
+                    
                 case .failure(let error):
                     print("Error loading profile \(error)")
                 }
@@ -90,7 +89,7 @@ class ProfileViewModel: ObservableObject {
                 print("delete")
             case .failure(let error):
                 print("Error loading profile \(error)")
-                }
+            }
         }
     }
 }

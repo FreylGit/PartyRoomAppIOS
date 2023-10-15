@@ -23,9 +23,7 @@ struct ConnectRoomScreen: View {
             }
             .padding()
             .background(GradientBackgroundView())
-            
         }
-        
     }
 
     private func connecttoRoom() {

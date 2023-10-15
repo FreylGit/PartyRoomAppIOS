@@ -5,7 +5,7 @@ struct ProfileMainScreen: View {
     @EnvironmentObject var user: ApplicationUser
     @State private var isExpanded = false
     @State private var isLoggedin = false
-
+    
     var body: some View {
         NavigationView {
             ScrollView{
@@ -53,22 +53,22 @@ struct ProfileMainScreen: View {
     var navigationBar : some View{
         HStack{
             Button(action: {
-                            TokenManager.shared.clearTokens()
-                            isLoggedin = true
-                        }) {
-                            HStack {
-                                Image(systemName: "arrow.left.circle.fill")
-                                Text("Выйти")
-                            }
-                            .padding(7)
-                        }
-                        .frame(width: 100)
-                        .foregroundColor(.white)
-                        .background(Color.red)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .fullScreenCover(isPresented: $isLoggedin, content: {
-                            LoginScreen()
-                        })
+                TokenManager.shared.clearTokens()
+                isLoggedin = true
+            }) {
+                HStack {
+                    Image(systemName: "arrow.left.circle.fill")
+                    Text("Выйти")
+                }
+                .padding(7)
+            }
+            .frame(width: 100)
+            .foregroundColor(.white)
+            .background(Color.red)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .fullScreenCover(isPresented: $isLoggedin, content: {
+                LoginScreen()
+            })
             Spacer()
             NavigationLink(destination: ProfileEditScreen(viewModel: viewModel.toProfileEditViewModel()))  {
                 Image(systemName: "pencil")
@@ -87,13 +87,11 @@ struct ProfileMainScreen: View {
                     .cornerRadius(12)
             }
         }
-        
         .padding(.horizontal ,22)
     }
     
     var header:some View{
         HStack(alignment:.center){
-            
             if let imagePath = viewModel.profile?.details.imagePath{
                 AsyncImage(url: URL(string: imagePath))
                 { image in
@@ -110,6 +108,7 @@ struct ProfileMainScreen: View {
                 }
                 .padding(.bottom,30)
             }
+            
             if let profile = viewModel.profile{
                 VStack(alignment: .leading){
                     HStack{
@@ -155,8 +154,6 @@ struct ProfileMainScreen: View {
                 }
                 
             }
-            
-            
             Spacer()
         }
         .padding(6)

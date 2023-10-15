@@ -19,22 +19,19 @@ public class NotificationsViewModel : ObservableObject{
     }
     
     func deleteNotification(id:String, atIndex index: Int) {
-       
-                let url = "http://localhost:5069/api/Notifications/InviteReaction?inviteId=\(id)&isConnect=false"
-                NetworkBase().sendPostRequest(url: url, method: .post) { result in
-                    switch result {
-                    case .success(_):
-                        print("Удалил")
-                        if let deletedItem = self.inviteItems?[index] {
-                                        print("Удаленный элемент: \(deletedItem.roomName)")
-                                        self.inviteItems?.remove(at: index)
-                                    }
-                    case .failure(let error):
-                        print("Error loading profile \(error)")
-                    }
+        let url = "http://localhost:5069/api/Notifications/InviteReaction?inviteId=\(id)&isConnect=false"
+        NetworkBase().sendPostRequest(url: url, method: .post) { result in
+            switch result {
+            case .success(_):
+                print("Удалил")
+                if let deletedItem = self.inviteItems?[index] {
+                    print("Удаленный элемент: \(deletedItem.roomName)")
+                    self.inviteItems?.remove(at: index)
                 }
-                
-            
+            case .failure(let error):
+                print("Error loading profile \(error)")
+            }
+        }
     }
     
     func ConnectToRoom(id:String, atIndex index: Int){
@@ -47,9 +44,9 @@ public class NotificationsViewModel : ObservableObject{
             case .success:
                 print("Принято")
                 if let deletedItem = self.inviteItems?[index] {
-                                print("Удаленный элемент: \(deletedItem.roomName)")
-                                self.inviteItems?.remove(at: index)
-                            }
+                    print("Удаленный элемент: \(deletedItem.roomName)")
+                    self.inviteItems?.remove(at: index)
+                }
             case .failure(let error):
                 print("Error loading post: \(error)")
             }

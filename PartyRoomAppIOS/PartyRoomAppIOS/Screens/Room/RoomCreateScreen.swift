@@ -26,13 +26,13 @@ struct RoomCreateScreen: View {
                         ForEach(0 ..< options.count) {
                             Text(self.options[$0])
                                 .font(.title)
-                                
+                            
                         }
                     }
                     .onChange(of: selectedOption) { newValue in
-                            type = options[newValue] // Присваиваем выбранный тип
+                        type = options[newValue] // Присваиваем выбранный тип
                         print(type)
-                        }
+                    }
                     .foregroundColor(.orange)
                     Spacer()
                 }
@@ -40,7 +40,6 @@ struct RoomCreateScreen: View {
                 .padding(.horizontal,10)
                 .background(Color.brown.opacity(0.2))
                 .cornerRadius(10)
-                //CustomTextFieldView(inputText: $type, label: "Тип")
                 CustomTextFieldView(inputText: $budget, label: "Бюджет")
                     .onReceive(Just(budget)) { newValue in
                         let filtered = newValue.filter { "0123456789".contains($0) }
@@ -48,7 +47,7 @@ struct RoomCreateScreen: View {
                             self.budget = filtered
                         }
                     }
-
+                
                 DatePicker("Дата начала", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
                     .datePickerStyle(DefaultDatePickerStyle())
                     .padding()
@@ -69,10 +68,10 @@ struct RoomCreateScreen: View {
                         .padding()
                         .background(Color.blue)
                         .cornerRadius(10)
-                
+                    
                 }
                 .padding(.top, 20)
-              Spacer()
+                Spacer()
             }
             .foregroundColor(.white)
             .padding()
