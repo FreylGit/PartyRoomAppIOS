@@ -16,7 +16,7 @@ class NetworkBase {
     private var refreshSemaphore = DispatchSemaphore(value: 1)
     
     public func requestAndParse<T: Decodable>(
-        url: String,
+        url: URL,
         method: HTTPMethod,
         parameters: Parameters? = nil,
         headers: HTTPHeaders? = nil,
@@ -91,6 +91,22 @@ class NetworkBase {
                                 case .success:
                                     self.sendPostRequest(url: url, method: method, parameters: parameters, headers: headers, completion: completion)
                                 case .failure(let networkError):
+                                    if let statusCode = response.response?.statusCode {
+                                        if statusCode == 401 {
+                                            print("Поймал 401")
+                                            self.refresh { result in
+                                                switch result {
+                                                case .success:
+                                                    // Обновление токена успешно, повторите исходный запрос
+                                                    print("s")
+                                                    self.sendPostRequest(url: url, method: .post, completion: completion)
+                                                case .failure(let networkError):
+                                                    completion(.failure(networkError))
+                                                }
+                                            }
+                                            return
+                                        }
+                                    }
                                     completion(.failure(networkError))
                                 }
                             }
@@ -107,7 +123,7 @@ class NetworkBase {
                     completion(.failure(networkError))
                 case .success:
                     print("Запрос отправлен")
-                    completion(.success(())) // Указываем, что запрос выполнен успешно
+                    completion(.success(())) 
                 }
             }
     }
@@ -116,7 +132,7 @@ class NetworkBase {
         url: String,
         parameters: Parameters? = nil,
         headers: HTTPHeaders? = nil,
-        objectToEncode: T,
+        objectToEncode: T?,
         completion: @escaping (Result<Data?, Error>) -> Void)
     {
         guard let url = URL(string: url) else {

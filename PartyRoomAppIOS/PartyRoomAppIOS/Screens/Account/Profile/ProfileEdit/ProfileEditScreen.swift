@@ -35,8 +35,13 @@ struct ProfileEditScreen: View {
                     HStack{
                         CustomTextFieldView(inputText: $tagGoodName, label: "Например готовить")
                         Button(action: {
-                            viewModel.goodTag.append(Tag(id: tagGoodName, name: tagGoodName, important: true, isLike: true))
-                            tagGoodName = ""
+                            if tagGoodName.isEmpty{
+                                print("Пустой")
+                            }else{
+                                viewModel.goodTag.append(Tag(id: UUID().uuidString, name: tagGoodName, important: true, isLike: true))
+                                tagGoodName = ""
+                            }
+                           
                         }){
                             Image(systemName: "plus")
                                 .padding(10)
@@ -56,7 +61,7 @@ struct ProfileEditScreen: View {
                         CustomTextFieldView(inputText: $tagBeadName, label: "Например спорт")
                         
                         Button(action: {
-                            viewModel.beadTag.append(Tag(id: tagBeadName, name: tagBeadName, important: true, isLike: false))
+                            viewModel.beadTag.append(Tag(id: UUID().uuidString, name: tagBeadName, important: true, isLike: false))
                             tagBeadName = ""
                         }){
                             Image(systemName: "plus")

@@ -25,7 +25,7 @@ struct RoomsScreen: View {
                                 .padding()
                         }
                         Spacer()
-                        NavigationLink(destination: ConnectRoomScreen().environmentObject(user)){
+                        NavigationLink(destination: ConnectRoomScreen()){
                             Text("Присоединиться")
                                 .padding(.all, 8.0)
                                 .background(Color.orange)
@@ -39,7 +39,7 @@ struct RoomsScreen: View {
                     ScrollView {
                         VStack(spacing: 10) {
                             ForEach(viewModel.rooms, id: \.id) { room in
-                                NavigationLink(destination: RoomDetailsScreen(viewModel: RoomDetailsViewModel(roomId: room.id)).environmentObject(user)) {
+                                NavigationLink(destination: RoomDetailsScreen(viewModel: RoomDetailsViewModel(roomId: room.id))) {
                                     ItemRoomView(room: room)
                                         .frame(maxWidth: .infinity)
                                         .padding(.horizontal,10)

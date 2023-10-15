@@ -5,47 +5,48 @@ struct RoomDetailsScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingToast = false
     var body: some View {
-        ScrollView{
-            header
-            dateInfo
-            budget
-            Divider()
-                .padding(1)
-                .background(.gray)
-            if let isStarted = viewModel.roomDetails?.isStarted{
-                if !isStarted{
-                    infot
-                    //info
-                    invite
-                }
-                
-            }
-            info
-            userCollections
-            Spacer()
-            if isShowingToast {
-                GeometryReader { geometry in
-                    VStack {
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(Color.black)
-                                .opacity(0.7)
-                                .cornerRadius(10)
-                                .frame(width: geometry.size.width, height: 60)
-                            Text("Ссылка скопирована")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
+            ScrollView{
+                header
+                dateInfo
+                budget
+                Divider()
+                    .padding(1)
+                    .background(.gray)
+                if let isStarted = viewModel.roomDetails?.isStarted{
+                    if !isStarted{
+                        infot
+                        //info
+                        invite
                     }
-                    .padding(.bottom, 30)
+                    
+                }
+                info
+                userCollections
+                Spacer()
+                if isShowingToast {
+                    GeometryReader { geometry in
+                        VStack {
+                            ZStack {
+                                Rectangle()
+                                    .foregroundColor(Color.black)
+                                    .opacity(0.7)
+                                    .cornerRadius(10)
+                                    .frame(width: geometry.size.width, height: 60)
+                                Text("Ссылка скопирована")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .padding(.bottom, 30)
+                    }
                 }
             }
-        }
-        .background(GradientBackgroundView()) 
-        .onAppear(perform: {
-            viewModel.loadUsers()
-            viewModel.getRoom()
-        })
+            .background(GradientBackgroundView()) 
+            .onAppear(perform: {
+                viewModel.loadUsers()
+                viewModel.getRoom()
+            })
+        
         
     }
     var header : some View{
@@ -56,7 +57,8 @@ struct RoomDetailsScreen: View {
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 Spacer()
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                
+                NavigationLink(destination: RoomSettings(viewModel: viewModel)){
                     Image(systemName: "gearshape")
                         .imageScale(.large)
                         .foregroundColor(.yellow)

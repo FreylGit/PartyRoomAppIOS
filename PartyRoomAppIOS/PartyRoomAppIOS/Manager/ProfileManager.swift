@@ -34,8 +34,8 @@ class TokenManager {
     func clearTokens() {
         keychain.delete(accessTokenKey)
         keychain.delete(refreshTokenKey)
-        keychain.set("", forKey: accessTokenKey)
-        keychain.set("", forKey: refreshTokenKey)
+        keychain.set("accessToken", forKey: accessTokenKey)
+        keychain.set("refreshToken", forKey: refreshTokenKey)
     }
 }
 

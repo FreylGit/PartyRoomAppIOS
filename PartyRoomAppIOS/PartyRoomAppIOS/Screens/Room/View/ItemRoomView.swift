@@ -46,7 +46,7 @@ struct ItemRoomView: View {
                 .border(Color.green)
                 .cornerRadius(12)
             }
-            if room.type == "Закрыто"{
+            if room.type == "Закрытая"{
                 Image(systemName: "lock.fill")
                     .imageScale(.large)
                     .foregroundColor(.black)

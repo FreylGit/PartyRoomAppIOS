@@ -3,7 +3,7 @@ import SwiftUI
 struct RegistrationProfileDetailsScreen: View {
  
     @State private var isRegister = false
-    @State  private var loginStatus = "accessToken" // Задайте начальное значение loginStatus
+    @State  private var loginStatus = "accessToken" 
     @State private var bioText = ""
     @State private var tagGoodName = ""
     @State private var tagBeadName = ""

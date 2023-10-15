@@ -5,7 +5,8 @@ public class NotificationsViewModel : ObservableObject{
     @Published  var inviteItems :[InviteItemModel]?
     
     func GetInvite(){
-        NetworkBase().requestAndParse(url: "http://localhost:5069/api/Notifications", method: .get, type: [InviteItemModel].self){ result in
+        var url = APIClient.shared.notificationURL
+        NetworkBase().requestAndParse(url: url, method: .get, type: [InviteItemModel].self){ result in
             switch result {
             case .success(let loadedInviteItems):
                 self.inviteItems = loadedInviteItems

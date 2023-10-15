@@ -10,9 +10,10 @@ public class RoomsViewModel: ObservableObject{
             return formatter
         }()
     func loadData() {
+        let url = APIClient.shared.roomURL
         NetworkBase()
             .requestAndParse(
-                url:"http://localhost:5069/api/Room",
+                url:url,
                 method: .get,
                 parameters:nil,
                 type: [RoomsModelElement].self) { result in
@@ -26,7 +27,8 @@ public class RoomsViewModel: ObservableObject{
     }
     
     func loadProfile() {
-        NetworkBase().requestAndParse(url: "http://localhost:5069/api/Profile", method: .get, type: ProfileModel.self){result in
+        let url = APIClient.shared.profileURL
+        NetworkBase().requestAndParse(url: url, method: .get, type: ProfileModel.self){result in
             switch result{
             case .success(let loadedProfile):
                 self.name = loadedProfile.firtsName

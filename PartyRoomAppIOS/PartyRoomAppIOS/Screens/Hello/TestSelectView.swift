@@ -1,7 +1,6 @@
 import SwiftUI
-import Contacts
 
-struct LoginScreen: View {
+struct TestSelectView: View {
     @State private var username = ""
     @State private var password = ""
     @State private var isRegistrationActive = false
@@ -36,7 +35,7 @@ struct LoginScreen: View {
                             .foregroundColor(.white)
                             .cornerRadius(5)
                     }
-                    .background(NavigationLink("", destination: MainView(), isActive: $isLoggedin))
+                    .background(NavigationLink("", destination: ProfileMainScreen(isLogin: true), isActive: $isLoggedin))
                    
                     Spacer()
                 }
@@ -64,11 +63,6 @@ struct LoginScreen: View {
         }
     }
 }
-
-struct AccountView_Previews: PreviewProvider {
-    @State static private var loginStatus = "accessToken"
-
-    static var previews: some View {
-        LoginScreen().environmentObject(ApplicationUser())
-    }
+#Preview {
+    TestSelectView()
 }

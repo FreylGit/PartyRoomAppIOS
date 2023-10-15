@@ -66,9 +66,10 @@ public class RoomDetailsViewModel : ObservableObject{
     }
     
     func loadUsers(){
+        let url = URL(string: APIClient.shared.roomURL.absoluteString + "/" + "Users?roomId="+roomId)
         NetworkBase()
             .requestAndParse(
-                url:"http://localhost:5069/api/Room/Users?roomId="+roomId,
+                url:url!,
                 method: .get,
                 type: [ProfileModel].self) { result in
                     switch result {
@@ -80,9 +81,10 @@ public class RoomDetailsViewModel : ObservableObject{
                 }
     }
     func getRoom(){
+        let url = URL(string: APIClient.shared.roomURL.absoluteString + "/" + roomId)
         NetworkBase()
             .requestAndParse(
-                url:"http://localhost:5069/api/Room/"+roomId,
+                url:url!,
                 method: .get,
                 type: RoomDetailsModel.self) { result in
                     switch result {

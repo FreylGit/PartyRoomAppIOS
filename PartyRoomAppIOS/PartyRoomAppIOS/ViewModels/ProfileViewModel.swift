@@ -39,7 +39,8 @@ class ProfileViewModel: ObservableObject {
     }
     
     func loadCurrentProfile() {
-        NetworkBase().requestAndParse(url: "http://localhost:5069/api/Profile", method: .get, type: ProfileModel.self) { result in
+        let url = APIClient.shared.profileURL
+        NetworkBase().requestAndParse(url: url, method: .get, type: ProfileModel.self) { result in
             switch result {
             case .success(let loadedProfile):
                 self.profile = loadedProfile
@@ -59,7 +60,9 @@ class ProfileViewModel: ObservableObject {
     
     func loadProfile() {
         if let username = username {
-            NetworkBase().requestAndParse(url: "http://localhost:5069/api/Profile/" + username, method: .get, type: ProfileModel.self) { result in
+            let url = URL(string: APIClient.shared.profileURL.absoluteString + "/" + username)
+
+            NetworkBase().requestAndParse(url: url!, method: .get, type: ProfileModel.self) { result in
                 switch result {
                 case .success(let loadedProfile):
                     self.profile = loadedProfile

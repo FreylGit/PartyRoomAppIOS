@@ -4,6 +4,7 @@ struct ProfileMainScreen: View {
     @ObservedObject var viewModel =  ProfileViewModel()
     @EnvironmentObject var user: ApplicationUser
     @State private var isExpanded = false
+    @State private var isLoggedin = false
     @State var isLogin: Bool
     var body: some View {
         NavigationView {
@@ -42,8 +43,10 @@ struct ProfileMainScreen: View {
                 })
                 
             }
-            .background(GradientBackgroundView()) 
-        }
+            .background(GradientBackgroundView())
+            .navigationBarBackButtonHidden(true)
+            
+        }.navigationBarBackButtonHidden(true)
     }
     
     
@@ -51,8 +54,7 @@ struct ProfileMainScreen: View {
         HStack{
             Button(action: {
                 TokenManager.shared.clearTokens()
-                user.loginStatus = ""
-                isLogin = false
+                isLoggedin = true
             }) {
                 HStack {
                     Image(systemName: "arrow.left.circle.fill")
@@ -60,6 +62,7 @@ struct ProfileMainScreen: View {
                 }
                 .padding(7)
             }
+            .background(NavigationLink("", destination: MainView(),isActive:$isLoggedin ))
             .frame(width: 100)
             .foregroundColor(.white)
             .background(Color.red)
