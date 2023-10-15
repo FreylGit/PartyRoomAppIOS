@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct FirstHelloScreen: View {
+struct FirstWelcomeScreen: View {
     var body: some View {
         NavigationView{
             VStack {
@@ -19,7 +19,7 @@ struct FirstHelloScreen: View {
                         .frame(width: 200,height: 250)
                         .background(Color.clear)
                 }
-                NavigationLink(destination: SecondHelloScreen()){
+                NavigationLink(destination: SecondWelcomeScreen()){
                     Text("Далее")
                         .padding()
                 }
@@ -35,6 +35,6 @@ struct FirstHelloScreen: View {
 
 struct FirstHelloScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FirstHelloScreen()
+        FirstWelcomeScreen()
     }
 }

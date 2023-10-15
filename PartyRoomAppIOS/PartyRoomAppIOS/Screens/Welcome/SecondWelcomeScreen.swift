@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SecondHelloScreen: View {
+struct SecondWelcomeScreen: View {
     var body: some View
     {
         VStack {
@@ -36,5 +36,5 @@ struct SecondHelloScreen: View {
 }
 
 #Preview {
-    SecondHelloScreen()
+    SecondWelcomeScreen()
 }
