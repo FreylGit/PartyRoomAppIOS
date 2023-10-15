@@ -44,9 +44,9 @@ struct ProfileMainScreen: View {
                 
             }
             .background(GradientBackgroundView())
-            .navigationBarBackButtonHidden(true)
+           
             
-        }.navigationBarBackButtonHidden(true)
+        }
     }
     
     
