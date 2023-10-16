@@ -2,6 +2,7 @@ import SwiftUI
 import Contacts
 
 struct LoginScreen: View {
+    @EnvironmentObject var user: ApplicationUser
     @State private var username = ""
     @State private var password = ""
     @State private var isRegistrationActive = false
@@ -29,6 +30,7 @@ struct LoginScreen: View {
                     
                     Button(action: {
                         singIn()
+                        
                     }) {
                         Text("Войти")
                             .padding()
@@ -36,7 +38,11 @@ struct LoginScreen: View {
                             .foregroundColor(.white)
                             .cornerRadius(5)
                     }
-                    .background(NavigationLink("", destination: IsLoginMainView(), isActive: $isLoggedin))
+                    .animation(Animation.easeInOut(duration: 0.3), value: 2)
+                    .fullScreenCover(isPresented: $isLoggedin){
+                        IsLoginMainView()
+                    }
+                    //.background(NavigationLink("", destination: IsLoginMainView(), isActive: $isLoggedin))
                    
                     Spacer()
                 }
@@ -57,6 +63,7 @@ struct LoginScreen: View {
             case .success(let jwtAccessModel):
                 //user.loginStatus = jwtAccessModel.token
                 isLoggedin = true
+                user.isLogin = true
                 print("Вход выполнен успешно: \(jwtAccessModel)")
             case .failure(let error):
                 print("Ошибка входа: \(error)")

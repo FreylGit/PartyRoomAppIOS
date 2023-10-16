@@ -11,7 +11,6 @@ struct RoomsScreen: View {
                 Text(viewModel.name ?? "пустой акк")
                 Button(action: {
                     TokenManager.shared.clearTokens()
-                    user.loginStatus = ""
                 }){
                     Text("DELETE TOKEN")
                 }

@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ProfileMainScreen: View {
-    @ObservedObject var viewModel =  ProfileViewModel()
     @EnvironmentObject var user: ApplicationUser
+    @ObservedObject var viewModel =  ProfileViewModel()
     @State private var isExpanded = false
     @State private var isLoggedin = false
     
@@ -34,19 +34,16 @@ struct ProfileMainScreen: View {
                     }
                     Spacer()
                 }
-                .onAppear(perform: {
-                    if viewModel.isCurrentProfile {
-                        viewModel.loadCurrentProfile()
-                    } else {
-                        viewModel.loadProfile()
-                    }
-                })
-                
             }
-            .background(GradientBackgroundView())
-           
-            
+            .background(GradientBackgroundView()) 
         }
+        .onAppear(perform: {
+            if viewModel.isCurrentProfile {
+                viewModel.loadCurrentProfile()
+            } else {
+                viewModel.loadProfile()
+            }
+        })
     }
     
     
@@ -54,7 +51,7 @@ struct ProfileMainScreen: View {
         HStack{
             Button(action: {
                 TokenManager.shared.clearTokens()
-                isLoggedin = true
+                user.isLogin = false
             }) {
                 HStack {
                     Image(systemName: "arrow.left.circle.fill")
@@ -66,9 +63,6 @@ struct ProfileMainScreen: View {
             .foregroundColor(.white)
             .background(Color.red)
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            .fullScreenCover(isPresented: $isLoggedin, content: {
-                LoginScreen()
-            })
             Spacer()
             NavigationLink(destination: ProfileEditScreen(viewModel: viewModel.toProfileEditViewModel()))  {
                 Image(systemName: "pencil")
