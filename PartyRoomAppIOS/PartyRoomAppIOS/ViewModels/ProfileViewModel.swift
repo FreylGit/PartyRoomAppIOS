@@ -8,11 +8,12 @@ class ProfileViewModel: ObservableObject {
     @Published var username: String?
     @Published  var goodTag:[Tag] = []
     @Published var beadTag:[Tag] = []
+    @Published var tags: [Tag] = []
     init(isLogin: Bool,isCurrentProfile: Bool, username: String? = nil) {
         self.isLogin = isLogin
         self.isCurrentProfile = isCurrentProfile
         self.username = username
-        
+       
         if let tags = self.profile?.tags {
             self.goodTag = tags.filter { tag in
                 return tag.isLike
@@ -44,6 +45,7 @@ class ProfileViewModel: ObservableObject {
             case .success(let loadedProfile):
                 self.profile = loadedProfile
                 if let tags = self.profile?.tags {
+                    self.tags = tags
                     self.goodTag = tags.filter { tag in
                         return tag.isLike
                     }
@@ -66,6 +68,7 @@ class ProfileViewModel: ObservableObject {
                 case .success(let loadedProfile):
                     self.profile = loadedProfile
                     if let tags = self.profile?.tags {
+                        self.tags = tags
                         self.goodTag = tags.filter { tag in
                             return tag.isLike
                         }

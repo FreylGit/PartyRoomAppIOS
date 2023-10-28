@@ -43,7 +43,7 @@ struct RegistrationProfileDetailsScreen: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
                     
-                    TagCloudView(tags:$viewModel.goodTag,isCurrentProfile: true,isGood: true)
+                    TagCloudView(tags:$viewModel.goodTag,isEdit: true,isGood: true)
                     Divider()
                     
                     Text("Антипатия")
@@ -63,7 +63,7 @@ struct RegistrationProfileDetailsScreen: View {
                         .background(Color.green)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
-                    TagCloudView(tags:$viewModel.beadTag,isCurrentProfile: true,isGood: false)
+                    TagCloudView(tags:$viewModel.beadTag,isEdit: true,isGood: false)
                 }
                 HStack(){
                     Spacer()

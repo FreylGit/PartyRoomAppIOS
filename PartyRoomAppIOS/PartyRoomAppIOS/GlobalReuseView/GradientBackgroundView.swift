@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GradientBackgroundView: View {
-    var body: some View {
+    /*var body: some View {
         LinearGradient(
             gradient: Gradient(colors: [
                 Color(red: 0.25, green: 0.17, blue: 0.01).opacity(0.8),
@@ -11,5 +11,8 @@ struct GradientBackgroundView: View {
             endPoint: .bottom
         )
         .ignoresSafeArea()
+    }*/
+    var body: some View{
+        Color(UIColor(red: 0.06, green: 0.06, blue: 0.06, alpha: 1.00))
     }
 }

@@ -1,72 +1,74 @@
 import SwiftUI
 
 struct RoomDetailsScreen: View {
-    @ObservedObject   var viewModel = RoomDetailsViewModel(roomId: "")
+    @ObservedObject var viewModel = RoomDetailsViewModel(roomId: "")
     @Environment(\.presentationMode) var presentationMode
     @State private var isShowingToast = false
     var body: some View {
-        ScrollView{
-            header
-            dateInfo
-            budget
-            Divider()
-                .padding(1)
-                .background(.gray)
-            if let isStarted = viewModel.roomDetails?.isStarted{
-                if !isStarted{
-                    infot
-                    //info
-                    invite
-                }
-                
+        VStack{
+            if let room = viewModel.roomDetails{
+                TopBarView(name:room.name)
+                    roomInfo
             }
-            info
-            userCollections
-            Spacer()
-            if isShowingToast {
-                GeometryReader { geometry in
-                    VStack {
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(Color.black)
-                                .opacity(0.7)
-                                .cornerRadius(10)
-                                .frame(width: geometry.size.width, height: 60)
-                            Text("Ссылка скопирована")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                        }
+            ScrollView(){
+                if let isStarted = viewModel.roomDetails?.isStarted{
+                    if !isStarted{
+                        infot
+                        invite
                     }
-                    .padding(.bottom, 30)
                 }
-            }
-        }
-        .background(GradientBackgroundView())
-        .onAppear(perform: {
-            viewModel.loadUsers()
-            viewModel.getRoom()
-        })
-        
-        
-    }
-    var header : some View{
-        HStack{
-            if let name = viewModel.roomDetails?.name{
-                Text(name)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+                info
+                if isShowingToast {
+                        HStack() {
+                            Spacer()
+                                Text("Ссылка скопирована")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(.orange)
+                                    .cornerRadius(10)
+                            Spacer()
+                        }
+                }
+                userCollections
                 Spacer()
                 
-                NavigationLink(destination: RoomSettings(viewModel: viewModel)){
-                    Image(systemName: "gearshape")
-                        .imageScale(.large)
-                        .foregroundColor(.yellow)
-                }
             }
+            .onAppear(perform: {
+                viewModel.loadUsers()
+                viewModel.getRoom()
+            })
         }
-        .padding(.horizontal,30)
+        .background(GradientBackgroundView())
     }
+    
+    var roomInfo : some View{
+        HStack(alignment:.top){
+            VStack{
+                Text("Бюджет")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                Text("213 P")
+            }
+            .padding(9)
+            VStack{
+                Text("Дата начала")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                Text("20.09.23")
+            }
+            .padding(9)
+           
+            VStack{
+                Text("Дата конца")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                Text("22.12.23")
+            }
+            .padding(9)
+        }
+        .background(Color("Grey"))
+        .foregroundColor(.white)
+        .cornerRadius(15)
+    }
+
     var dateInfo: some View {
         HStack {
             if let room = viewModel.roomDetails
@@ -100,23 +102,6 @@ struct RoomDetailsScreen: View {
         .padding(.horizontal, 50)
     }
     
-    var budget: some View{
-        HStack{
-            if let budget = viewModel.roomDetails?.price{
-                VStack(){
-                    Text("Бюджет")
-                        .fontWeight(.bold)
-                    
-                    Text("\(budget) ₽".replacingOccurrences(of: ",", with: " "))
-                }
-                .padding()
-                Spacer()
-            }
-            
-        }
-        .foregroundColor(.white)
-    }
-    
     var infot: some View{
         HStack{
             if let link = viewModel.roomDetails?.link{
@@ -133,7 +118,7 @@ struct RoomDetailsScreen: View {
                         }
                 }
                 .padding(10)
-                .background(Color.orange)
+                .background(Color.yellow)
                 
             }
         }
@@ -143,24 +128,26 @@ struct RoomDetailsScreen: View {
     var info: some View {
         VStack {
             if let room = viewModel.roomDetails {
-                VStack {
+                VStack(alignment: .leading) {
                     if let userName = room.destinationUserName {
-                        HStack {
-                            Text("Кому подарить:")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                            Spacer()
-                            NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName))) {
-                                Text("@"+userName)
-                                    .font(.body)
-                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            }
+                        Text("Кому подарить:")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                        NavigationLink(destination: ProfileMainScreen(viewModel: ProfileViewModel(isLogin: true, isCurrentProfile: false,username: userName))) {
+                            Text("@"+userName)
+                                .font(.body)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         }
-                        .padding()
+                        .padding(.leading,20)
                         .background(Color.clear)
                         .cornerRadius(10)
                     }
+                    HStack{
+                        Spacer()
+                    }
                 }
+                
             }
         }
     }
@@ -181,7 +168,7 @@ struct RoomDetailsScreen: View {
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 20)
                                 .padding(.vertical, 12)
-                                .background(Color.orange)
+                                .background(Color("Color"))
                                 .cornerRadius(12)
                         }
                     }
@@ -204,7 +191,7 @@ struct RoomDetailsScreen: View {
                     } placeholder: {
                         ProgressView()
                     }
-                    Text(user.userName)
+                    Text("@"+user.userName)
                         .foregroundColor(.white)
                     Spacer()
                     if let isAuthor = viewModel.roomDetails?.isAuthor{
@@ -222,15 +209,19 @@ struct RoomDetailsScreen: View {
                         }
                     }
                 }
-                
-            }.padding()
+                .padding()
+            }
+            .background(Color("Grey"))
+            .padding(2)
+            .cornerRadius(20)
         }
+        
     }
     
     
     func showToast() {
         isShowingToast = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             withAnimation {
                 isShowingToast = false
             }
@@ -297,8 +288,9 @@ struct RoomDetailsScreen_Previews: PreviewProvider {
             ]
         )
         
-        viewModel.users = [sampleProfile]
+        viewModel.users = [sampleProfile,sampleProfile]
         
         return RoomDetailsScreen(viewModel: viewModel)
+        
     }
 }

@@ -38,10 +38,9 @@ struct ProfileEditScreen: View {
                             if tagGoodName.isEmpty{
                                 print("Пустой")
                             }else{
-                                viewModel.goodTag.append(Tag(id: UUID().uuidString, name: tagGoodName, important: true, isLike: true))
+                                viewModel.tags.append(Tag(id: UUID().uuidString, name: tagGoodName, important: true, isLike: true))
                                 tagGoodName = ""
                             }
-                           
                         }){
                             Image(systemName: "plus")
                                 .padding(10)
@@ -50,7 +49,7 @@ struct ProfileEditScreen: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
                     
-                    TagCloudView(tags:$viewModel.goodTag,isCurrentProfile: true,isGood: true)
+                    TagCloudView(tags:$viewModel.tags,isEdit: true,isGood: true)
                     Divider()
                     
                     Text("Антипатия")
@@ -59,9 +58,8 @@ struct ProfileEditScreen: View {
                         .fontWeight(.bold)
                     HStack{
                         CustomTextFieldView(inputText: $tagBeadName, label: "Например спорт")
-                        
                         Button(action: {
-                            viewModel.beadTag.append(Tag(id: UUID().uuidString, name: tagBeadName, important: true, isLike: false))
+                            viewModel.tags.append(Tag(id: UUID().uuidString, name: tagBeadName, important: true, isLike: false))
                             tagBeadName = ""
                         }){
                             Image(systemName: "plus")
@@ -70,7 +68,7 @@ struct ProfileEditScreen: View {
                         .background(Color.green)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
-                    TagCloudView(tags:$viewModel.beadTag,isCurrentProfile: true,isGood: false)
+                    TagCloudView(tags:$viewModel.tags,isEdit: true,isGood: false)
                 }
                 Spacer()
                 

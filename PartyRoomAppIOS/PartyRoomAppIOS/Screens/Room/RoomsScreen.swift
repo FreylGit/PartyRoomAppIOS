@@ -8,12 +8,6 @@ struct RoomsScreen: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text(viewModel.name ?? "пустой акк")
-                Button(action: {
-                    TokenManager.shared.clearTokens()
-                }){
-                    Text("DELETE TOKEN")
-                }
                 HStack{
                     NavigationLink(destination: RoomCreateScreen()){
                         Text("Создать комнату")
@@ -34,11 +28,10 @@ struct RoomsScreen: View {
                             .padding()
                     }
                 }
-                
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(viewModel.rooms, id: \.id) { room in
-                            NavigationLink(destination: RoomDetailsScreen(viewModel: RoomDetailsViewModel(roomId: room.id))) {
+                            NavigationLink(destination: RoomDetailsScreen(viewModel: RoomDetailsViewModel(roomId: room.id)                  )) {
                                 ItemRoomView(room: room)
                                     .frame(maxWidth: .infinity)
                                     .padding(.horizontal,10)
@@ -56,6 +49,7 @@ struct RoomsScreen: View {
             .background(GradientBackgroundView())
             Spacer()
         }
+        
     }
 }
 

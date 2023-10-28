@@ -22,12 +22,11 @@ struct ProfileMainScreen: View {
                             Text("Предпочтения")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.white)
-                            TagCloudView(tags:$viewModel.goodTag,isCurrentProfile: viewModel.isCurrentProfile,isGood: true)
-                            Divider()
+                            TagCloudView(tags:$viewModel.tags,isEdit: false,isGood: true)
                             Text("Антипатия")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.white)
-                            TagCloudView(tags:$viewModel.beadTag,isCurrentProfile: viewModel.isCurrentProfile,isGood: false)
+                            TagCloudView(tags:$viewModel.tags,isEdit: false,isGood: false)
                             
                         }
                         .padding(7)
@@ -35,7 +34,7 @@ struct ProfileMainScreen: View {
                     Spacer()
                 }
             }
-            .background(GradientBackgroundView()) 
+        
         }
         .onAppear(perform: {
             if viewModel.isCurrentProfile {
@@ -94,9 +93,6 @@ struct ProfileMainScreen: View {
                         .frame(width: 120, height: 120)
                         .background(Color.gray)
                         .clipShape(Circle())
-                    
-                        .overlay(Circle().stroke(Color.orange, lineWidth: 3))
-                    
                 } placeholder: {
                     ProgressView()
                 }

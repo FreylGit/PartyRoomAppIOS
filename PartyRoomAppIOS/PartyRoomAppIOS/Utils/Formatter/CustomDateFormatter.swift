@@ -19,7 +19,7 @@ class CustomDateFormatter{
         
         if let date = dateFormatter.date(from: formattedDateString) {
             let outputFormatter = DateFormatter()
-            outputFormatter.dateFormat = "dd.MM.yyyy \n HH:mm"
+            outputFormatter.dateFormat = "dd.MM.yyyy"
             return outputFormatter.string(from: date)
         } else {
             return "Invalid Date"

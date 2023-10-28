@@ -10,9 +10,9 @@ struct CustomTextFieldView: View {
         })
         .padding(.vertical,10)
         .padding(.horizontal,10)
-        .background(Color.brown.opacity(0.2))
+        .background(Color("TextEdit"))
         .foregroundColor(.white)
-        .cornerRadius(10)
+        .cornerRadius(8)
     }
 }
 

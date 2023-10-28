@@ -8,21 +8,20 @@ struct PartyRoomAppIOSApp: App {
             if user.isLogin{
                 IsLoginMainView()
                     .environmentObject(user)
+                    .background(Color.red)
+                    //.background(GradientBackgroundView())
+                    .preferredColorScheme(.dark)
             }else{
                 LoginScreen()
                     .environmentObject(user)
+                    .background(GradientBackgroundView()) 
+                    .preferredColorScheme(.dark)
             }
-            /*if let token = TokenManager.shared.getRefreshToken(){
-                if token == "refreshToken"{
-                    MainView()
-                        .background(GradientBackgroundView())
-                }else{
-                    IsLoginMainView()
-                }
-            }*/
         }
         
+        
     }
+    
 }
 
 
